@@ -1,0 +1,311 @@
+<flectra>
+        <!--Allowance-->
+    <record id="hr_rule_single_salary" model="hr.salary.rule">
+        <field name="name">Single Salary</field>
+        <field name="sequence" eval="2"/>
+        <field name="code">SS</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = payslip.single_salary > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = payslip.single_salary</field>
+    </record>
+    <record id="hr_rule_single_salary_capeg" model="hr.salary.rule">
+        <field name="name">Single Salary Capeg</field>
+        <field name="sequence" eval="2"/>
+        <field name="code">SSC</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = (payslip.single_salary*80)/100 > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = (payslip.single_salary*80)/100</field>
+    </record>
+    <record id="hr_rule_wage" model="hr.salary.rule">
+        <field name="name">Wage</field>
+        <field name="sequence" eval="2"/>
+        <field name="code">WG</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.wage > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.wage</field>
+    </record>
+    <record id="hr_rule_tunj_dplk" model="hr.salary.rule">
+        <field name="name">Tunjangan DPLK</field>
+        <field name="sequence" eval="3"/>
+        <field name="code">TDPLK</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = payslip.tunjangan_dplk > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = payslip.tunjangan_dplk+inputs.TDPLK.amount</field>
+    </record>
+    <record id="hr_rule_tunj_bpjstk" model="hr.salary.rule">
+        <field name="name">Tunjangan BPJS TK</field>
+        <field name="sequence" eval="4"/>
+        <field name="code">TBPJSTK</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = payslip.tunj_bpjstk > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = payslip.tunj_bpjstk</field>
+    </record>
+    <record id="hr_rule_tunj_bpjskes" model="hr.salary.rule">
+        <field name="name">Tunjangan BPJS Kes</field>
+        <field name="sequence" eval="5"/>
+        <field name="code">TBPJSKES</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = payslip.tunj_bpjskes > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = payslip.tunj_bpjskes</field>
+    </record>
+
+    <!--Deduction-->
+
+    <record id="hr_rule_pot_kehadiran" model="hr.salary.rule">
+        <field name="name">Pot. Kehadiran</field>
+        <field name="sequence" eval="101"/>
+        <field name="code">PK</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = -((worked_days.TH.number_of_days*65000)+(worked_days.perdin.number_of_days*40000)) != 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -((worked_days.TH.number_of_days*65000)+(worked_days.perdin.number_of_days*40000))</field>
+    </record>
+
+    <record id="hr_rule_pot_absensi" model="hr.salary.rule">
+        <field name="name">Pot. Absensi</field>
+        <field name="sequence" eval="102"/>
+        <field name="code">PA</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = -((worked_days.terlambat.number_of_days*20000)+(worked_days.terlambat2jam.number_of_days*40000)+(worked_days.AT.number_of_days*50000))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -((worked_days.terlambat.number_of_days*20000)+(worked_days.terlambat2jam.number_of_days*40000)+(worked_days.AT.number_of_days*50000))</field>
+    </record>
+
+    <record id="hr_rule_pot_dplk" model="hr.salary.rule">
+        <field name="name">Pot. DPLK</field>
+        <field name="sequence" eval="103"/>
+        <field name="code">PDPLK</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = payslip.potongan_dplk != 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -payslip.potongan_dplk</field>
+    </record>
+
+    <record id="hr_rule_pot_bpjs_tk" model="hr.salary.rule">
+        <field name="name">Pot. BPJS TK</field>
+        <field name="sequence" eval="104"/>
+        <field name="code">PBPJSTK</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = payslip.pot_bpjstk != 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -payslip.pot_bpjstk</field>
+    </record>
+
+    <record id="hr_rule_pot_bpjs_kes" model="hr.salary.rule">
+        <field name="name">Pot. BPJS Kes</field>
+        <field name="sequence" eval="105"/>
+        <field name="code">PBPJSKES</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = payslip.pot_bpjskes != 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -payslip.pot_bpjskes</field>
+    </record>
+
+    <record id="hr_rule_pot_bjb_syariah" model="hr.salary.rule">
+        <field name="name">Pot. BJB Syariah</field>
+        <field name="sequence" eval="106"/>
+        <field name="code">PBJBS</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.BJBS.amount != 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.BJBS.amount</field>
+    </record>
+
+    <record id="hr_rule_pot_kopen" model="hr.salary.rule">
+        <field name="name">Pot. Kopen</field>
+        <field name="sequence" eval="107"/>
+        <field name="code">PKOP</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.KOPEN.amount != 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.KOPEN.amount</field>
+    </record>
+
+    <record id="hr_rule_pot_ziebra" model="hr.salary.rule">
+        <field name="name">Pot. Ziebar</field>
+        <field name="sequence" eval="108"/>
+        <field name="code">PZIEB</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.ZIEBAR.amount != 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.ZIEBAR.amount</field>
+    </record>
+
+    <!-- Salary Rule Input -->
+    <!--record id="hr_payroll_rules_input_bjbsyariah" model="hr.rule.input">
+        <field name="name">BJBS</field>
+        <field name="code">BJBS</field>
+        <field name="sequence">1</field>   
+        <field name="input_id" ref="hr_rule_pot_bjb_syariah"/>          
+    </record>
+
+    <record id="hr_payroll_rules_input_kopen" model="hr.rule.input">
+        <field name="name">KOPEN</field>
+        <field name="code">KOPEN</field>
+        <field name="sequence">2</field>   
+        <field name="input_id" ref="hr_rule_pot_kopen"/>          
+    </record>
+
+    <record id="hr_payroll_rules_input_ziebar" model="hr.rule.input">
+        <field name="name">ZIEBAR</field>
+        <field name="code">ZIEBAR</field>
+        <field name="sequence">3</field>   
+        <field name="input_id" ref="hr_rule_pot_ziebra"/>          
+    </record-->
+
+    <record model="hr.payroll.structure" id="general_salary_structure_ykp" >
+        <field name="name">YKP Salary Structure</field>
+        <field name="code">BRSS</field>
+        <field name="parent_id" ref="hr_payroll.structure_base"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field eval="[(6, 0, [
+            ref('hr_rule_single_salary'),
+            ref('hr_rule_tunj_dplk'),
+            ref('hr_rule_tunj_bpjstk'),
+            ref('hr_rule_tunj_bpjskes'),
+            ref('hr_rule_pot_kehadiran'),
+            ref('hr_rule_pot_absensi'),
+            ref('hr_rule_pot_dplk'),
+            ref('hr_rule_pot_bpjs_tk'),
+            ref('hr_rule_pot_bpjs_kes'),
+            ref('hr_rule_pot_bjb_syariah'),
+            ref('hr_rule_pot_kopen'),
+            ref('hr_rule_pot_ziebra'),
+         ])]" name="rule_ids"/>
+    </record>
+
+    <record model="hr.payroll.structure" id="general_salary_structure_ykp_nongrading" >
+        <field name="name">YKP Salary Structure Non Grading</field>
+        <field name="code">BRSS</field>
+        <field name="parent_id" ref="hr_payroll.structure_base"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field eval="[(6, 0, [
+            ref('hr_rule_tunj_dplk'),
+            ref('hr_rule_tunj_bpjstk'),
+            ref('hr_rule_tunj_bpjskes'),
+            ref('hr_rule_pot_kehadiran'),
+            ref('hr_rule_pot_absensi'),
+            ref('hr_rule_pot_dplk'),
+            ref('hr_rule_pot_bpjs_tk'),
+            ref('hr_rule_pot_bpjs_kes'),
+            ref('hr_rule_pot_bjb_syariah'),
+            ref('hr_rule_pot_kopen'),
+            ref('hr_rule_pot_ziebra'),
+         ])]" name="rule_ids"/>
+    </record>
+
+
+
+    <record model="hr.payroll.structure" id="kontrak_salary_structure_ykp" >
+        <field name="name">Kontrak Salary Structure</field>
+        <field name="code">KSS</field>
+        <field name="parent_id" ref="hr_payroll.structure_base"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field eval="[(6, 0, [
+            ref('hr_rule_wage'),
+            ref('hr_rule_tunj_bpjstk'),
+            ref('hr_rule_tunj_bpjskes'),
+            ref('hr_rule_pot_kehadiran'),
+            ref('hr_rule_pot_absensi'),
+            ref('hr_rule_pot_bpjs_tk'),
+            ref('hr_rule_pot_bpjs_kes'),
+            ref('hr_rule_pot_bjb_syariah'),
+            ref('hr_rule_pot_kopen'),
+            ref('hr_rule_pot_ziebra'),
+         ])]" name="rule_ids"/>
+    </record>
+
+    <record model="hr.payroll.structure" id="capeg_salary_structure_ykp" >
+        <field name="name">Capeg Salary Structure</field>
+        <field name="code">CSS</field>
+        <field name="parent_id" ref="hr_payroll.structure_base"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field eval="[(6, 0, [
+            ref('hr_rule_single_salary_capeg'),
+            ref('hr_rule_tunj_bpjstk'),
+            ref('hr_rule_tunj_bpjskes'),
+            ref('hr_rule_pot_kehadiran'),
+            ref('hr_rule_pot_absensi'),
+            ref('hr_rule_pot_bpjs_tk'),
+            ref('hr_rule_pot_bpjs_kes'),
+            ref('hr_rule_pot_bjb_syariah'),
+            ref('hr_rule_pot_kopen'),
+            ref('hr_rule_pot_ziebra'),
+         ])]" name="rule_ids"/>
+    </record>
+
+    <record model="hr.payroll.structure" id="capeg_lama_salary_structure_ykp" >
+        <field name="name">Capeg Lama Salary Structure</field>
+        <field name="code">CLSS</field>
+        <field name="parent_id" ref="hr_payroll.structure_base"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field eval="[(6, 0, [
+            ref('hr_rule_tunj_bpjstk'),
+            ref('hr_rule_tunj_bpjskes'),
+            ref('hr_rule_pot_kehadiran'),
+            ref('hr_rule_pot_absensi'),
+            ref('hr_rule_pot_bpjs_tk'),
+            ref('hr_rule_pot_bpjs_kes'),
+            ref('hr_rule_pot_bjb_syariah'),
+            ref('hr_rule_pot_kopen'),
+            ref('hr_rule_pot_ziebra'),
+         ])]" name="rule_ids"/>
+    </record>
+
+    <record model="hr.payroll.structure" id="kontrak_salary_structure_ykp" >
+        <field name="name">kontrak Salary Structure</field>
+        <field name="code">CLSS</field>
+        <field name="parent_id" ref="hr_payroll.structure_base"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field eval="[(6, 0, [
+            ref('hr_rule_tunj_bpjstk'),
+            ref('hr_rule_tunj_bpjskes'),
+            ref('hr_rule_pot_kehadiran'),
+            ref('hr_rule_pot_absensi'),
+            ref('hr_rule_pot_bpjs_tk'),
+            ref('hr_rule_pot_bpjs_kes'),
+            ref('hr_rule_pot_bjb_syariah'),
+            ref('hr_rule_pot_kopen'),
+            ref('hr_rule_pot_ziebra'),
+         ])]" name="rule_ids"/>
+    </record>
+
+    <record model="hr.payroll.structure" id="kontrak_partership_salary_structure_ykp" >
+        <field name="name">Kontrak Partnership Salary Structure</field>
+        <field name="code">KSS</field>
+        <field name="parent_id" ref="hr_payroll.structure_base"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field eval="[(6, 0, [
+            ref('hr_rule_tunj_bpjstk'),
+            ref('hr_rule_tunj_bpjskes'),
+            ref('hr_rule_pot_kehadiran'),
+            ref('hr_rule_pot_absensi'),
+            ref('hr_rule_pot_bpjs_tk'),
+            ref('hr_rule_pot_bpjs_kes'),
+            ref('hr_rule_pot_bjb_syariah'),
+            ref('hr_rule_pot_kopen'),
+            ref('hr_rule_pot_ziebra'),
+         ])]" name="rule_ids"/>
+    </record>
+
+</flectra>

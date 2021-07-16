@@ -1,0 +1,58 @@
+<flectra>
+    <report
+            id="hr_training_participant_printout_report"
+            string="Print Uang Saku Pelatihan"
+            model="hr.training.participant"
+            report_type="qweb-pdf"
+            name="hr_ykp_training.print_uang_saku_report"
+            paperformat="hr_ykp_holidays.paperformat_perdin"
+    />
+
+    <template id="print_uang_saku_report">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <table class="print_table" border="1" style="width: 100%">
+                    <tr>
+                        <td style="font-size:12px;width:5%;border:1px solid #000;padding:0.5em;">No</td>
+                        <td style="font-size:12px;width:25%;border:1px solid #000;padding:0.5em;">Nama</td>
+                        <td style="font-size:12px;width:25%;border:1px solid #000;padding:0.5em;">Jabatan
+                        </td>
+                        <td style="font-size:12px;width:15%;border:1px solid #000;padding:0.5em;">Tujuan</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Waktu</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Nominal/Hari
+                        </td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Jumlah
+                            dibayarkan
+                        </td>
+                    </tr>
+                    <t t-foreach="docs" t-as="o">
+                        <tr>
+                            <td style="font-size:12px;width:5%;border:1px solid #000;padding:0.5em;">
+                                <span t-esc="o_index + 1"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.name"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.name.job_id"/>
+                            </td>
+                            <td style="font-size:12px;width:15%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.request_id.tempat_tujuan"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.request_id.duration"/>
+                                <span>Hari</span>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.uang_pelatihan"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.total_uang_pelatihan"/>
+                            </td>
+                        </tr>
+                    </t>
+                </table>
+            </div>
+        </t>
+    </template>
+</flectra>

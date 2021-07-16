@@ -1,0 +1,11 @@
+<flectra>
+    <data>
+        <template id="assets_backend" name="hr_attendance assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/dynamic_list/static/src/js/list_controller.js"></script>
+            <script type="text/javascript" src="/dynamic_list/static/src/js/dropdown_fields.js"></script>
+            <link rel="stylesheet" href="/dynamic_list/static/src/css/dynamic_list.css"/>
+        </xpath>
+    </template>
+    </data>
+</flectra>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+
+	<record id="paperformat_payroll" model="report.paperformat">
+        <field name="name">Format Slip Gaji</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <report
+        id="hr_payslip_printout"
+        string="Print Slip Gaji"
+        model="hr.payslip"
+        report_type="qweb-pdf"
+        name="hr_ykp_payroll.print_form_payslip"
+        paperformat="hr_ykp_payroll.paperformat_payroll"
+    	/>
+
+    <template id="print_form_payslip">
+        <t t-name="hr_ykp_payroll.print_form_payslip">
+            <t t-name="hr_ykp_payroll.print_form_payslip">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <t t-foreach="docs" t-as="o">
+                            <div class="page">
+                                <table width="100%" style="font-size:10px">
+                                    <tr>
+                                        <td width="100%" style="text-align: center;"><img src="/hr_ykp_payroll/static/src/img/image.jpg"/></td>
+                                    </tr>
+                                </table>
+                                <table width="100%" style="font-size:17px">
+                                    <tr>
+                                        <td width="100%" style="text-align: center;text-transform: uppercase"><h4><b>
+                                            <br>SLIP GAJI BULAN <span t-field="o.date_to" t-field-options="{&quot;format&quot;: &quot;MMMM y&quot;}"/></br>
+                              
+                                        </b></h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100%" style="text-align: center;color: #ffffff">..</td>
+                                    </tr>
+                                    <!--tr>
+                                        <td width="100%" style="text-align: center;">
+                                            <b><u><span style="font-size: 15px">SLIP GAJI PEGAWAI YKP bank bjb </span><span t-field="o.date_to" t-field-options="{&quot;format&quot;: &quot;MMMM y&quot;}"/></u></b>
+                                        </td>
+                                    </tr-->
+                                </table>
+                                <br/>
+                                <br/>
+                                <table width="100%" style="font-size:17px">
+                                    <tr>
+                                        <td width="20%">No</td>
+                                        <td width="3%">:</td>
+                                        <td width="20%"><span t-field="o.number"/></td>
+                                        <td width="10%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="3%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="24%" style="text-align: center;color: #ffffff">..</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Nama</td>
+                                        <td width="3%">:</td>
+                                        <td width="20%"><span t-field="o.employee_id.name"/></td>
+                                        <td width="7%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="3%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="27%" style="text-align: center;color: #ffffff">..</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Ms. Kerja</td>
+                                        <td width="3%">:</td>
+                                        <td width="20%"><span t-field="o.masa"/></td>
+                                        <td width="7%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%">Pot. Kehadiran</td>
+                                        <td width="3%">:</td>
+                                        <td width="27%">Rp. 
+                                            <span t-field="o.pot_kehadiran"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Grade</td>
+                                        <td width="3%">:</td>
+                                        <td width="20%">
+                                          G-<span t-field="o.employee_id.grade.name"/>/<span t-field="o.employee_id.grade.level_id"/>
+                                        </td>
+                                        <td width="7%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%">Pot. abnsensi</td>
+                                        <td width="3%">:</td>
+                                        <td width="27%">Rp.  
+                                        <span t-field="o.pot_absensi"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%" style="text-align: center;color: #ffffff">Grade</td>
+                                        <td width="3%" style="text-align: center;color: #ffffff">:</td>
+                                        <td width="20%" style="text-align: center;color: #ffffff">Kontrak Parnership</td>
+                                        <td width="7%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%">Iuran DPLK</td>
+                                        <td width="3%">:</td>
+                                        <td width="27%">Rp.  
+                                            <span t-field="o.potongan_dplk"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Iuran. DPLK</td>
+                                        <td width="3%">:</td>
+                                        <td width="20%">Rp. 
+                                            <span t-field="o.tunjangan_dplk"/>
+                                        </td>
+                                        <td width="7%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%">Iuran BPJS TK</td>
+                                        <td width="3%">:</td>
+                                        <td width="27%">Rp.  
+                                            <span t-field="o.pot_bpjstk"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Iuran. BPJS TK</td>
+                                        <td width="3%">:</td>
+                                        <td width="20%">Rp. 
+                                            <span t-field="o.tunj_bpjstk"/>
+                                        </td>
+                                        <td width="7%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%">Iuran BPJS Kes</td>
+                                        <td width="3%">:</td>
+                                        <td width="27%">Rp.  
+                                            <span t-field="o.pot_bpjskes"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%" style="border-bottom: 1px solid black">Iuran. BPJS Kes</td>
+                                        <td width="3%" style="border-bottom: 1px solid black">:</td>
+                                        <td width="20%" style="border-bottom: 1px solid black">Rp. 
+                                            <span t-field="o.tunj_bpjskes"/>   +
+                                        </td>
+                                        <td width="7%" style="text-align: center;color: #ffffff"/>
+                                        <td width="20%">Angs. Bjb syariah</td>
+                                        <td width="3%">:</td>
+                                        <td width="27%">Rp.  
+                                            <span t-field="o.pot_bjbs"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%"><b>Jumlah Iuran</b></td>
+                                        <td width="3%">:</td>
+                                        <td width="20%"><b>Rp.  
+                                            <span t-field="o.jum_tunjangan"/></b>
+                                        </td>
+                                        <td width="7%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%">Angs. kopen</td>
+                                        <td width="3%">:</td>
+                                        <td width="27%">Rp. 
+                                            <span t-field="o.pot_kopen"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%"><b>Tunj. Pajak</b></td>
+                                        <td width="3%">:</td>
+                                        <td width="20%"><b>Rp.
+                                            <span t-field="o.tunj_pajak"/></b>
+                                        </td>
+                                        <td width="7%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="20%" style="border-bottom: 1px solid black">Angs. Ziebar</td>
+                                        <td width="3%" style="border-bottom: 1px solid black">:</td>
+                                        <td width="27%" style="border-bottom: 1px solid black">Rp. 
+                                            <span t-field="o.pot_ziebar"/>   +    
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="23%"><b>Gaji (Single Salary)</b></td>
+                                        <td width="3%">:</td>
+                                        <td width="15%"><b>Rp  
+                                            <span t-field="o.single_salary"/></b>
+                                        </td>
+                                        <td width="5%" style="text-align: center;color: #ffffff">..</td>
+                                        <td width="23%"><b>Jumlah Pot. Pegawai</b></td>
+                                        <td width="3%">:</td>
+                                        <td width="28%"><b>Rp.  
+                                          <span t-field="o.jum_potongan"/></b>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table width="100%" style="font-size:17px">
+                                    <tr>
+                                        <td width="20%" style="text-align: center;color: #ffffff">Jumlah Tunjangan</td>
+                                        <td width="27%"><b>Gaji Bersih</b></td>
+                                        <td width="28%" style="text-align: right;"><b>Rp 
+                                          <span t-field="o.gaji_bersih"/></b></td>
+                                        <td width="5%" style="text-align: center;color: #ffffff">:</td>
+                                        <td width="20%" style="text-align: center;color: #ffffff">Rp. -</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%" style="text-align: center;color: #ffffff">Jumlah Tunjangan</td>
+                                        <td width="27%" style="text-align: center;color: #ffffff">Gaji Bersih</td>
+                                        <td width="28%" style="text-align: center;color: #ffffff">Rp -</td>
+                                        <td width="5%" style="text-align: center;color: #ffffff">:</td>
+                                        <td width="20%" style="text-align: center;color: #ffffff">Rp. -</td>
+                                    </tr>
+
+                                </table>
+                                <table width="100%" style="font-size:17px">
+                                  <!--tr>
+                                    <td width="50%" style="text-align: right;color: #ffffff">..</td>
+                                    <td width="50%" style="text-align: left;">Bandung, <span t-field="o.date_to" t-field-options="{&quot;format&quot;: &quot;dd MMMM y&quot;}"/></td>
+                                  </tr-->
+                                  <tr>
+                                    <td width="50%" style="text-align: right;color: #ffffff">..</td>
+                                    <td width="50%" style="text-align: left;color: #ffffff">Bandung, <span t-field="o.date_to" t-field-options="{&quot;format&quot;: &quot;dd MMMM y&quot;}"/></td>
+                                  </tr>
+                                </table>
+                                <table width="100%" style="font-size:17px">
+                                    <tr>
+                                        <td width="100%" style="text-align: left;">
+                                            slip gaji ini di bayar tanggal <span t-field="o.tgl_bayar" t-field-options="{&quot;format&quot;: &quot;dd MMMM y&quot;}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100%" style="text-align: left;">*Slip ini di cetak menggunkanan sistem sehingga tidak membutuhkan tandatangan</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+</flectra>

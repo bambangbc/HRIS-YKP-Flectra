@@ -1,0 +1,907 @@
+<flectra>
+    <data>
+
+        <record id="hr_ykp_training.hr_training_request_tree" model="ir.ui.view">
+            <field name="name">hr.training.request.tree</field>
+            <field name="model">hr.training.request</field>
+            <field name="arch" type="xml">
+                <tree string="" decoration-success="state=='approve'">
+                    <field name="type"/>
+                    <field name="pola_ajuan" groups="hr.group_hr_manager" string="Pengajuan dari"/>
+                    <field name="name" string="Tema Pelatihan"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="instructure_id" string="Penyelenggara"/>
+                    <field name="state" string="Status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_request_tree_pending" model="ir.ui.view">
+            <field name="name">hr.training.request.tree</field>
+            <field name="model">hr.training.request</field>
+            <field name="arch" type="xml">
+                <tree string="" decoration-success="state=='approve'" create="false" delete="false">
+                    <field name="type"/>
+                    <field name="pola_ajuan" groups="hr.group_hr_manager" string="Pengajuan dari"/>
+                    <field name="name" string="Tema Pelatihan"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="instructure_id" string="Penyelenggara"/>
+                    <field name="state" string="Status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_request_report_tree" model="ir.ui.view">
+            <field name="name">hr.training.request.tree</field>
+            <field name="model">hr.training.request</field>
+            <field name="arch" type="xml">
+                <tree string="" create="false" delete="false">
+                    <field name="type"/>
+                    <field name="pola_ajuan" groups="hr.group_hr_manager"/>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="instructure_id" string="Penyelenggara"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_request_form" model="ir.ui.view">
+            <field name="name">hr.training.request.form</field>
+            <field name="model">hr.training.request</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="action_pending_hr" states="draft" type="object" string="Ajukan Pelatihan"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,pending_hr,pending,approve,decline"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" style="font-weight:800"/>
+                            <h1>
+                                <field name="name" placeholder="Nama Pelatihan" required="True" />
+                            </h1>
+                            <!--<br/>-->
+                            <!--<label for="desc" style="font-weight:800"/>-->
+                            <!--<field name="desc" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>-->
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="start_date" required="1" />
+                                <field name="end_date" />
+                                <field name="duration" string="Jumlah Hari" readonly="1" />
+                                <field name="city_start" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="negara_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="propinsi_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="tempat_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" required="1" />
+                            </group>
+                            <group>
+                                <field name="location" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}" string="Tempat"/>
+                                <field name="external_instructure"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="instructure_id" required="1" context="{'default_is_instructure': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}" string="Instruktur"/>
+                                <!--<field name="training_cost" required="1"-->
+                                       <!--attrs="{'readonly': [('state', '!=', 'draft')]}"/>-->
+                                <field name="unit_request" string="Pengusul" invisible="1"/>
+                                <!--<field name="department_id"-->
+                                       <!--attrs="{'invisible': [('unit_request', 'in', ['hr', 'employee', 'pengurus'])], 'readonly': [('state', '!=', 'draft')]}"/>-->
+                                <!--<field name="employee_id"-->
+                                       <!--attrs="{'invisible': [('unit_request', 'in', ['hr', 'department'])], 'readonly': [('state', '!=', 'draft')]}"/>-->
+                                <field name="employee_id" string="Karyawan"/>
+                            </group>
+                            <label for="notes" />
+                            <field name="notes" />
+                        </group>
+                        <notebook>
+                            <page string="Daftar Ajuan Peserta" attrs="{'invisible': [('unit_request', 'in', ['employee', 'pengurus'])]}">
+                                <field name="participant_ids" nolabel="1"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="name" string="Nama Karyawan"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Dokumen Pendukung">
+                                <field name="document_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="filename" invisible="1"/>
+                                        <field name="document" filename="filename" widget="binary"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_request_form_assignment" model="ir.ui.view">
+            <field name="name">hr.training.request.form</field>
+            <field name="model">hr.training.request</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="action_pending" states="draft" type="object" string="Ajukan Pelatihan"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,pending,approve,decline"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="expense_button_box">
+                                <button name="generate_assignment_letter"
+                                        type="object"
+                                        class="oe_stat_button" string="Generate Surat Tugas"
+                                        states="approve"
+                                        icon="fa-archive" />
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" style="font-weight:800"/>
+                            <h1>
+                                <field name="name" placeholder="Nama Pelatihan" required="True" />
+                            </h1>
+                            <!--<br/>-->
+                            <!--<label for="desc" style="font-weight:800"/>-->
+                            <!--<field name="desc" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>-->
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="start_date" required="1" />
+                                <field name="end_date" />
+                                <field name="duration" string="Jumlah Hari" readonly="1" />
+                                <field name="city_start" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="negara_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="propinsi_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="tempat_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" required="1" />
+                                <field name="location" attrs="{'readonly': [('state', '!=', 'draft')]}" required="1" />
+                                <field name="external_instructure" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="instructure_id" required="1" context="{'default_is_instructure': True}" attrs="{'readonly': [('state', '!=', 'draft')]}" string="Penyelenggara"/>
+                                <!--<field name="training_cost" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Daftar Ajuan Peserta">
+                                <field name="participant_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="name" string="Nama Karyawan"/>
+                                        <field name="state" readonly="1"/>
+                                        <button string="Download Surat Tugas" name="download_assignment_letter" type="object" attrs="{'invisible': [('state', '!=', 'approve')]}" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Dokumen Pendukung">
+                                <field name="document_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="filename" invisible="1"/>
+                                        <field name="document" filename="filename" widget="binary"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_request_form_approval" model="ir.ui.view">
+            <field name="name">hr.training.request.form</field>
+            <field name="model">hr.training.request</field>
+            <field name="arch" type="xml">
+                <form string="" create="false" delete="false">
+                    <header>
+                        <button name="action_pending" states="pending_hr" type="object" string="Setujui"
+                                groups="hr.group_hr_manager"/>
+                        <button name="action_approve" states="pending" type="object" string="Setujui"
+                                groups="hr_ykp_training.group_pengurus"/>
+                        <button name="action_decline" states="pending_hr" type="object" string="Tolak" groups="hr.group_hr_manager"/>
+                        <button name="action_decline" states="pending" type="object" string="Tolak" groups="hr_ykp_training.group_pengurus"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,pending,approve,decline"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" style="font-weight:800"/>
+                            <h1>
+                                <field name="name" placeholder="Nama Pelatihan" readonly="True"/>
+                            </h1>
+                            <br/>
+                            <label for="desc" style="font-weight:800"/>
+                            <field name="desc" required="1" readonly="1"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type" readonly="1"/>
+                                <field name="start_date" readonly="1"/>
+                                <field name="end_date" readonly="1"/>
+                                <field name="duration" string="Jumlah Hari" readonly="1" />
+                                <field name="city_start" readonly="1"/>
+                                <field name="negara_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="propinsi_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" readonly="1"/>
+                                <field name="tempat_tujuan" attrs="{'readonly': [('state', '!=', 'draft')]}" readonly="1" />
+                                <field name="location" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="external_instructure" readonly="1"/>
+                                <field name="instructure_id" readonly="1" context="{'default_is_instructure': True}"/>
+                                <field name="training_cost" readonly="1"/>
+                                <field name="unit_request" readonly="1" string="Pengusul"/>
+                                <field name="department_id"
+                                       attrs="{'invisible': [('unit_request', 'in', ['hr', 'employee', 'pengurus'])]}"/>
+                                <field name="employee_id"
+                                       attrs="{'invisible': [('unit_request', 'in', ['hr', 'department'])]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Daftar Ajuan Peserta">
+                                <field name="participant_ids" nolabel="1" readonly="1">
+                                    <tree>
+                                        <field name="name" string="Nama Karyawan"/>
+                                        <field name="state" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Dokumen Pendukung">
+                                <field name="document_ids" nolabel="1" readonly="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="filename" invisible="1"/>
+                                        <field name="document" filename="filename" widget="binary"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_request_action_window" model="ir.actions.act_window">
+            <field name="name">Pengajuan Pelatihan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('user_id', '=', uid)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_request_assignment_action_window" model="ir.actions.act_window">
+            <field name="name">Rencana Pelatihan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pola_ajuan', '=', 'penugasan')]</field>
+            <field name="context">{'default_pola_ajuan': 'penugasan'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_request_assignment_action_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="hr_training_request_tree"/>
+            <field name="act_window_id" ref="hr_training_request_assignment_action_window"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_request_assignment_action_form">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_training_request_form_assignment"/>
+            <field name="act_window_id" ref="hr_training_request_assignment_action_window"/>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_request_action_window_pending" model="ir.actions.act_window">
+            <field name="name">Pengajuan Approval Training</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|',('state', '=', 'pending_hr'),('state', '=', 'pending')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_request_pending_action_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="hr_training_request_tree_pending"/>
+            <field name="act_window_id" ref="hr_training_request_action_window_pending"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_request_pending_action_form">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_training_request_form_approval"/>
+            <field name="act_window_id" ref="hr_training_request_action_window_pending"/>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_request_action_window_approve" model="ir.actions.act_window">
+            <field name="name">Pelatihan disetujui</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.request</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('state', '=', 'approve')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_request_action_view_approve">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="hr_training_request_report_tree"/>
+            <field name="act_window_id" ref="hr_training_request_action_window_approve"/>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_request_action_window_decline" model="ir.actions.act_window">
+            <field name="name">Pelatihan ditolak</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.request</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('state', '=', 'decline')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_request_action_view_decline">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="hr_training_request_report_tree"/>
+            <field name="act_window_id" ref="hr_training_request_action_window_decline"/>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_config_al_tree" model="ir.ui.view">
+            <field name="name">hr.training.config.al.tree</field>
+            <field name="model">hr.training.cfg.assignment.letter</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_config_al_form" model="ir.ui.view">
+            <field name="name">hr.training.config.al.form</field>
+            <field name="model">hr.training.cfg.assignment.letter</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="document" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_config_al_action_window" model="ir.actions.act_window">
+            <field name="name">Konfigurasi Surat Tugas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.cfg.assignment.letter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_course_tree" model="ir.ui.view">
+            <field name="name">hr.training.course.tree</field>
+            <field name="model">hr.training.course</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_course_form" model="ir.ui.view">
+            <field name="name">hr.training.course.form</field>
+            <field name="model">hr.training.course</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="oe_button_box">
+                                <button name="generate_scoring"
+                                        type="object"
+                                        string="Generate Item Scoring"
+                                        class="oe_stat_button"
+                                        icon="fa-archive">
+                                </button>
+                        </div>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="desc" required="1"/>
+                            <field name="type" required="1"/>
+                        </group>
+                        <notebook groups="hr.group_hr_manager">
+                            <page string="Template Formulir Evaluasi">
+                                <field name="evaluation_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="bobot"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_course_action_window" model="ir.actions.act_window">
+            <field name="name">Database Pelatihan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.course</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_participant_tree" model="ir.ui.view">
+            <field name="name">hr.training.participant.tree</field>
+            <field name="model">hr.training.participant</field>
+            <field name="arch" type="xml">
+                <tree string="" create="false" decoration-warning="state=='pending'" decoration-danger="state=='decline'">
+                    <field name="request_id"/>
+                    <field name="type"/>
+                    <field name="location"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="assignment_letter_number"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <button string="Download Surat Tugas" name="download_assignment_letter" type="object" attrs="{'invisible': [('state', '!=', 'approve')]}" />
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_participant_form" model="ir.ui.view">
+            <field name="name">hr.training.participant.form</field>
+            <field name="model">hr.training.participant</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <header>
+                        <button name="action_approve" states="pending" type="object" string="Akan Mengikuti"/>
+                        <button name="action_decline" states="pending" type="object" string="Tidak Hadir"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="pending,approve,decline"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="evaluation_button_box" attrs="{'invisible': [('state', '!=', 'approve'), ('type', '!=', 'public')]}">
+                            <button name="create_evaluation"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-file" string="Buat Evaluasi"
+                                    states="pending"
+                                    attrs="{'invisible': [('type', '=', 'in_house')]}"
+                            />
+                        </div>
+                        <div class="oe_button_box" name="evaluation_vendor_button_box" attrs="{'invisible': [('state', '!=', 'approve'), ('type', '!=', 'public')]}">
+                            <button name="create_vendor_evaluation"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    states="pending"
+                                    icon="fa-file" string="Buat Evaluasi Vendor"/>
+                        </div>
+                        <div class="oe_title">
+                            <label for="request_id" class="oe_edit_only" style="font-weight:800"
+                                   string="Nama Pelatihan"/>
+                            <h1>
+                                <field name="request_id" placeholder="Nama Pelatihan" readonly="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="type" readonly="1"/>
+                            <field name="location" readonly="1"/>
+                            <field name="start_date" readonly="1"/>
+                            <field name="end_date"/>
+                            <field name="type" invisible="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_participant_pivot" model="ir.ui.view">
+            <field name="name">hr.training.participant.pivot</field>
+            <field name="model">hr.training.participant</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="request_id" type="row" string="Nama Pelatihan"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_participant_graph" model="ir.ui.view">
+            <field name="name">hr.training.participant.graph</field>
+            <field name="model">hr.training.participant</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="request_id"/>
+                </graph>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_participant_calendar" model="ir.ui.view">
+            <field name="name">hr.training.participant.calendar</field>
+            <field name="model">hr.training.participant</field>
+            <field name="arch" type="xml">
+                <calendar date_start="start_date" date_stop="end_date" string="Jadwal Diklat" quick_add="false">
+                    <field name="request_id"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_participant_search" model="ir.ui.view">
+            <field name="name">hr.training.participant.search</field>
+            <field name="model">hr.training.participant</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="state_approve" string="Mengikuti" domain="[('state', '=', 'approve')]"/>
+                </search>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_participant_action_my" model="ir.actions.act_window">
+            <field name="name">Pelatihan Saya</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.participant</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('state', '!=', 'draft'), ('user_id', '=', uid)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_participant_action_report" model="ir.actions.act_window">
+            <field name="name">Pelatihan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.participant</field>
+            <field name="view_mode">tree,pivot,graph,calendar</field>
+            <field name="context">{'search_default_state_approve': 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_evaluation_vendor_tree" model="ir.ui.view">
+            <field name="name">hr.training.evaluation.vendor.tree</field>
+            <field name="model">hr.training.evaluation.vendor</field>
+            <field name="arch" type="xml">
+                <tree string="" create="false">
+                    <field name="name" string="Nama Peserta"/>
+                    <field name="request_id" string="Nama Pelatihan" />
+                    <field name="instructure_id" string="Instruktur / Vendor" />
+                    <field name="evaluation_date" string="Tgl Entri"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_evaluation_vendor_form" model="ir.ui.view">
+            <field name="name">hr.training.evaluation.vendor.form</field>
+            <field name="model">hr.training.evaluation.vendor</field>
+            <field name="arch" type="xml">
+                <form string="" create="false">
+                    <sheet>
+                        <group>
+                            <field name="name" string="Nama Peserta" readonly="1" />
+                            <field name="request_id" string="Nama Pelatihan" readonly="1" />
+                            <field name="instructure_id" string="Instruktur / Vendor" readonly="1" />
+                            <field name="evaluation_date"/>
+                            <field name="evaluation_document" filename="filename" widget="binary" required="1"/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Penilaian">
+                                <field name="evaluation_detail_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name" required="1"/>
+                                        <field name="score" required="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_evaluation_vendor_pivot" model="ir.ui.view">
+            <field name="name">hr.training.evalutaion.vendor.pivot</field>
+            <field name="model">hr.training.evaluation.vendor</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name" type="row" />
+                </pivot>
+            </field>
+        </record>
+        <record id="hr_training_evaluation_vendor_action_window" model="ir.actions.act_window">
+            <field name="name">Evaluasi Pelatihan Vendor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.evaluation.vendor</field>
+            <field name="view_mode">tree,form, pivot</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_evaluation_form_popup" model="ir.ui.view">
+            <field name="name">hr.training.evaluation.form</field>
+            <field name="model">hr.training.evaluation</field>
+            <field name="arch" type="xml">
+                <form string="" create="false">
+                    <sheet>
+                        <group>
+                            <field name="name" string="Nama Peserta" readonly="1"/>
+                            <field name="evaluation_date"/>
+                            <field name="evaluation_document" filename="filename" widget="binary" required="1"/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_evaluation_tree" model="ir.ui.view">
+            <field name="name">hr.training.evaluation.tree</field>
+            <field name="model">hr.training.evaluation</field>
+            <field name="arch" type="xml">
+                <tree string="" create="false">
+                    <field name="request_id" string="Nama Pelatihan"/>
+                    <field name="evaluation_date" string="Tgl Entri"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_evaluation_form" model="ir.ui.view">
+            <field name="name">hr.training.evaluation.form</field>
+            <field name="model">hr.training.evaluation</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="request_id" string="Pelatihan" domain="[('type', '=', 'in_house'), ('state', '=', 'approve')]" options="{'no_create': True, 'no_create_edit':True}" />
+                            <field name="evaluation_date"/>
+                            <field name="evaluation_document" filename="filename" widget="binary"/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_evaluation_search" model="ir.ui.view">
+            <field name="name">hr.training.evalutaion.search</field>
+            <field name="model">hr.training.evaluation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="state_pending" string="Pending" domain="[('state', '=', 'pending')]"/>
+                    <filter name="state_approve" string="Approve" domain="[('state', '=', 'approve')]"/>
+                </search>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_evaluation_pivot" model="ir.ui.view">
+            <field name="name">hr.training.evalutaion.pivot</field>
+            <field name="model">hr.training.evaluation</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name" type="row" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="hr_ykp_training.hr_training_inhouse_evaluation_tree" model="ir.ui.view">
+            <field name="name">hr.training.inhouse.evaluation.tree</field>
+            <field name="model">hr.training.inhouse.evaluation</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name" string="Nama Pelatihan"/>
+                    <field name="evaluation_date" string="Tgl Entri"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_training.hr_training_inhouse_evaluation_form" model="ir.ui.view">
+            <field name="name">hr.training.inhouse.evaluation.form</field>
+            <field name="model">hr.training.inhouse.evaluation</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name" string="Pelatihan" domain="[('type', '=', 'in_house'), ('state', '=', 'approve')]"  options="{'no_create': True, 'no_create_edit':True}" />
+                            <field name="evaluation_date" required="1"/>
+                            <field name="type" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Daftar Peserta">
+                                <field name="evaluation_detail_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name" string="Peserta"/>
+                                        <field name="behavioral_score" required="1" string="Behavioral Score"/>
+                                        <field name="total_behavioral" readonly="1" string="Total Behavioral"/>
+                                        <field name="formative_score" required="1" string="Formative Score"/>
+                                        <field name="total_formative" readonly="1" string="Total Formative"/>
+                                        <field name="total_score" readonly="1" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_training_inhouse_evaluation_action_window" model="ir.actions.act_window">
+            <field name="name">Evaluasi Pelatihan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.inhouse.evaluation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+        <record id="hr_training_evaluation_action_window" model="ir.actions.act_window">
+            <field name="name">Evaluasi Pelatihan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.evaluation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type', '=', 'in_house')]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_evaluation_action_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="hr_training_evaluation_tree"/>
+            <field name="act_window_id" ref="hr_training_evaluation_action_window"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_evaluation_action_form">
+            <field name="sequence" eval="15"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_training_evaluation_form"/>
+            <field name="act_window_id" ref="hr_training_evaluation_action_window"/>
+        </record>
+
+        <record id="hr_training_evaluation_action_window_approved" model="ir.actions.act_window">
+            <field name="name">Evaluasi Pelatihan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.training.evaluation</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="context">{'search_default_state_approve': 1}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_evaluation_action_approve_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="hr_training_inhouse_evaluation_tree"/>
+            <field name="act_window_id" ref="hr_training_evaluation_action_window_approved"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="hr_training_evaluation_action_approve_form">
+            <field name="sequence" eval="15"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_training_evaluation_form"/>
+            <field name="act_window_id" ref="hr_training_evaluation_action_window_approved"/>
+        </record>
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="hr_ykp_training.hr_training_categ" name="Pelatihan" sequence="5"
+                  web_icon="hr_ykp_training,static/description/icon.png"
+                  groups="hr.group_hr_manager,base.group_user,hr_ykp_training.group_pengurus"/>
+
+        <menuitem id="hr_ykp_training.hr_training_my" name="Pelatihan Saya" parent="hr_ykp_training.hr_training_categ"
+                  sequence="1" action="hr_ykp_training.hr_training_participant_action_my"
+                  groups="hr.group_hr_manager,base.group_user"/>
+
+        <!--<menuitem id="hr_ykp_training.hr_training_request_categ_draft" name="Pengajuan Pelatihan"-->
+                  <!--sequence="2" action="hr_training_request_action_window" parent="hr_ykp_training.hr_training_categ"-->
+                  <!--groups="base.group_user"/>-->
+
+        <menuitem id="hr_ykp_training.hr_training_request_categ_pending" name="Approval Pelatihan"
+                  sequence="5" parent="hr_ykp_training.hr_training_categ"
+                  action="hr_training_request_action_window_pending"
+                  groups="hr.group_hr_manager,hr_ykp_training.group_pengurus"/>
+
+        <!--<menuitem id="hr_ykp_training.hr_training_request_pending" name="Pengajuan"-->
+                  <!--sequence="1" action="hr_training_request_action_window_pending"-->
+                  <!--parent="hr_ykp_training.hr_training_request_categ_pending"-->
+                  <!--groups="hr.group_hr_manager,hr_ykp_training.group_pengurus"/>-->
+
+        <!--<menuitem id="hr_ykp_training.hr_training_evaluasi_pending" name="Evaluasi"-->
+                  <!--sequence="1" action="hr_training_evaluation_action_window_pending"-->
+                  <!--parent="hr_ykp_training.hr_training_request_categ_pending" />-->
+
+        <menuitem id="hr_ykp_training.hr_training_report" name="Laporan" parent="hr_ykp_training.hr_training_categ"
+                  groups="hr.group_hr_manager" sequence="6"/>
+
+        <menuitem id="hr_ykp_training.hr_training_request_report" name="Pelatihan"
+                  sequence="1" action="hr_training_participant_action_report"
+                  parent="hr_ykp_training.hr_training_report"/>
+
+        <menuitem id="hr_ykp_training.hr_training_request_categ_approve" name="Pengajuan Disetujui"
+                  sequence="2" action="hr_training_request_action_window_approve"
+                  parent="hr_ykp_training.hr_training_report"/>
+
+        <menuitem id="hr_ykp_training.hr_training_request_categ_decline" name="Pengajuan Ditolak"
+                  sequence="3" action="hr_training_request_action_window_decline"
+                  parent="hr_ykp_training.hr_training_report"/>
+
+        <menuitem id="hr_ykp_training.hr_training_evaluation_approve" name="Evaluasi Pelatihan Public"
+                  sequence="4" action="hr_training_evaluation_action_window_approved"
+                  parent="hr_ykp_training.hr_training_report"/>
+
+        <menuitem id="hr_ykp_training.hr_training_evaluation_vendor" name="Evaluasi Pelatihan Vendor"
+                  sequence="5" action="hr_training_evaluation_vendor_action_window"
+                  parent="hr_ykp_training.hr_training_report"/>
+
+        <menuitem id="hr_ykp_training.hr_training_config" name="Manajer" parent="hr_ykp_training.hr_training_categ"
+                  groups="hr.group_hr_manager" sequence="7"/>
+
+        <menuitem id="hr_ykp_training.hr_training_assingment_menu" name="Rencana Pelatihan"
+                  sequence="1" action="hr_training_request_assignment_action_window"
+                  parent="hr_ykp_training.hr_training_config"
+                  groups="hr.group_hr_manager"/>
+
+        <menuitem id="hr_ykp_training.hr_training_evaluasi_menu" name="Evaluasi In-House"
+                  sequence="2" action="hr_training_inhouse_evaluation_action_window"
+                  parent="hr_ykp_training.hr_training_config"
+                  groups="hr.group_hr_manager"/>
+
+
+        <menuitem id="hr_ykp_training.hr_training_course_action" name="Database Pelatihan"
+                  parent="hr_ykp_training.hr_training_config"
+                  sequence="3" action="hr_training_course_action_window" groups="hr.group_hr_manager"/>
+        <menuitem id="hr_ykp_training.hr_training_config_al" name="Surat Tugas"
+                  parent="hr_ykp_training.hr_training_config"
+                  sequence="4" action="hr_training_config_al_action_window" groups="hr.group_hr_manager"/>
+
+    </data>
+</flectra>

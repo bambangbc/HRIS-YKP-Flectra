@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<flectra>
+  <data>
+
+    <record id="employee_overtime_standard_rule" model="ir.rule">
+        <field name="name">View Employee Overtime</field>
+        <field name="model_id" ref="model_hr_overtime"/>
+        <field name="domain_force">[('employee_id.user_id.id','=',user.id)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>        
+    </record>
+
+    <record id="officer_overtime_standard_rule" model="ir.rule">
+        <field name="name">View officer Overtime</field>
+        <field name="model_id" ref="model_hr_overtime"/>
+        <field name="domain_force">[('unit_kerja.manager_id.id','=',user.employee_id.id)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>        
+    </record>
+
+    <record id="manager_overtime_standard_rule" model="ir.rule">
+        <field name="name">View Manager Overtime</field>
+        <field name="model_id" ref="model_hr_overtime"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+    </record>
+
+    <record id="pengurus_overtime_standard_rule" model="ir.rule">
+        <field name="name">View Pengurus Overtime</field>
+        <field name="model_id" ref="model_hr_overtime"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4,ref('hr_ykp_employees.group_hr_pengurus'))]"/>        
+    </record>
+
+  </data>
+</flectra>

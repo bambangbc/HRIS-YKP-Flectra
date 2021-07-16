@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+    <data>
+        <record id="rec_kpi_indicator_kinerja" model="hr.work.kpi.indicator">
+            <field name="type">kinerja</field>
+            <field name="name">Kuantitas pekerjaan</field>
+            <field name="desc">Kemampuan untuk menunjukkan kuantitas pekerjaan yang diselesaikan sesuai dengan target
+                yang telah ditetapkan dan tetap dengan memperhatikan waktu yang digunakan.
+            </field>
+        </record>
+        <record id="rec_kpi_indicator_kompetensi_1" model="hr.work.kpi.indicator">
+            <field name="type">kompetensi</field>
+            <field name="name">Keterampilan</field>
+            <field name="desc">Kemampuan menguasai prosedur (metode/teknik/ta ta cara/peralatan) pelaksanaan
+                tugas-tugas
+            </field>
+        </record>
+        <record id="rec_kpi_indicator_kompetensi_2" model="hr.work.kpi.indicator">
+            <field name="type">kompetensi</field>
+            <field name="name">Kualitas Kerja</field>
+            <field name="desc">Kemampuan untuk menunjukkan kualitas kerja yang teliti dan rapi</field>
+        </record>
+        <record id="rec_kpi_indicator_kompetensi_3" model="hr.work.kpi.indicator">
+            <field name="type">kompetensi</field>
+            <field name="name">Kerja Sama</field>
+            <field name="desc">Kemampuan membina hubungan dengan karyawan lain dalam rangka menyelesaikan
+                tugas/pekerjaan
+            </field>
+        </record>
+        <record id="rec_kpi_indicator_kompetensi_4" model="hr.work.kpi.indicator">
+            <field name="type">kompetensi</field>
+            <field name="name">Tanggung Jawab</field>
+            <field name="desc">Kesediaan untuk melibatkan diri sepenuhnya dalam melaksanakan pekerjaannya dan
+                menanggung konsekuensi atau risiko akibat kesalahan atau kelalain atau kecerobohan pribadi dalam
+                melaksanakan tugas/pekerjaan
+            </field>
+        </record>
+        <record id="rec_kpi_indicator_perilaku_1" model="hr.work.kpi.indicator">
+            <field name="type">perilaku</field>
+            <field name="name">Pemanfaatan waktu kerja</field>
+            <field name="desc">Cara pegawai memanfaatkan waktu kerja secara efektif selama waktu kerja</field>
+        </record>
+        <record id="rec_kpi_indicator_perilaku_2" model="hr.work.kpi.indicator">
+            <field name="type">perilaku</field>
+            <field name="name">Absensi</field>
+            <field name="desc">Kesediaan karyawan dalam mematuhi aturan- aturan perusahaan yang berkaitan dengan
+                kehadiran
+            </field>
+        </record>
+
+
+        <record id="rec_kpi_weight_kinerja_1" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kinerja"/>
+            <field name="name">Hasil pekerjaannya memuaskan dengan pencapaian target diatas 125% yang dilaksanakan
+                dengan cermat dan cepat.
+            </field>
+            <field name="rating">5</field>
+            <field name="nilai_konduite">2.75</field>
+        </record>
+        <record id="rec_kpi_weight_kinerja_2" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kinerja"/>
+            <field name="name">Hasil pekerjaannya memuaskan dengan pencapaian target diatas 110% sampai dengan 125%
+                yang dilaksanakan dengan cermat dan cepat.
+            </field>
+            <field name="rating">4</field>
+            <field name="nilai_konduite">2.20</field>
+        </record>
+        <record id="rec_kpi_weight_kinerja_3" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kinerja"/>
+            <field name="name">Pada umumnya dapat menyelesaikan pekerjaan secara normal dengan pencapaian target diatas
+                90% sampai dengan 110%.
+            </field>
+            <field name="rating">3</field>
+            <field name="nilai_konduite">1.65</field>
+        </record>
+        <record id="rec_kpi_weight_kinerja_4" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kinerja"/>
+            <field name="name">Kurang memuaskan dalam menyelesaikan tugas yang diberikan dengan pencapaian target
+                diatas 75% sampai dengan dibawah 90% dari yang diharapkan.
+            </field>
+            <field name="rating">2</field>
+            <field name="nilai_konduite">1.10</field>
+        </record>
+        <record id="rec_kpi_weight_kinerja_5" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kinerja"/>
+            <field name="name">Tidak memuaskan dalam menyelesaikan tugas yang diberikan dengan pencapaian target kurang
+                dari 75% dari yang diharapkan.
+            </field>
+            <field name="rating">1</field>
+            <field name="nilai_konduite">0.55</field>
+        </record>
+
+        <record id="rec_kpi_weight_kompetensi_1" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_1"/>
+            <field name="name">Sangat terampil dan mampu dalam mengerjakan tugas-tugasnya tanpa bergantung pada
+                petunjuk tertentu dan selalu lancar menyelesaikan tugas baik rutin maupun pekerjaan yang kompleks.
+            </field>
+            <field name="rating">5</field>
+            <field name="nilai_konduite">0.25</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_2" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_1"/>
+            <field name="name">Terampil dalam melaksanakan prosedur kerja tanpa banyak bergantung pada petunjuk
+                pelaksanaan dalam menyelesaikan tugasnya baik rutin maupun pekerjaan yang kompleks.
+            </field>
+            <field name="rating">4</field>
+            <field name="nilai_konduite">0.20</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_3" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_1"/>
+            <field name="name">Cukup terampil mengerjakan tugas- tugas rutin namun membutuhkan petunjuk pelaksanaan
+                untuk pekerjaan yang membutuhkan prosedur-prosedur yang khusus/rumit.
+            </field>
+            <field name="rating">3</field>
+            <field name="nilai_konduite">0.15</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_4" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_1"/>
+            <field name="name">Cukup memiliki keterampilan dasar yang dibutuhkan untuk mengerjakan tugas-tugas rutin
+                namun masih banyak membutuhkan latihan dan pengarahan.
+            </field>
+            <field name="rating">2</field>
+            <field name="nilai_konduite">0.10</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_5" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_1"/>
+            <field name="name">Kurang memiliki keterampilan dasar untuk mengerjakan tugas-tugasnya.</field>
+            <field name="rating">1</field>
+            <field name="nilai_konduite">0.05</field>
+        </record>
+
+        <record id="rec_kpi_weight_kompetensi_6" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_2"/>
+            <field name="name">Hasil kerja yang ditampilkan selalu konsisten dan sempurna dengan tingkat kesalahan 0%
+            </field>
+            <field name="rating">5</field>
+            <field name="nilai_konduite">0.50</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_7" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_2"/>
+            <field name="name">Mampu menampilkan hasil kerja yang teliti pada sebagian besar hasil kerjanya dengan
+                tingkat kesalahan 5%
+            </field>
+            <field name="rating">4</field>
+            <field name="nilai_konduite">0.40</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_8" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_2"/>
+            <field name="name">Ketelitian kerja yang ditampilkan cukup baik dengan tingkat kesalahan sekitar 10%
+            </field>
+            <field name="rating">3</field>
+            <field name="nilai_konduite">0.30</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_9" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_2"/>
+            <field name="name">Hasil kerja yang ditampilkan cukup sesuai standar dengan tingkat kesalahan sekitar 20%
+            </field>
+            <field name="rating">2</field>
+            <field name="nilai_konduite">0.20</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_10" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_2"/>
+            <field name="name">Ketelitian hasil kerjanya kurang dapat diandalkan dan sering melakukan kesalahan
+            </field>
+            <field name="rating">1</field>
+            <field name="nilai_konduite">0.10</field>
+        </record>
+
+        <record id="rec_kpi_weight_kompetensi_11" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_3"/>
+            <field name="name">Sangat mampu bekerja efektif di dalam kelompok kerja sehingga selalu memperlancar
+                pelaksanaan tugas bersama
+            </field>
+            <field name="rating">5</field>
+            <field name="nilai_konduite">0.25</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_12" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_3"/>
+            <field name="name">Mampu melibatkan diri dalam hubungan kerja dengan orang lain sehingga memperlancar
+                jalannya penyelesaian tugas bersama
+            </field>
+            <field name="rating">4</field>
+            <field name="nilai_konduite">0.20</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_13" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_3"/>
+            <field name="name">Berusaha membina hubungan kerja yang cukup efektif dengan karyawan lain dalam kelompok
+                kerjanya sehingga umumnya kerja sama yang terjadi cukup lancar
+            </field>
+            <field name="rating">3</field>
+            <field name="nilai_konduite">0.15</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_14" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_3"/>
+            <field name="name">Menunjukkan adanya kesediaan untuk bekerja sama dengan karyawan lain bila situasi kerja
+                menuntut
+            </field>
+            <field name="rating">2</field>
+            <field name="nilai_konduite">0.10</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_15" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_3"/>
+            <field name="name">Kurang menunjukkan keinginan untuk bekerja sama dengan orang lain, cenderung lebih
+                banyak bekerja sendiri
+            </field>
+            <field name="rating">1</field>
+            <field name="nilai_konduite">0.05</field>
+        </record>
+
+        <record id="rec_kpi_weight_kompetensi_16" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_4"/>
+            <field name="name">Selalu bersedia menerima segala bentuk tanggung jawab tugas atau pekerjaan yang
+                melibatkan berbagai macam konsekuensi/ risiko secara pribadi
+            </field>
+            <field name="rating">5</field>
+            <field name="nilai_konduite">0.50</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_17" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_4"/>
+            <field name="name">Bersedia menerima tanggung jawab/ pekerjaan yang konsekuensi atau risikonya tidak
+                seluruhnya secara pribadi (konsekuensi ditanggung bersama dengan karyawan lain)
+            </field>
+            <field name="rating">4</field>
+            <field name="nilai_konduite">0.40</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_18" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_4"/>
+            <field name="name">Cukup bersedia menerima tanggung jawab tugas/ pekerjaan dengan konsekuensi/risikonya
+                yang tidak terlalu memberatkan pribadi secara finansial/ materi
+            </field>
+            <field name="rating">3</field>
+            <field name="nilai_konduite">0.30</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_19" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_4"/>
+            <field name="name">Lebih bersedia menerima tugas-tugas yang sedikit sekali menuntut tanggung jawab
+                berbentuk apapun
+            </field>
+            <field name="rating">2</field>
+            <field name="nilai_konduite">0.20</field>
+        </record>
+        <record id="rec_kpi_weight_kompetensi_20" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_kompetensi_4"/>
+            <field name="name">Lebih menghindari tuntutan tanggung jawab tugas/ pekerjaannya</field>
+            <field name="rating">1</field>
+            <field name="nilai_konduite">0.0</field>
+        </record>
+
+        <record id="rec_kpi_weight_perilaku_1" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_1"/>
+            <field name="name">Senantiasa memanfaatkan waktu kerja secara efektif baik dalam penyelesaian bidang
+                tugasnya maupun membantu penyelesaian bidang tugas rekan kerja yang lain
+            </field>
+            <field name="rating">5</field>
+            <field name="nilai_konduite">0.25</field>
+        </record>
+        <record id="rec_kpi_weight_perilaku_2" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_1"/>
+            <field name="name">Selama jam kerja dapat menggunakan setiap kesempatan untuk hal-hal yang positif bagi
+                tugasnya
+            </field>
+            <field name="rating">4</field>
+            <field name="nilai_konduite">0.20</field>
+        </record>
+        <record id="rec_kpi_weight_perilaku_3" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_1"/>
+            <field name="name">Pada umumnya dapat memanfaatkan waktu kerja, jarang minta ijin meninggalkan tempat kerja
+                untuk keperluan pribadi
+            </field>
+            <field name="rating">3</field>
+            <field name="nilai_konduite">0.15</field>
+        </record>
+        <record id="rec_kpi_weight_perilaku_4" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_1"/>
+            <field name="name">Kurang dapat memanfaatkan waktu kerja dan sering meninggalkan tempat kerja hanya untuk
+                keperluan pribadi walaupun dengan ijin
+            </field>
+            <field name="rating">2</field>
+            <field name="nilai_konduite">0.10</field>
+        </record>
+        <record id="rec_kpi_weight_perilaku_5" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_1"/>
+            <field name="name">Hampir tidak memperdulikan waktu kerja, sering menyalahgunakan ijin meninggalkan tempat
+            </field>
+            <field name="rating">1</field>
+            <field name="nilai_konduite">0.05</field>
+        </record>
+
+        <record id="rec_kpi_weight_perilaku_6" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_2"/>
+            <field name="name">Jumlah kehadiran berkisar antara &gt; 95% s.d 100%
+            </field>
+            <field name="rating">5</field>
+            <field name="nilai_konduite">0.50</field>
+        </record>
+        <record id="rec_kpi_weight_perilaku_7" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_2"/>
+            <field name="name">Jumlah kehadiran berkisar antara &gt; 90% s.d 95%
+            </field>
+            <field name="rating">4</field>
+            <field name="nilai_konduite">0.40</field>
+        </record>
+        <record id="rec_kpi_weight_perilaku_8" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_2"/>
+            <field name="name">Jumlah kehadiran berkisar antara &gt; 85% s.d 90%
+            </field>
+            <field name="rating">3</field>
+            <field name="nilai_konduite">0.30</field>
+        </record>
+        <record id="rec_kpi_weight_perilaku_9" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_2"/>
+            <field name="name">Jumlah kehadiran berkisar antara &gt; 80% s.d 85%
+            </field>
+            <field name="rating">2</field>
+            <field name="nilai_konduite">0.20</field>
+        </record>
+        <record id="rec_kpi_weight_perilaku_10" model="hr.work.kpi.weight">
+            <field name="indicator_id" ref="rec_kpi_indicator_perilaku_2"/>
+            <field name="name">Jumlah kehadiran &lt; 80%</field>
+            <field name="rating">1</field>
+            <field name="nilai_konduite">0.0</field>
+        </record>
+
+        <record id="rec_kpi_weight_category_1" model="hr.work.kpi.weight.category">
+            <field name="name">Sangat Baik (SB)</field>
+            <field name="min_value">4.1</field>
+            <field name="max_value">5</field>
+        </record>
+        <record id="rec_kpi_weight_category_2" model="hr.work.kpi.weight.category">
+            <field name="name">Baik (B)</field>
+            <field name="min_value">3.1</field>
+            <field name="max_value">4</field>
+        </record>
+        <record id="rec_kpi_weight_category_3" model="hr.work.kpi.weight.category">
+            <field name="name">Cukup Baik (B)</field>
+            <field name="min_value">2.1</field>
+            <field name="max_value">3</field>
+        </record>
+        <record id="rec_kpi_weight_category_4" model="hr.work.kpi.weight.category">
+            <field name="name">Kurang Baik (KB)</field>
+            <field name="min_value">1.1</field>
+            <field name="max_value">2</field>
+        </record>
+
+        <record id="rec_goal_scale_1" model="hr.work.goal.scale">
+            <field name="name">Tidak memperlihatkan kinerja yang sesuai / diharapkan</field>
+            <field name="type">kn</field>
+            <field name="min_value">0</field>
+            <field name="max_value">75</field>
+            <field name="value">1</field>
+        </record>
+        <record id="rec_goal_scale_2" model="hr.work.goal.scale">
+            <field name="name">Perlunya perbaikan untuk membantu meningkatkan kinerjanya</field>
+            <field name="type">kn</field>
+            <field name="min_value">76</field>
+            <field name="max_value">90</field>
+            <field name="value">2</field>
+        </record>
+        <record id="rec_goal_scale_3" model="hr.work.goal.scale">
+            <field name="name">Menunjukkan kinerja yang Baik</field>
+            <field name="type">kn</field>
+            <field name="min_value">91</field>
+            <field name="max_value">110</field>
+            <field name="value">3</field>
+        </record>
+        <record id="rec_goal_scale_4" model="hr.work.goal.scale">
+            <field name="name">Menunjukkan kinerja yang memuaskan</field>
+            <field name="type">kn</field>
+            <field name="min_value">111</field>
+            <field name="max_value">130</field>
+            <field name="value">4</field>
+        </record>
+        <record id="rec_goal_scale_5" model="hr.work.goal.scale">
+            <field name="name">Menunjukkan kinerja yang luar biasa / Istimewa</field>
+            <field name="type">kn</field>
+            <field name="min_value">131</field>
+            <field name="max_value">200</field>
+            <field name="value">5</field>
+        </record>
+        <record id="rec_goal_scale_6" model="hr.work.goal.scale">
+            <field name="name">Tidak memperlihatkan kinerja yang sesuai / diharapkan</field>
+            <field name="type">kl</field>
+            <field name="min_value">0</field>
+            <field name="max_value">85</field>
+            <field name="value">1</field>
+        </record>
+        <record id="rec_goal_scale_7" model="hr.work.goal.scale">
+            <field name="name">Perlunya perbaikan untuk membantu meningkatkan kinerjanya</field>
+            <field name="type">kl</field>
+            <field name="min_value">86</field>
+            <field name="max_value">100</field>
+            <field name="value">2</field>
+        </record>
+        <record id="rec_goal_scale_8" model="hr.work.goal.scale">
+            <field name="name">Menunjukkan kinerja yang Baik</field>
+            <field name="type">kl</field>
+            <field name="min_value">101</field>
+            <field name="max_value">200</field>
+            <field name="value">3</field>
+        </record>
+
+        <record id="rec_corporate_cultre_scale_1" model="hr.corporate.culture.scale">
+            <field name="desc">Sudah menjadi role model penerapan budaya organisasi dalam perilaku sehari-hari</field>
+            <field name="name">A</field>
+        </record>
+        <record id="rec_corporate_cultre_scale_2" model="hr.corporate.culture.scale">
+            <field name="desc">Sudah melaksanakan budaya organisasi dalam perilaku sehari-hari</field>
+            <field name="name">B</field>
+        </record>
+        <record id="rec_corporate_cultre_scale_3" model="hr.corporate.culture.scale">
+            <field name="desc">Perlu peningkatan pelaksanaan budaya organisasi dalam perilaku sehari-hari</field>
+            <field name="name">C</field>
+        </record>
+
+        <record id="rec_corporate_career_scale_1" model="hr.corporate.career.scale">
+            <field name="name">Sudah Siap</field>
+            <field name="kpi_weight_id" ref="rec_kpi_weight_category_1" />
+        </record>
+        <record id="rec_corporate_career_scale_2" model="hr.corporate.career.scale">
+            <field name="name">Sudah Siap dengan beberapa item penilaian masih perlu dikembangkan</field>
+            <field name="kpi_weight_id" ref="rec_kpi_weight_category_2" />
+        </record>
+        <record id="rec_corporate_career_scale_3" model="hr.corporate.career.scale">
+            <field name="name">Belum Dapat Dipertimbangkan, perlu pengembangan dalam banyak item penilaian</field>
+            <field name="kpi_weight_id" ref="rec_kpi_weight_category_3" />
+        </record>
+        <record id="rec_corporate_career_scale_4" model="hr.corporate.career.scale">
+            <field name="name">Tidak Dapat Dipertimbangkan, disarankan untuk rotasi, mutasi, mengundurkan diri atau diberhentikan</field>
+            <field name="kpi_weight_id" ref="rec_kpi_weight_category_4" />
+        </record>
+
+    </data>
+</flectra>

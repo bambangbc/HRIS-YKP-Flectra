@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--     
+	Copyright (C) 2017 MuK IT GmbH
+	
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<flectra>
+    <data>
+        <template id="assets_backend" inherit_id="web.assets_backend">
+            <xpath expr="//link[last()]" position="after">
+                <link rel="stylesheet" href="/muk_web_preview_msoffice/static/src/less/preview_content.less"/>
+                <link href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" rel="stylesheet" />
+                <link href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.rtl.min.css" rel="stylesheet" />
+                <link href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css" rel="stylesheet" />
+                <link href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" rel="stylesheet" />
+            </xpath>
+            <xpath expr="//script[last()]" position="after">
+                <script type="text/javascript" src="/muk_web_preview_msoffice/static/src/js/excel_dialog.js"/>
+                <script type="text/javascript" src="/muk_web_preview_msoffice/static/src/js/excel_widget.js"/>
+                <script type="text/javascript" src="/muk_web_preview_msoffice/static/src/js/preview_handler.js"/>
+                <script type="text/javascript" src="/muk_web_preview_msoffice/static/src/js/preview_generator.js"/>
+                <script type="text/javascript" src="/muk_web_preview_msoffice/static/lib/SheetJS/jszip.min.js"/>
+                <script type="text/javascript" src="/muk_web_preview_msoffice/static/lib/SheetJS/excel.min.js"/>
+            </xpath>
+        </template>
+    </data>
+</flectra>

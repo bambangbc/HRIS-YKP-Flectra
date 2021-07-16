@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+
+    <record id="ypk_employee_form" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_ykp_employees.ypk_employee_form"/>
+        <field name="priority" eval="9"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bank_account_id']" position="before">
+                <field name="status_pajak"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="jenis_pegawai_view_form2" model="ir.ui.view">
+        <field name="name">jenis.pegawai.form</field>
+        <field name="model">jenis.pegawai</field>
+        <field name="inherit_id" ref="hr_ykp_employees.jenis_pegawai_view_form"/>
+        <field name="arch" type="xml">
+            <field colspan="4" name="name" position="after">
+                <field name="jkk"/>
+                <field name="jkm"/>
+                <field name="jht_tk"/>
+                <field name="jp"/>
+                <field name="pjht_tk"/>
+                <field name="pjp"/>
+                <field name="tunj_bpjskes"/>
+                <field name="pot_bpjskes"/>
+                <field name="umk"/>
+                <field name="batas_max_bpjskes"/>
+                <field name="batas_max_bpjstk"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="jenis_pegawai_view_tree2" model="ir.ui.view">
+        <field name="name">jenis.pegawai.tree</field>
+        <field name="model">jenis.pegawai</field>
+        <field name="inherit_id" ref="hr_ykp_employees.jenis_pegawai_view_tree"/>
+        <field name="arch" type="xml">
+            <field colspan="4" name="name" position="after">
+                <field name="jkk"/>
+                <field name="jkm"/>
+                <field name="jht_tk"/>
+                <field name="jp"/>
+                <field name="pjht_tk"/>
+                <field name="pjp"/>
+                <field name="tunj_bpjskes"/>
+                <field name="pot_bpjskes"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_hr_salary_form">
+        <field name="name">hr.salary.form</field>
+        <field name="model">hr.master.salary</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="Overtime Request" version="7.0">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="grade_id"/>
+                        <field name="jenis_pegawai"/>
+                        <field name="nilai"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_overtime_tree">
+        <field name="name">hr.salary.tree</field>
+        <field name="model">hr.master.salary</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="grade_id"/>
+                <field name="jenis_pegawai"/>
+                <field name="nilai"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hr_master_salary_view">
+        <field name="name">Master Salary</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.master.salary</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add an Overtime
+            </p>
+            <p>klik tombol create untuk menambah data lembur baru</p>
+        </field>
+    </record>
+
+    <record id="master_grade_view_form" model="ir.ui.view">
+        <field name="name">hr.grade</field>
+        <field name="model">hr.grade</field>
+        <field name="arch" type="xml">
+            <form string="Master Grade">
+                <group col="4">
+                    <field colspan="4" name="name"/>
+                    <field colspan="4" name="level_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="master_grade_view_tree" model="ir.ui.view">
+        <field name="name">hr.grade.tree</field>
+        <field name="model">hr.grade</field>
+        <field name="arch" type="xml">
+            <tree string="Contract Type">
+                <field colspan="4" name="name"/>
+                <field colspan="4" name="level_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_grade" model="ir.actions.act_window">
+        <field name="name">Master Grade</field>
+        <field name="res_model">hr.grade</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="report_wizard_payslip_form" model="ir.ui.view">
+        <field name="name">Report Payslip</field>
+        <field name="model">hr.payslip.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="month"/>
+                        <field name="year"/>
+                        <field name="nomor"/>
+                    </group>
+                    <footer>
+                        <button name="generate_excel" string="Generate Excel" class="oe_right oe_highlight"
+                                type="object"/>
+                        <button string="Cancel" class="oe_right" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="report_wizard_payslip" model="ir.actions.act_window">
+        <field name="name">Report Payslip</field>
+        <field name="res_model">hr.payslip.report.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="input_manual_view_form" model="ir.ui.view">
+        <field name="name">hr.payslip.manual</field>
+        <field name="model">hr.payslip.manual</field>
+        <field name="arch" type="xml">
+            <form string="Input Manual">
+                <group col="4">
+                    <field colspan="4" name="name"/>
+                    <field colspan="4" name="employee_id"/>
+                    <field colspan="4" name="iuran_wajib_kopen"/>
+                    <field colspan="4" name="angsuran_kopen"/>
+                    <field colspan="4" name="kopen"/>
+                    <field colspan="4" name="iuran_wajib_ziebar"/>
+                    <field colspan="4" name="angsuran_ziebar"/>
+                    <field colspan="4" name="ziebar"/>
+                    <field colspan="4" name="bjb_syariah"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="input_manual_view_tree" model="ir.ui.view">
+        <field name="name">hr.payslip.manual</field>
+        <field name="model">hr.payslip.manual</field>
+        <field name="arch" type="xml">
+            <tree string="Input Manual" editable="top">
+                <field colspan="4" name="name"/>
+                <field colspan="4" name="employee_id"/>
+                <field colspan="4" name="iuran_wajib_kopen"/>
+                <field colspan="4" name="angsuran_kopen"/>
+                <field colspan="4" name="kopen"/>
+                <field colspan="4" name="iuran_wajib_ziebar"/>
+                <field colspan="4" name="angsuran_ziebar"/>
+                <field colspan="4" name="ziebar"/>
+                <field colspan="4" name="bjb_syariah"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_manual_input" model="ir.actions.act_window">
+        <field name="name">Input Manual</field>
+        <field name="res_model">hr.payslip.manual</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="input_master_ptkp_form" model="ir.ui.view">
+        <field name="name">hr.ptkp</field>
+        <field name="model">hr.ptkp</field>
+        <field name="arch" type="xml">
+            <form string="Master PTKP">
+                <group col="4">
+                    <field colspan="4" name="kode"/>
+                    <field colspan="4" name="nominal_bulan"/>
+                    <field colspan="4" name="nominal_tahun"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="input_master_ptkp_view_tree" model="ir.ui.view">
+        <field name="name">hr.ptkp</field>
+        <field name="model">hr.ptkp</field>
+        <field name="arch" type="xml">
+            <tree string="Master PTKP" editable="top">
+                <field colspan="4" name="kode"/>
+                <field colspan="4" name="nominal_bulan"/>
+                <field colspan="4" name="nominal_tahun"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_master_ptkp" model="ir.actions.act_window">
+        <field name="name">Master PTKP</field>
+        <field name="res_model">hr.ptkp</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="input_master_pkp_form" model="ir.ui.view">
+        <field name="name">hr.pkp</field>
+        <field name="model">hr.pkp</field>
+        <field name="arch" type="xml">
+            <form string="Master PKP">
+                <group col="4">
+                    <field colspan="4" name="kode"/>
+                    <field colspan="4" name="nominal_mix"/>
+                    <field colspan="4" name="nominal_max"/>
+                    <field colspan="4" name="pajak"/>
+                    <field colspan="4" name="penambah"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="input_master_pkp_view_tree" model="ir.ui.view">
+        <field name="name">hr.pkp</field>
+        <field name="model">hr.pkp</field>
+        <field name="arch" type="xml">
+            <tree string="Master PKP" editable="top">
+                <field colspan="4" name="kode"/>
+                <field colspan="4" name="nominal_mix"/>
+                <field colspan="4" name="nominal_max"/>
+                <field colspan='4' name="pajak"/>
+                <field colspan="4" name="penambah"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_master_pkp" model="ir.actions.act_window">
+        <field name="name">Master PKP</field>
+        <field name="res_model">hr.pkp</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="ykp_pajak_periode_tree" model="ir.ui.view">
+        <field name="name">ykp_pajak_periode_tree</field>
+        <field name="model">hr.pajak.periode</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+                <field name="month" string="Bulan"/>
+                <field name="year" string="Tahun"/>
+                <field name="pajak_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ykp_pajak_periode_form" model="ir.ui.view">
+        <field name="name">ykp_pajak_periode_form</field>
+        <field name="model">hr.pajak.periode</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Buat pph21" type="action" name="%(hr_ykp_payroll.action_hr_pph21_by_employee)d" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="month" string="Bulan"/>
+                        <field name="year" string="Tahun"/>
+                    </group>
+                    <notebook>
+                        <page string="Daftar Karyawan">
+                            <field name="pajak_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ypk_employee_pajak_form" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_ykp_employees.ypk_employee_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="no_kk" position="after">
+                <field name="status_pajak"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="ykp_pph21_tree" model="ir.ui.view">
+        <field name="name">ykp_pph21_tree</field>
+        <field name="model">hr.pajak</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="employee_id"/>
+                <field name="status"/>
+                <field name="masa_dari"/>
+                <field name="masa_sampai"/>
+                <field name="gaji"/>
+                <field name="tunj_pajak"/>
+                <field name="lembur"/>
+                <field name="perdin"/>
+                <field name="diklat"/>
+                <field name="tunj_lainya"/>
+                <field name="honorarium"/>
+                <field name="bonus"/>
+                <field name="bpjstk_jkk"/>
+                <field name="bpjstk_jkm"/>
+                <field name="bpjskes"/>
+                <field name="pre_asuransi"/>
+                <field name="biaya_jabatan"/>
+                <field name="pot_dplk"/>
+                <field name="pot_bpjstk"/>
+                <field name="iuran"/>
+                <field name="jum_bruto"/>
+                <field name="jum_pengurang"/>
+                <field name="jum_neto"/>
+                <field name="peng_neto_masa"/>
+                <field name="jum_neto_pph21"/>
+                <field name="ptkp"/>
+                <field name="pkp_setahun"/>
+                <field name="pph21"/>
+                <field name="pph21_sebulan"/>
+                <field name="pph21_des"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ykp_pph21_form" model="ir.ui.view">
+        <field name="name">ykp_pph21_form</field>
+        <field name="model">hr.pajak</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group string="Data Umum">
+                        <field name="employee_id"/>
+                        <field name="status"/>
+                        <label for="masa_dari" string="Masa kerja"/>
+                        <div>
+                            <div>
+                                <field name="masa_dari" class="oe_inline"/>
+                                <label string="-" class="oe_inline"/>
+                                <field name="masa_sampai" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </group>
+                    <h2>Komponen Penambah</h2>
+                    <group string="Komponen Dasar">
+                        <field name="gaji"/>
+                        <field name="tunj_pajak"/>
+                    </group>
+                    <group string="Tunjangan Lainnya">
+                        <field name="lembur"/>
+                        <field name="perdin"/>
+                        <field name="diklat"/>
+                        <field name="tunj_lainya" string="Total"/>
+                    </group>
+                    <group string="Penghasilan lainnya">
+                        <field name="honorarium"/>
+                        <field name="bonus"/>
+                    </group>
+                    <group string="Premi Asuransi oleh Pemberi Kerja">
+                        <!--field name="dplk"/-->
+                        <!--field name="bpjstk"/-->
+                        <field name="bpjstk_jkk"/>
+                        <field name="bpjstk_jkm"/>
+                        <field name="bpjskes"/>
+                        <field name="pre_asuransi" string="Total"/>
+                    </group>
+                    <h2>Komponen Pengurang</h2>
+                    <group string="Biaya Jabatan / Biaya Pensiun atas Penghasilan">
+                        <field name="biaya_jabatan"/>
+                    </group>
+                    <group string="Iuran Asuransi">
+                        <field name="pot_dplk"/>
+                        <field name="pot_bpjstk"/>
+                        <!--field name="pot_bpjskes"/-->
+                        <field name="iuran" string="Total"/>
+                    </group>
+                    <h2>Perhitungan Pajak</h2>
+                    <group string="Kesimpulan">
+                        <field name="jum_bruto"/>
+                        <field name="jum_pengurang"/>
+                        <field name="jum_neto"/>
+                        <field name="peng_neto_masa"/>
+                        <field name="jum_neto_pph21"/>
+                        <field name="ptkp"/>
+                        <field name="pkp_setahun"/>
+                        <field name="pph21"/>
+                        <field name="pph21_sebulan"/>
+                        <field name="penyesuaian"/>
+                        <field name="pph21_des"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ykp_action_periode_pph21" model="ir.actions.act_window">
+        <field name="name">Pajak pph21</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.pajak.periode</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+
+    <record id="ykp_action_pph21" model="ir.actions.act_window">
+        <field name="name">Pajak pph21</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.pajak</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+
+    <record id="report_wizard_pajak_form" model="ir.ui.view">
+        <field name="name">Report Pajak</field>
+        <field name="model">hr.pajak.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="employee_ids"/>
+                    </group>
+                    <footer>
+                        <button name="generate_pajak" string="Generate Excel" class="oe_right oe_highlight"
+                                type="object"/>
+                        <button string="Cancel" class="oe_right" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="report_wizard_pajak" model="ir.actions.act_window">
+        <field name="name">Report Pajak</field>
+        <field name="res_model">hr.pajak.report.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="hr_report_wizard_action"
+            parent="hr_payroll.menu_hr_payroll_root"
+            action="report_wizard_payslip"/>
+
+    <menuitem
+            id="hr_report_manual_input"
+            parent="hr_payroll.menu_hr_payroll_root"
+            action="action_manual_input"/>
+
+    <menuitem
+            id="hr_pph21_categ"
+            name="Pph 21"
+            parent="hr_payroll.menu_hr_payroll_root"
+    />
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="hr_menu_pph21" name="Input Pph 21"
+              parent="hr_ykp_payroll.hr_pph21_categ"
+              action="ykp_action_periode_pph21"/>
+
+    <!--    <menuitem id="hr_menu_report_pph21" name="Report Pph 21"-->
+    <!--              parent="hr_ykp_payroll.hr_pph21_categ"-->
+    <!--              action="report_wizard_pajak"/>-->
+
+    <record id="action_create_downlad_pph21_button" model="ir.actions.server">
+        <field name="name">Download Excel PPH21</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_hr_pajak_periode"/>
+        <field name="binding_model_id" ref="model_hr_pajak_periode"/>
+        <field name="multi">True</field>
+        <field name="state">code</field>
+        <field name="key">action</field>
+        <field name="key2">client_action_multi</field>
+        <field name="code">
+            action = records.download_excel_pph21()
+        </field>
+    </record>
+
+    <record id="action_create_downlad_pph21_button_csv" model="ir.actions.server">
+        <field name="name">Download CSV PPH21</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_hr_pajak_periode"/>
+        <field name="binding_model_id" ref="model_hr_pajak_periode"/>
+        <field name="multi">True</field>
+        <field name="state">code</field>
+        <field name="key">action</field>
+        <field name="key2">client_action_multi</field>
+        <field name="code">
+            action = records.download_csv_pph21()
+        </field>
+    </record>
+
+    <menuitem
+            id="hr_master_salary_menu_action"
+            action="hr_master_salary_view"
+            parent="hr_payroll.menu_hr_payroll_configuration"
+            sequence="60"/>
+
+    <menuitem
+            id="hr_menu_master_grade"
+            action="action_grade"
+            parent="hr_ykp_employees.hr_menu_master_data"
+            sequence="5"
+            groups="base.group_no_one"/>
+
+    <menuitem
+            id="hr_menu_master_ptkp"
+            action="action_master_ptkp"
+            parent="hr_payroll.menu_hr_payroll_configuration"
+            sequence="61"/>
+
+    <menuitem
+            id="hr_menu_master_pkp"
+            action="action_master_pkp"
+            parent="hr_payroll.menu_hr_payroll_configuration"
+            sequence="62"/>
+
+</flectra>

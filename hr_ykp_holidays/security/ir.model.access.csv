@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee_perdin_reguler_detail,hr.employee.perdin.reguler,model_hr_perdin,,1,0,0,0
+access_hr_employee_perdin_hr_manager,hr.employee.perdin.hr.manager,model_hr_perdin,hr.group_hr_manager,1,1,1,1
+access_hr_employee_perdin_hr_pengurus,hr.employee.perdin.hr.pengurus,model_hr_perdin,hr_ykp_employees.group_hr_pengurus,1,1,1,1
+access_hr_employee_perdin_hr_manager_employee_detail,hr.employee.perdin.hr.manager.employee.detail,model_hr_perdin_employee,,1,0,0,0
+access_hr_employee_perdin_hr_manager_employee,hr.employee.perdin.hr.manager.employee,model_hr_perdin_employee,hr.group_hr_manager,1,1,1,1
+access_hr_employee_perdin_hr_manager_pengurus,hr.employee.perdin.hr.manager.pengurus,model_hr_perdin_employee,hr_ykp_employees.group_hr_pengurus,1,1,1,1
+access_hr_perdin_allowance,access_hr_perdin_allowance,model_hr_perdin_allowance,,1,1,1,1
+access_hr_perdin_employee_cost,access_hr_perdin_employee_cost,model_hr_perdin_employee_cost,,1,1,1,1
+access_hr_holidays_jam,access_hr_holidays_jam,model_hr_holidays_jam,,1,1,1,1

@@ -1,0 +1,12 @@
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+}
+
+input[type="date"]:focus:before, input[type="date"]:valid:before {
+    content: "";
+}
+
+.flectra_field_search_expan .select2-choices .select2-search-choice {
+    line-height: 5px !important;
+}

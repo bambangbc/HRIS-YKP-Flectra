@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+    <data>
+
+        <record id="view_users_form1" model="ir.ui.view">
+            <field name="name">res.users.form1</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="employee_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="ypk_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[2]" position="replace">
+                    <page name="personal_information" string="Pribadi" groups="base.group_user">
+                        <group>
+                            <notebook>
+                                <page string="Data Pribadi">
+                                    <group>
+                                        <group string="Informasi Umum">
+                                            <field name="nik"/>
+                                            <field name="identification_id"/>
+                                            <field name="npwp"/>
+                                            <field name="no_kk"/>
+                                            <field name="place_of_birth"/>
+                                            <field name="birthday"/>
+                                            <field name="relgion"/>
+                                            <field name="gender"/>
+                                            <field name="gelar"/>
+                                            <field name="marital"/>
+                                            <!--field name="children"/-->
+                                            <field name="jumlah_tanggungan"/>
+                                            <field name="country_id"/>
+                                            <field name="alamat_ktp"/>
+                                            <field name="state_id"/>
+                                            <field name="city_id"/>
+                                            <field name="kecamatan_id"/>
+                                            <field name="kelurahan_id"/>
+                                            <field name="zip_code"/>
+                                            <field name="rt_rw"/>
+                                            <field name="address_home_id"
+                                                    context="{'show_address': 1}"
+                                                    options='{"always_reload": True, "highlight_first_line": True}' invisible="1"/>
+                                        </group>
+                                        <group string="Informasi Alamat Tinggal">
+                                            <field name="alamat2"/>
+                                            <field name="state_id2"/>
+                                            <field name="city_id2"/>
+                                            <field name="kecamatan_id2"/>
+                                            <field name="kelurahan_id2"/>
+                                            <field name="zip_code2"/>
+                                            <field name="rt_rw2"/>
+                                        </group>
+                                        <group string="Informasi Detail">
+                                            <field name="gol_darah"/>
+                                            <field name="warna_kulit"/>
+                                            <field name="bentuk_wajah"/>
+                                            <field name="jenis_rambut"/>
+                                            <field name="tinggi_bb"/>
+                                        </group>
+                                        <group string="Informasi Kontak">
+                                            <field name="email_ykp"/>
+                                            <field name="email_pribadi"/>
+                                            <field name="telepon"/>
+                                            <field name="handphone1"/>
+                                            <field name="handphone2"/>
+                                        </group>
+                                        <group string="Informasi Kontrak Darurat">
+                                            <field name="name_darurat"/>
+                                            <field name="hubungan_darurat"/>
+                                            <field name="handphone_darurat"/>
+                                            <field name="alamat_darurat"/>
+                                            <field name="state_id_darurat"/>
+                                            <field name="city_id_darurat"/>
+                                            <field name="kecamatan_id_darurat"/>
+                                            <field name="kelurahan_id_darurat"/>
+                                            <field name="zip_code_darurat"/>
+                                            <field name="rt_rw_darurat"/>
+                                        </group>
+                                        <group string="Informasi BPJS">
+                                            <field name="no_bpjs"/>
+                                            <field name="faskes"/>
+                                            <field name="dokter_gigi"/>
+                                        </group>
+                                    </group>
+                                </page>
+                                <page string="Data Keluarga">
+                                    <group>
+                                        <group>
+                                            <field name="hubungan_ayah"/>
+                                            <field name="nama_ayah"/>
+                                            <field name="lahir_ayah"/>
+                                            <field name="ktp_ayah"/>
+                                            <field name="pekerjaan_ayah"/>
+                                        </group>
+                                        <group>
+                                            <field name="hubungan_ibu"/>
+                                            <field name="nama_ibu"/>
+                                            <field name="lahir_ibu"/>
+                                            <field name="ktp_ibu"/>
+                                            <field name="pekerjaan_ibu"/>
+                                        </group>
+                                    </group>
+                                </page>
+                                <page string="Data Pasangan">
+                                    <group>
+                                        <group>
+                                            <field name="nama_pasangan"/>
+                                            <field name="ktp_pasangan"/>
+                                            <field name="tempatlahir_pasangan"/>
+                                            <field name="tanggallahir_pasangan"/>
+                                            <field name="pekerjaan_pasangan"/>
+                                            <field name="statusc_pasangan"/>
+                                            <field name="statusm_pasangan"/>
+                                        </group>
+                                    </group>
+                                </page>
+                                <page string="Data Anak">
+                                    <group>
+                                        <group>
+                                            <field name="anak1"/>
+                                            <field name="nama_anak1"/>
+                                            <field name="tempatlahir_anak1"/>
+                                            <field name="tanggallahir_anak1"/>
+                                            <field name="jeniskelamin_anak1"/>
+                                            <field name="status_anak1"/>
+                                            <field name="noakta_anak1"/>
+                                        </group>
+                                        <group>
+                                            <field name="anak2"/>
+                                            <field name="nama_anak2"/>
+                                            <field name="tempatlahir_anak2"/>
+                                            <field name="tanggallahir_anak2"/>
+                                            <field name="jeniskelamin_anak2"/>
+                                            <field name="status_anak2"/>
+                                            <field name="noakta_anak2"/>
+                                        </group>
+                                    </group>
+                                </page>
+                                <page string="Pendidikan">
+                                    <group string="Pendidikan Formal">
+                                        <field name="education_ids" mode="tree" nolabel="1">
+                                            <tree string="Pendidikan" editable="bottom">
+                                                <field name="name"/>
+                                                <field name="kampus"/>
+                                                <field name="fakultas"/>
+                                                <field name="jurusan"/>
+                                                <field name="end_year"/>
+                                                <field name="ipk"/>
+                                                <field name="predikat"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <group string="Pendidikan Lainya">
+                                        <field name="educationlain_ids" mode="tree" nolabel="1">
+                                            <tree string="Pendidikan Lainya" editable="bottom">
+                                                <field name="name"/>
+                                                <field name="penyelenggara"/>
+                                                <field name="date_start"/>
+                                                <field name="date_end"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </page>
+                                <page string="Riwayat Organisasi">
+                                    <field name="organization_ids" mode="tree">
+                                        <tree string="Riwayat Organisasi" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="alamat"/>
+                                            <field name="start_date"/>
+                                            <field name="end_date"/>
+                                            <field name="position"/>
+                                            <field name="honor"/>
+                                            <field name="keterangan"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Kursus">
+                                    <field name="kursus_ids" mode="tree">
+                                        <tree string="Kursus" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="tempat"/>
+                                            <field name="penyelenggara"/>
+                                            <field name="tanggal_mulai"/>
+                                            <field name="nosertifikat"/>
+                                            <field name="predikat"/>
+                                            <field name="nilai"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Sertifikasi">
+                                    <group string="Sertifikasi">
+                                        <field name="certification_ids" mode="tree" nolabel="1">
+                                            <tree string="Kursus" editable="bottom">
+                                                <field name="name"/>
+                                                <field name="lembaga"/>
+                                                <field name="date"/>
+                                                <field name="end_date"/>
+                                                <field name="no_sertifikat"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <group string="Penghargaan">
+                                        <field name="penghargaan_ids" mode="tree" nolabel="1">
+                                            <tree string="Penghargaan" editable="bottom">
+                                                <field name="no_sertifikat"/>
+                                                <field name="name"/>
+                                                <field name="lembaga"/>
+                                                <field name="date"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//notebook/page[1]" position="replace">
+                    <page name="public" string="Perusahaan" groups="base.group_user">
+                        <group>
+                            <notebook>
+                                <page string="Informasi Detail">
+                                    <group>
+                                        <group string="Informasi Posisi">
+                                            <field name="department_id"/>
+                                            <field name="penempatan"/>
+                                            <field name="jenis_pegawai"/>
+                                            <field name="status_pegawai"/>
+                                            <field name="coach_id" invisible="1"/>
+                                            <field name="job_id"/>
+                                            <field name="masa_jabatan"/>
+                                            <field name="grade"/>
+                                            <field name="masa_grade"/>
+                                            <field name="tanggal_masuk"/>
+                                            <field name="masa_kerja"/>
+                                            <field name="tanggal_pengangkatan"/>
+                                            <field name="tanggal_pensiun"/>
+                                            <field name="tanggal_keluar"/>
+                                            <field name="resource_calendar_id"/>
+                                        </group>
+                                        <group string="Informasi Pajak">
+                                            <field name="bank_account_id" context="{'default_partner_id': address_home_id}" invisible="1"/>
+                                            <field name="tahun_cuti_besar"/>
+                                            <field name="no_jamsostek"/>
+                                            <field name="no_npwp"/>
+                                            <field name="potongan_asuransi_jiwa"/>
+                                            <field name="status_nikah_pajak_TB"/>
+                                            <field name="status_nikah_pajak_TD"/>
+                                            <field name="jum_tanggungan_TB"/>
+                                            <field name="jum_tanggungan_TD"/>
+                                            <field name="program_karir"/>
+                                        </group>
+                                    </group>
+                                </page>
+                                <page name="carrier" string="My Career">
+                                    <group string="Mutasi Kepangkatan/Grade">
+                                        <field name="mutasi_ids" mode="tree" nolabel="1">
+                                            <tree string="Mutasi Kepangkatan/Grade" editable="bottom">
+                                                <field name="sebelum_jabatan"/>
+                                                <field name="sebelum_grade"/>
+                                                <field name="sesudah_jabatan"/>
+                                                <field name="sesudah_grade"/>
+                                                <field name="no_sk"/>
+                                                <field name="tgl_sk"/>
+                                                <field name="tgl_efektif"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <group string="Mutasi Jabatan">
+                                        <field name="mutasijbtn_ids" mode="tree" nolabel="1">
+                                            <tree string="Mutasi Kepangkatan/Grade" editable="bottom">
+                                                <field name="no_sk"/>
+                                                <field name="tgl_sk"/>
+                                                <field name="jenis"/>
+                                                <field name="tgl_efektif"/>
+                                                <field name="uk_sebelum"/>
+                                                <field name="jabatan_sebelum"/>
+                                                <field name="grade_sebelum"/>
+                                                <field name="uk_sesudah"/>
+                                                <field name="jabatan_sesudah"/>
+                                                <field name="grade_sesudah"/>
+                                                <field name="penempatan"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <group string="Di Luar bank bjb">
+                                        <field name="luarykp_ids" mode="tree" nolabel="1">
+                                            <tree string="Di Luar bank bjb" editable="bottom">
+                                                <field name="name"/>
+                                                <field name="bidang"/>
+                                                <field name="tahun_masuk"/>
+                                                <field name="gaji"/>
+                                                <field name="job_id"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </page>
+                                <page string="My Perfomance">
+                                    <field name="performance_ids" mode="tree" nolabel="1">
+                                        <tree string="Performance" create="false" delete="false">
+                                            <field name="goal_year"/>
+                                            <field name="semester"/>
+                                            <field name="self_kpi_kategori" string="Penilaian Pribadi"/>
+                                            <field name="penilai1_kpi_kategori" string="Penilai 1"/>
+                                            <field name="penilai2_kpi_kategori" string="Pemutus"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Riwayat Diklat">
+                                    <field name="diklat_ids" mode="tree" nolabel="1">
+                                        <tree string="Riwayat Diklat" create="false" delete="false">
+                                            <field name="assignment_letter_number"/>
+                                            <field name="request_id"/>
+                                            <field name="start_date"/>
+                                            <field name="end_date"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Sanksi">
+                                    <field name="sanksi_ids" mode="tree" nolabel="1">
+                                        <tree string="Sanksi" editable="bottom">
+                                            <field name="no_sk"/>
+                                            <field name="keterangan"/>
+                                            <field name="uraian_sanksi"/>
+                                            <field name="tanggal"/>
+                                            <field name="tanggal_mulai"/>
+                                            <field name="tanggal_berakhir"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page name="my_org_structure" string="My Org Structure">
+                                    <group string="Atasan">
+                                        <field name="orgatasan_ids" mode="tree" nolabel="1">
+                                            <tree string="Atasan" editable="bottom">
+                                                <field name="job_id"/>
+                                                <field name="nama"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <group string="Bawahan">
+                                        <field name="orgbawahan_ids" mode="tree" nolabel="1">
+                                            <tree string="Bawahan" editable="bottom">
+                                                <field name="job_id"/>
+                                                <field name="nama"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </page>
+                                <page string="Tax">
+                                    <field name="tax_ids" mode="tree" nolabel="1">
+                                        <tree string="Tax" editable="bottom">
+                                            <field name="tahun"/>
+                                            <field name="job_id"/>
+                                            <field name="nama_unit"/>
+                                            <field name="tampilan"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_employee_filter2" model="ir.ui.view">
+            <field name="name">Employees</field>
+            <field name="model">hr.employee</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/group[1]" position="inside">
+                    <filter string="Jenis Pegawai" icon="terp-personal" domain="[]" context="{'group_by':'jenis_pegawai'}"/>
+                    <filter string="Penempatan" icon="terp-personal" domain="[]" context="{'group_by':'penempatan'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="ypk_employee_tree" model="ir.ui.view">
+            <field name="name">hr.employee.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="penempatan"/>
+                    <field name="jenis_pegawai"/>
+                </field>
+                <field name="job_id" position="after">
+                    <field name="masa_jabatan"/>
+                    <field name="grade"/>
+                    <field name="masa_grade"/>
+                </field>
+
+                <field name="work_phone" position="replace"/>
+                <field name="work_email" position="replace"/>
+                <field name="parent_id" position="replace"/>
+            </field>
+        </record>
+
+        <record id="hr_state_view_form" model="ir.ui.view">
+            <field name="name">hr.state</field>
+            <field name="model">hr.state</field>
+            <field name="arch" type="xml">
+                <form string="Master Provinsi">
+                    <group col="4">
+                        <field colspan="4" name="name"/>
+                        <field colspan="4" name="country_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_state_view_tree" model="ir.ui.view">
+            <field name="name">hr.state.tree</field>
+            <field name="model">hr.state</field>
+            <field name="arch" type="xml">
+                <tree string="Contract Type">
+                    <field colspan="4" name="name"/>
+                    <field colspan="4" name="country_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_master_provinsi" model="ir.actions.act_window">
+            <field name="name">Master Provinsi</field>
+            <field name="res_model">hr.state</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="hr_city_view_form" model="ir.ui.view">
+            <field name="name">hr.city</field>
+            <field name="model">hr.city</field>
+            <field name="arch" type="xml">
+                <form string="Master City">
+                    <group col="4">
+                        <field colspan="4" name="name"/>
+                        <field colspan="4" name="provinsi_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_kota_view_tree" model="ir.ui.view">
+            <field name="name">hr.city.tree</field>
+            <field name="model">hr.city</field>
+            <field name="arch" type="xml">
+                <tree string="Contract Type">
+                    <field colspan="4" name="name"/>
+                    <field colspan="4" name="provinsi_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_master_kota" model="ir.actions.act_window">
+            <field name="name">Master Kota</field>
+            <field name="res_model">hr.city</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="hr_city_view_form" model="ir.ui.view">
+            <field name="name">hr.kecamatan</field>
+            <field name="model">hr.kecamatan</field>
+            <field name="arch" type="xml">
+                <form string="Master City">
+                    <group col="4">
+                        <field colspan="4" name="name"/>
+                        <field colspan="4" name="city_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_kecamatan_view_tree" model="ir.ui.view">
+            <field name="name">hr.kecamatan.tree</field>
+            <field name="model">hr.kecamatan</field>
+            <field name="arch" type="xml">
+                <tree string="Contract Type">
+                    <field colspan="4" name="name"/>
+                    <field colspan="4" name="city_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_master_kecamatan" model="ir.actions.act_window">
+            <field name="name">Master Kecamatan</field>
+            <field name="res_model">hr.kecamatan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="hr_kelurahan_view_form" model="ir.ui.view">
+            <field name="name">hr.kelurahan</field>
+            <field name="model">hr.kelurahan</field>
+            <field name="arch" type="xml">
+                <form string="Master City">
+                    <group col="4">
+                        <field colspan="4" name="name"/>
+                        <field colspan="4" name="kecamatan_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_kelurahan_view_tree" model="ir.ui.view">
+            <field name="name">hr.kelurahan.tree</field>
+            <field name="model">hr.kelurahan</field>
+            <field name="arch" type="xml">
+                <tree string="Contract Type">
+                    <field colspan="4" name="name"/>
+                    <field colspan="4" name="kecamatan_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_master_kelurahan" model="ir.actions.act_window">
+            <field name="name">Master Kelurahan</field>
+            <field name="res_model">hr.kelurahan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="jenis_pegawai_view_form" model="ir.ui.view">
+            <field name="name">jenis.pegawai</field>
+            <field name="model">jenis.pegawai</field>
+            <field name="arch" type="xml">
+                <form string="Jenis Pegawai">
+                    <group col="4">
+                        <field colspan="4" name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="jenis_pegawai_view_tree" model="ir.ui.view">
+            <field name="name">jenis.pegawai.tree</field>
+            <field name="model">jenis.pegawai</field>
+            <field name="arch" type="xml">
+                <tree string="Contract Type">
+                    <field colspan="4" name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_jenis_pegawai" model="ir.actions.act_window">
+            <field name="name">Master Jenis Pegawai</field>
+            <field name="res_model">jenis.pegawai</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+        <menuitem
+            id="hr_menu_master_data"
+            name="Master Data"
+            parent="hr.menu_human_resources_configuration"
+            sequence="4"
+            groups="hr.group_hr_manager"/>
+
+        <menuitem
+            id="hr_menu_master_provinsi"
+            action="action_hr_master_provinsi"
+            parent="hr_menu_master_data"
+            sequence="1"
+            groups="base.group_no_one"/>
+
+        <menuitem
+            id="hr_menu_master_kota"
+            action="action_hr_master_kota"
+            parent="hr_menu_master_data"
+            sequence="2"
+            groups="base.group_no_one"/>
+
+        <menuitem
+            id="hr_menu_master_kecamatan"
+            action="action_hr_master_kecamatan"
+            parent="hr_menu_master_data"
+            sequence="3"
+            groups="base.group_no_one"/>
+
+        <menuitem
+            id="hr_menu_master_kelurahan"
+            action="action_hr_master_kelurahan"
+            parent="hr_menu_master_data"
+            sequence="4"
+            groups="base.group_no_one"/>
+
+        <menuitem
+            id="hr_menu_master_jenispegawai"
+            action="action_jenis_pegawai"
+            parent="hr_menu_master_data"
+            sequence="5"
+            groups="base.group_no_one"/>
+
+    </data>
+</flectra>
+
+

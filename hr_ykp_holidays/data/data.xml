@@ -1,0 +1,33 @@
+<flectra>
+	<data>		
+		<!-- Perdin -->
+        <record id="holiday_perdin" model="hr.holidays.status">
+            <field name="name">Perjalanan Dinas</field>
+            <field name="limit" eval="True"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="ir_cron_data_update_cuto" model="ir.cron">
+            <field name="name">otomatis hapus cuti tahun lalu</field>
+            <field name="model_id" ref="model_hr_holidays"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.hapus_alokasi()</field>
+            <field name="interval_number">12</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="nextcall">2020-06-01</field>
+        </record>
+
+        <record id="catering_sequence" model="ir.sequence">
+            <field name="name">Perdin</field>
+            <field name="code">hr.perdin</field>
+            <field name="prefix"></field>
+            <field name="suffix"></field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+
+    </data>
+</flectra>

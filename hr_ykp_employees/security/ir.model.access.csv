@@ -1,0 +1,56 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_mutasi_user,hr.mutasi.user,model_hr_mutasi,base.group_user,1,0,0,0
+hr.access_hr_job_user1,hr.job user1,hr.model_hr_job,base.group_user,1,0,0,0
+access_hr_mutasi_jabatan_user,hr.mutasi.jabatan.user,model_hr_mutasi_jabatan,base.group_user,1,0,0,0
+access_luar_ykp_user,luar.ykp.user,model_luar_ykp,base.group_user,1,0,0,0
+access_hr_performances_user,hr.performances.user,model_hr_performances,base.group_user,1,0,0,0
+access_hr_diklat_user,hr.diklat.user,model_hr_diklat,base.group_user,1,0,0,0
+access_hr_sanksi_user,hr.sanksi.user,model_hr_sanksi,base.group_user,1,0,0,0
+access_hr_orgatasan_user,hr.orgatasan.user,model_hr_orgatasan,base.group_user,1,0,0,0
+access_hr_orgbawahan_user,hr.orgbawahan.user,model_hr_orgbawahan,base.group_user,1,0,0,0
+access_hr_tax_user,hr.tax.user,model_hr_tax,base.group_user,1,0,0,0
+access_hr_education_user,hr.education.user,model_hr_education,base.group_user,1,0,0,0
+access_hr_education_lain_user,hr.education.lain.user,model_hr_education_lain,base.group_user,1,0,0,0
+access_hr_organization_user,hr.organization.user,model_hr_organization,base.group_user,1,0,0,0
+access_hr_training_user,hr.training.user,model_hr_training,base.group_user,1,0,0,0
+access_hr_certification_user,hr.certification.user,model_hr_certification,base.group_user,1,0,0,0
+access_hr_penghatgaan_user,hr.penghargaan.user,model_hr_penghargaan,base.group_user,1,0,0,0
+access_hr_contract_user,hr.contract.user,model_hr_contract,base.group_user,1,0,0,0
+
+
+hr.access_hr_employee_user,hr.employee user,model_hr_employee,hr.group_hr_user,1,0,0,0
+hr.access_hr_employee_resource_user,resource.resource.user,resource.model_resource_resource,hr.group_hr_user,1,0,0,0
+hr.access_hr_department_user,hr.department.user,hr.model_hr_department,hr.group_hr_user,1,0,0,0
+hr.access_hr_job_user,hr.job user,hr.model_hr_job,hr.group_hr_user,1,0,0,0
+hr.access_ir_property_hr_user,ir_property hr_user,base.model_ir_property,hr.group_hr_user,1,0,0,0
+
+
+access_hr_mutasi_manager,hr.mutasi.user,model_hr_mutasi,hr.group_hr_manager,1,1,1,1
+access_hr_mutasi_jabatan_manager,hr.mutasi.jabatan.user,model_hr_mutasi_jabatan,hr.group_hr_manager,1,1,1,1
+access_luar_ykp_manager,luar.ykp.user,model_luar_ykp,hr.group_hr_manager,1,1,1,1
+access_hr_performances_manager,hr.performances.user,model_hr_performances,hr.group_hr_manager,1,1,1,1
+access_hr_diklat_manager,hr.diklat.user,model_hr_diklat,hr.group_hr_manager,1,1,1,1
+access_hr_sanksi_manager,hr.sanksi.user,model_hr_sanksi,hr.group_hr_manager,1,1,1,1
+access_hr_orgatasan_manager,hr.orgatasan.user,model_hr_orgatasan,hr.group_hr_manager,1,1,1,1
+access_hr_orgbawahan_manager,hr.orgbawahan.user,model_hr_orgbawahan,hr.group_hr_manager,1,1,1,1
+access_hr_tax_manager,hr.tax.user,model_hr_tax,hr.group_hr_manager,1,1,1,1
+access_hr_education_manager,hr.education.user,model_hr_education,hr.group_hr_manager,1,1,1,1
+access_hr_education_lain_manager,hr.education.lain.user,model_hr_education_lain,hr.group_hr_manager,1,1,1,1
+access_hr_organization_manager,hr.organization.user,model_hr_organization,hr.group_hr_manager,1,1,1,1
+access_hr_training_manager,hr.training.user,model_hr_training,hr.group_hr_manager,1,1,1,1
+access_hr_certification_manager,hr.certification.user,model_hr_certification,hr.group_hr_manager,1,1,1,1
+access_hr_penghatgaan_manager,hr.penghargaan.user,model_hr_penghargaan,hr.group_hr_manager,1,1,1,1
+access_hr_contract_manager,hr.contract.user,model_hr_contract,hr.group_hr_manager,1,1,1,1
+hr.access_hr_employee_manager,hr.employee user,model_hr_employee,hr.group_hr_manager,1,1,1,1
+hr.access_hr_employee_resource_manager,resource.resource.user,resource.model_resource_resource,hr.group_hr_manager,1,1,1,1
+hr.access_hr_department_manager,hr.department.user,hr.model_hr_department,hr.group_hr_manager,1,1,1,1
+hr.access_hr_job_manager,hr.job user,hr.model_hr_job,hr.group_hr_manager,1,1,1,1
+hr.access_ir_property_hr_manager,ir_property hr_user,base.model_ir_property,hr.group_hr_manager,1,1,1,1
+access_jenis_pegawai_hr_manager,jenis_pegawai_hr_user,model_jenis_pegawai,hr.group_hr_manager,1,1,1,1
+access_hr_grade_hr_manager,hr_grade_hr_user,model_hr_grade,hr.group_hr_manager,1,1,1,1
+access_hr_religion_hr_manager,hr_religion_hr_user,model_hr_religion,hr.group_hr_manager,1,1,1,1
+access_hr_state_hr_manager,hr_state_hr_user,model_hr_state,hr.group_hr_manager,1,1,1,1
+access_hr_city_hr_manager,hr_city_hr_user,model_hr_city,hr.group_hr_manager,1,1,1,1
+access_hr_kecamatan_hr_manager,hr_kecamatan_hr_user,model_hr_kecamatan,hr.group_hr_manager,1,1,1,1
+access_hr_kelurahan_hr_manager,hr_kelurahan_hr_user,model_hr_kelurahan,hr.group_hr_manager,1,1,1,1
+access_hr_degree_hr_manager,hr_degree_hr_user,model_hr_degree,hr.group_hr_manager,1,1,1,1

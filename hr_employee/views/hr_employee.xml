@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+    <data>
+        <record id="ypk_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="country_id" position="before">
+                    <field name="nik"/>
+                </field>
+                <field name="identification_id" position="after">
+                    <field name="npwp"/>
+                    <field name="no_kk"/>
+                    <field name="relgion"/>
+                    <field name="jumlah_tanggungan"/>
+                    <field name="alamat_ktp"/>
+                    <field name="state_id"/>
+                    <field name="city_id"/>
+                    <field name="kecamatan_id"/>
+                    <field name="kelurahan_id"/>
+                    <field name="rt_rw"/>
+                    <field name="zip_code"/>
+                </field>
+                <field name="address_home_id" position="after">
+                    <field name="alamat2"/>
+                    <field name="state_id2"/>
+                    <field name="city_id2"/>
+                    <field name="kecamatan_id2"/>
+                    <field name="kelurahan_id2"/>
+                    <field name="rt_rw2"/>
+                </field>
+                <xpath expr="//notebook/page[2]/group/group[5]" position="replace">
+                    <group string="Informasi Kontrak Darurat">
+                        <field name="name_darurat"/>
+                        <field name="hubungan_darurat"/>
+                        <field name="handphone_darurat"/>
+                        <field name="alamat_darurat"/>
+                        <field name="state_id_darurat"/>
+                        <field name="kecamatan_id_darurat"/>
+                        <field name="zip_code_darurat"/>
+                        <field name="rt_rw_darurat"/>
+                    </group>
+                    <group string="Informasi Detail">
+                        <field name="gol_darah"/>
+                        <field name="warna_kulit"/>
+                        <field name="bentuk_wajah"/>
+                        <field name="jenis_rambut"/>
+                        <field name="tinggi_bb"/>
+                    </group>
+                    <group string="BPJS Information">
+                        <field name="no_bpjs"/>
+                        <field name="faskes"/>
+                        <field name="dokter_gigi"/>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page[2]/group" position="after">
+                    <group>
+                        <notebook>
+                            <page string="Family">
+                                <field name="family_ids" mode="tree">
+                                    <tree string="employee Family" editable="bottom">
+                                            <!-- <field name="family"/> -->
+                                            <field name="name"/>
+                                            <field name="jenis_kelamin"/>
+                                            <field name="jenjang"/>
+                                            <field name="age"/>
+                                            <field name="address"/>
+                                            <field name="work"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Education">
+                                <field name="education_ids" mode="tree">
+                                    <tree string="Education" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="kampus"/>
+                                            <field name="fakultas"/>
+                                            <field name="jurusan"/>
+                                            <field name="end_year"/>
+                                            <field name="ipk"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Organization History">
+                                <field name="organization_ids" mode="tree">
+                                    <tree string="Organization History" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="start_date"/>
+                                            <field name="end_date"/>
+                                            <field name="position"/>
+                                            <field name="honor"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Certification">
+                                <field name="certification_ids" mode="tree">
+                                    <tree string="Certification" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="lembaga"/>
+                                            <field name="date"/>
+                                            <field name="end_date"/>
+                                            <field name="no_sertifikat"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page[1]/group/group[2]" position="after">
+                    <group string = "Detail Information">
+                        <field name="unit_kerja"/>
+                        <field name="penempatan"/>
+                        <field name="jenis_pegawai"/>
+                        <field name="jabatan"/>
+                        <field name="masa_jabatan"/>
+                        <field name="grade"/>
+                        <field name="masa_grade"/>
+                        <field name="tanggal_masuk"/>
+                        <field name="masa_kerja"/>
+                        <field name="tanggal_pengangkatan"/>
+                        <field name="tanggal_pensiun"/>
+                        <field name="tanggal_keluar"/>
+                        <field name="tahun_cuti_besar"/>
+                        <field name="no_jamsostek"/>
+                        <field name="no_npwp"/>
+                        <field name="potongan_asuransi_jiwa"/>
+                        <field name="status_nikah_pajak_TB"/>
+                        <field name="status_nikah_pajak_TD"/>
+                        <field name="jum_tanggungan_TB"/>
+                        <field name="jum_tanggungan_TD"/>
+                        <field name="program_karir"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</flectra>

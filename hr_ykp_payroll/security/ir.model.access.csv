@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_pajak_periode,accesshr_pajak_periode,model_hr_pajak_periode,,1,1,1,1

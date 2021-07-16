@@ -1,0 +1,98 @@
+<template xml:space="preserve">
+    <t t-name="dynamic_list.FieldsDropdownItems">
+		<t t-as="field" t-foreach="widget.fields">
+        	<div t-att-data-id="field.id" t-attf-class="o_menu_item#{field.invisible ? ' d-none' : ''}">
+        		<a href="#" t-attf-class="dropdown-item#{field.active ? ' selected' : ''}">
+                    <t t-esc="field.description" />
+                </a>
+        	</div>
+        </t>
+	</t>
+
+	<div class="btn-group mk_list_customize_fields" role="group" t-name="dynamic_list.FieldsDropdown">
+		<button class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" type="button">
+ 			<span class="fa fa-cog" /> Fields
+ 		</button>
+	   	<div class="dropdown-menu o_dropdown_menu" role="menu">
+			<div class="dropdown-item-text mk_list_customize_fields_search" role="menuitem">
+	            <input class="o_input" placeholder="Search..." type="text" />
+	        </div>
+	        <t t-call="dynamic_list.FieldsDropdownItems" />
+	        <div class="dropdown-item-text mk_list_customize_fields_reset" role="menuitem">
+	            <button class="btn btn-primary" role="menuitem" type="button">Reset</button>
+	        </div>
+		</div>
+	</div>
+
+	<div class="btn-group" role="group" t-name="dynamic_list.ViewsDropdown">
+		<button class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" type="button">
+ 			<span class="fa fa-star" /> Views
+ 		</button>
+	   	<div class="dropdown-menu mk_list_customize_views" role="menu">
+	    	<div class="dropdown-divider mk_list_customize_views_user" />
+        	<div class="dropdown-divider mk_list_customize_views_shared" />
+        	<a class="dropdown-item o_closed_menu mk_list_customize_views_save" href="#" role="menuitem">
+        		Save current view
+        	</a>
+        	<div class="dropdown-item-text mk_list_customize_views_name" role="menuitem">
+	            <input class="o_input" type="text" />
+	        </div>
+	        <div class="dropdown-item-text mk_list_customize_views_name" role="menuitem">
+	            <div class="custom-control custom-checkbox">
+	                <input class="custom-control-input" id="mk-list-customize-views-default" type="checkbox" />
+	                <label class="custom-control-label" for="mk-list-customize-views-default">Use by default</label>
+	            </div>
+            </div>
+            <div class="dropdown-item-text mk_list_customize_views_name" role="menuitem">
+	            <div class="custom-control custom-checkbox">
+	                <input class="custom-control-input" id="mk-list-customize-views-shared" type="checkbox" />
+	                <label class="custom-control-label" for="mk-list-customize-views-shared">Share with all users <span aria-label="Users" class="fa fa-users" role="img" title="Users" /></label>
+	            </div>
+	        </div>
+            <div class="dropdown-item-text mk_list_customize_views_name">
+	            <button class="btn btn-primary" role="menuitem" type="button">Save</button>
+	        </div>
+		</div>
+	</div>
+
+	<t t-extend="ListView.buttons">
+	    <t t-jquery=".o_list_buttons" t-operation="append">
+	        <button accesskey="u" class="btn btn-secondary btn-sm mk_list_button_export" type="button">
+	        	Export
+	        </button>
+	    </t>
+	    <t t-jquery=".o_list_buttons" t-operation="append">
+	    	<div class="mk_list_button_customize btn-group d-none d-lg-inline-flex d-xl-inline-flex" role="group" />
+		</t>
+		<t t-jquery=".o_list_buttons" t-operation="append">
+			<div class="mk_list_button_switch" t-if="widget.is_action_enabled('edit')" />
+    	</t>
+	</t>
+
+    <t t-name="muk_web_utils.switch">
+		<span class="switch">
+			<input t-att-id="id" type="checkbox" />
+			<label t-att-for="id">
+				<t t-if="label"><t t-esc="label" /></t>
+			</label>
+		</span>
+	</t>
+
+	<t t-name="muk_web_utils.switch_sm">
+		<span class="switch switch-sm">
+			<input t-att-id="id" type="checkbox" />
+			<label t-att-for="id">
+				<t t-if="label"><t t-esc="label" /></t>
+			</label>
+		</span>
+	</t>
+
+	<t t-name="muk_web_utils.switch_lg">
+		<span class="switch switch-lg">
+			<input t-att-id="id" type="checkbox" />
+			<label t-att-for="id">
+				<t t-if="label"><t t-esc="label" /></t>
+			</label>
+		</span>
+	</t>
+</template>

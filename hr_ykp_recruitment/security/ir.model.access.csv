@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_job_stage_survey,hr_ykp_recruitment.hr_job_stage_survey,model_hr_job_stage_survey,,1,1,1,1
+access_hr_applicant_score,hr_ykp_recruitment.hr_applicant_score,model_hr_applicant_score,,1,1,1,1

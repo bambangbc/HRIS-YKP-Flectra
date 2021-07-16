@@ -1,0 +1,98 @@
+<flectra>
+    <data>
+
+        <record id="view_attendance_tree_inherit" model="ir.ui.view">
+            <field name="name">view_attendance_tree_inherit</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='check_out']" position="after">
+                    <!-- Add new fields here -->
+                    <field name="note" />
+                    <field name="absen_importer_id" />
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="hr_attendance_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr_attendance_view_form_inherit</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='check_out']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="note" />
+                    <field name="absen_importer_id" />
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="ypk_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_ykp_employees.ypk_employee_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='resource_calendar_id']" position="after">
+                    <field name="id_absen"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_ykp_absen.absen_importer_tree" model="ir.ui.view">
+            <field name="name">absen_importer_tree</field>
+            <field name="model">hr.ykp.absen.importer</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="filename"/>
+                    <!--<field name="name"/>-->
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_ykp_absen.absen_importer_form" model="ir.ui.view">
+            <field name="name">absen_importer_form</field>
+            <field name="model">hr.ykp.absen.importer</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,process"/>
+                        <button name="action_process" type="object" string="Proses File" states="draft"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name" widget="binary" filename="filename"/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_ykp_absen.absen_importer_view_actiom" model="ir.actions.act_window">
+            <field name="name">Import Absen</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.ykp.absen.importer</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hr_ykp_absen_absen_impoerter_menu_item" name="Import Absen"
+                  parent="hr_attendance.menu_hr_attendance_manage_attendances"
+                  action="absen_importer_view_actiom" sequence="1"/>
+    </data>
+</flectra>

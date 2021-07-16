@@ -1,0 +1,1910 @@
+<flectra>
+    <data>
+        <!-- work goal scale -->
+        <record id="hr_ykp_appraisal.work_goal_scale_tree" model="ir.ui.view">
+            <field name="name">work.goal.scale.tree</field>
+            <field name="model">hr.work.goal.scale</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="min_value"/>
+                    <field name="max_value"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_scale_form" model="ir.ui.view">
+            <field name="name">work.goal.scale.form</field>
+            <field name="model">hr.work.goal.scale</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="min_value"/>
+                            <field name="max_value"/>
+                            <field name="value"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_scale_search" model="ir.ui.view">
+            <field name="name">work.goal.scale.search</field>
+            <field name="model">hr.work.goal.scale</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <filter name="group_by_type" string="Tipe" context="{'group_by': 'type'}"/>
+                </search>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_scale_pivot" model="ir.ui.view">
+            <field name="name">work.goal.scale.pivot</field>
+            <field name="model">hr.work.goal.scale</field>
+            <field name="arch" type="xml">
+                <pivot string="">
+                    <field name="type" type="row"/>
+                    <field name="value" type="col"/>
+                    <field name="min_value" type="col"/>
+                    <field name="max_value" type="col"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_scale_action_window" model="ir.actions.act_window">
+            <field name="name">Skala Penilaian</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.goal.scale</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="context">{'search_default_group_by_type': True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- work kpi indicator -->
+        <record id="hr_ykp_appraisal.work_kpi_indicator_tree" model="ir.ui.view">
+            <field name="name">work.kpi.indicator.tree</field>
+            <field name="model">hr.work.kpi.indicator</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="type"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_indicator_form" model="ir.ui.view">
+            <field name="name">work.kpi.indicator.form</field>
+            <field name="model">hr.work.kpi.indicator</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="type"/>
+                            <field name="name"/>
+                            <field name="desc"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_indicator_action_window" model="ir.actions.act_window">
+            <field name="name">Indikator KPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.kpi.indicator</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- work kpi weight -->
+        <record id="hr_ykp_appraisal.work_kpi_weight_tree" model="ir.ui.view">
+            <field name="name">work.kpi.weight.tree</field>
+            <field name="model">hr.work.kpi.weight</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="indicator_id"/>
+                    <field name="name"/>
+                    <field name="rating"/>
+                    <field name="nilai_konduite"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_weight_form" model="ir.ui.view">
+            <field name="name">work.kpi.weight.form</field>
+            <field name="model">hr.work.kpi.weight</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="indicator_id"/>
+                            <field name="name"/>
+                            <field name="rating"/>
+                            <field name="nilai_konduite"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_weight_action_window" model="ir.actions.act_window">
+            <field name="name">Skala KPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.kpi.weight</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- work kpi weight category-->
+        <record id="hr_ykp_appraisal.work_kpi_weight_category_tree" model="ir.ui.view">
+            <field name="name">work.kpi.weight.category.tree</field>
+            <field name="model">hr.work.kpi.weight.category</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="min_value"/>
+                    <field name="max_value"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_weight_category_form" model="ir.ui.view">
+            <field name="name">work.kpi.weight.category.form</field>
+            <field name="model">hr.work.kpi.weight.category</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="min_value"/>
+                            <field name="max_value"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_weight_category_action_window" model="ir.actions.act_window">
+            <field name="name">Skala Kategori KPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.kpi.weight.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- work corporate culture scale-->
+        <record id="hr_ykp_appraisal.work_corporate_culture_scale_tree" model="ir.ui.view">
+            <field name="name">work.corporate.culture.scale.tree</field>
+            <field name="model">hr.corporate.culture.scale</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_corporate_culture_scale_form" model="ir.ui.view">
+            <field name="name">work.corporate.culture.scale.form</field>
+            <field name="model">hr.corporate.culture.scale</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="desc"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_corporate_culture_scale_action_window" model="ir.actions.act_window">
+            <field name="name">Corporate Culture</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.corporate.culture.scale</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- work corporate career scale-->
+        <record id="hr_ykp_appraisal.work_corporate_career_scale_tree" model="ir.ui.view">
+            <field name="name">work.corporate.career.scale.tree</field>
+            <field name="model">hr.corporate.career.scale</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="kpi_weight_id"/>
+                    <field name="kpi_culcure_ids"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_corporate_career_scale_form" model="ir.ui.view">
+            <field name="name">work.corporate.career.scale.form</field>
+            <field name="model">hr.corporate.career.scale</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="kpi_weight_id"/>
+                            <field name="kpi_culcure_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_corporate_career_scale_action_window" model="ir.actions.act_window">
+            <field name="name">Corporate Culture</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.corporate.career.scale</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <record id="hr_ykp_appraisal.perspective_sasaran_finansial_form" model="ir.ui.view">
+            <field name="name">perspective_sasaran_finansial_form</field>
+            <field name="model">hr.work.goal.perspective.sasaran.financial</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="bobot" class="oe_inline" widget="Percent"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_ykp_appraisal.perspective_sasaran_customer_form" model="ir.ui.view">
+            <field name="name">perspective_sasaran_customer_form</field>
+            <field name="model">hr.work.goal.perspective.sasaran.customer</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="bobot" class="oe_inline" widget="Percent"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_ykp_appraisal.perspective_sasaran_bp_form" model="ir.ui.view">
+            <field name="name">perspective_sasaran_bp_form</field>
+            <field name="model">hr.work.goal.perspective.sasaran.bp</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="bobot" class="oe_inline" widget="Percent"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_ykp_appraisal.perspective_sasaran_people_form" model="ir.ui.view">
+            <field name="name">perspective_sasaran_people_form</field>
+            <field name="model">hr.work.goal.perspective.sasaran.people</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="bobot" class="oe_inline" widget="Percent"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Sasaran Kerja-->
+        <record id="hr_ykp_appraisal.work_goal_tree" model="ir.ui.view">
+            <field name="name">work.goal.tree</field>
+            <field name="model">hr.work.goal</field>
+            <field name="arch" type="xml">
+                <tree string="" decoration-warning="current_user_is_reviewer == True"
+                      decoration-danger="current_user_is_reviewer2 == True">
+                    <field name="name"/>
+                    <field name="goal_year"/>
+                    <field name="reviewer_id"/>
+                    <field name="reviewer2_id"/>
+                    <field name="current_user_is_reviewer" invisible="1"/>
+                    <field name="current_user_is_reviewer2" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_tree_penilaian" model="ir.ui.view">
+            <field name="name">work.goal.tree</field>
+            <field name="model">hr.work.goal</field>
+            <field name="arch" type="xml">
+                <tree string="" create="false" decoration-warning="current_user_is_reviewer == True"
+                      decoration-danger="current_user_is_reviewer2 == True">
+                    <field name="name"/>
+                    <field name="goal_year"/>
+                    <field name="reviewer_id"/>
+                    <field name="reviewer2_id"/>
+                    <field name="current_user_is_reviewer" invisible="1"/>
+                    <field name="current_user_is_reviewer2" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_form_penetapan" model="ir.ui.view">
+            <field name="name">work.goal.form</field>
+            <field name="model">hr.work.goal</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,approve,approve_pemutus"/>
+                        <button name="action_sent" type="object" string="Dikirim"
+                                attrs="{'invisible': ['|',('current_user_is_employee', '!=', True), ('state', '!=', 'draft')]}"/>
+                        <button name="action_approve" type="object" string="Setujui"
+                                attrs="{'invisible': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent')]}"/>
+                        <button name="action_approve_pemutus" type="object" string="Setujui"
+                                attrs="{'invisible': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'approve')]}"/>
+                    </header>
+                    <sheet>
+                        <group string="Informasi Karyawan">
+                            <group>
+                                <field name="name" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <!--<field name="nik" readonly="1"/>-->
+                                <field name="job_id" readonly="1"/>
+                                <field name="department_id" readonly="1"/>
+                                <field name="goal_year"/>
+                            </group>
+                            <group>
+                                <field name="reviewer_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="reviewer_job_id" readonly="1"/>
+                                <separator/>
+                                <field name="reviewer2_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="reviewer2_job_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="Sasaran Kerja Pegawai">
+                            <notebook colspan="2">
+                                <page string="Kuartal 1">
+                                    <notebook colspan="2">
+                                        <page string="Finansial">
+                                            <field name="work_perspective_financial_q1_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter1" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Customer">
+                                            <field name="work_perspective_customer_q1_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter1" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Internal Business Process">
+                                            <field name="work_perspective_bp_q1_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter1" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="People Development">
+                                            <field name="work_perspective_people_q1_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter1" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </page>
+                                <page string="Kuartal 2">
+                                    <notebook colspan="2">
+                                        <page string="Finansial">
+                                            <field name="work_perspective_financial_q2_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter2" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Customer">
+                                            <field name="work_perspective_customer_q2_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter2" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Internal Business Process">
+                                            <field name="work_perspective_bp_q2_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter2" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="People Development">
+                                            <field name="work_perspective_people_q2_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter2" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </page>
+                                <page string="Kuartal 3">
+                                    <notebook colspan="2">
+                                        <page string="Finansial">
+                                            <field name="work_perspective_financial_q3_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter3" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Customer">
+                                            <field name="work_perspective_customer_q3_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter3" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Internal Business Process">
+                                            <field name="work_perspective_bp_q3_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter3" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="People Development">
+                                            <field name="work_perspective_people_q3_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter3" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </page>
+                                <page string="Kuartal 4">
+                                    <notebook colspan="2">
+                                        <page string="Finansial">
+                                            <field name="work_perspective_financial_q4_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter4" required="1" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Customer">
+                                            <field name="work_perspective_customer_q4_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter4" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Internal Business Process">
+                                            <field name="work_perspective_bp_q4_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter4" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="People Development">
+                                            <field name="work_perspective_people_q4_ids" nolabel="1">
+                                                <tree editable="bottom">
+                                                    <field name="sasaran_id" required="1"/>
+                                                    <field name="name" required="1"/>
+                                                    <field name="bobot" required="1" sum="Total" string="Bobot"
+                                                           class="oe_inline" widget="Percent"/>
+                                                    <field name="jenis" required="1"/>
+                                                    <field name="polarity" required="1"/>
+                                                    <field name="target_quarter4" sum="Total"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </page>
+                            </notebook>
+                        </group>
+                        <!--<group string="Total Bobot">-->
+                        <!--<h2>-->
+                        <!--<field name="total_bobot" nolabel="1" class="oe_inline" widget="Percent"/>-->
+                        <!--</h2>-->
+                        <!--</group>-->
+                        <group string="Catatan"/>
+                        <field name="note" nolabel="1"/>
+                        <group string="Saya dan Atasan telah menyepakati goal setting di atas" col="3">
+                            <group>
+                                <!--<field name="self_signature" widget="signature"-->
+                                <!--attrs="{'readonly': [('current_user_is_employee', '!=', True)]}"/>-->
+                                <field name="employee_name" readonly="1"/>
+                                <field name="approval_date"
+                                       attrs="{'readonly': [('current_user_is_employee', '!=', True)]}"/>
+                            </group>
+                            <group>
+                                <!--<field name="reviewer_signature" widget="signature"-->
+                                <!--attrs="{'readonly': [('current_user_is_reviewer', '!=', True)]}"/>-->
+                                <field name="reviewer_name" readonly="1"/>
+                                <field name="reviewer_job_id" readonly="1"/>
+                                <field name="reviewer_penetapan_date"
+                                       attrs="{'readonly': [('current_user_is_reviewer', '!=', True)]}"/>
+                            </group>
+                            <group>
+                                <!--<field name="reviewer2_signature" widget="signature"-->
+                                <!--attrs="{'readonly': [('current_user_is_reviewer2', '!=', True)]}"/>-->
+                                <field name="reviewer2_name" readonly="1"/>
+                                <field name="reviewer2_job_id" readonly="1"/>
+                                <field name="reviewer2_penetapan_date"
+                                       attrs="{'readonly': [('current_user_is_reviewer2', '!=', True)]}"/>
+                            </group>
+                        </group>
+                        <field name="current_user_is_reviewer" invisible="1"/>
+                        <field name="current_user_is_reviewer2" invisible="1"/>
+                        <field name="current_user_is_employee" invisible="1"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_form_penilaian" model="ir.ui.view">
+            <field name="name">work.goal.form</field>
+            <field name="model">hr.work.goal</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="approve_pemutus,sent_penilaian,assessment,assessment_pemutus"/>
+                        <button name="action_sent_penilaian" type="object" string="Dikirim"
+                                attrs="{'invisible': ['|',('current_user_is_employee', '!=', True), ('state', '!=', 'approve_pemutus')]}"/>
+                        <button name="action_assesment" type="object" string="Setujui"
+                                attrs="{'invisible': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent_penilaian')]}"/>
+                        <button name="action_assesment_pemutus" type="object" string="Setujui"
+                                attrs="{'invisible': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'assessment')]}"/>
+                    </header>
+                    <sheet>
+                        <group string="Informasi Karyawan">
+                            <group>
+                                <field name="name" options="{'no_create': True, 'no_create_edit':True}" readonly="1"/>
+                                <!--<field name="nik" readonly="1"/>-->
+                                <field name="job_id" readonly="1"/>
+                                <field name="department_id" readonly="1"/>
+                                <field name="goal_year"/>
+                            </group>
+                            <group>
+                                <field name="reviewer_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       readonly="1"/>
+                                <field name="reviewer_job_id" readonly="1"/>
+                                <separator/>
+                                <field name="reviewer2_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       readonly="1"/>
+                                <field name="reviewer2_job_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="Sasaran Kerja Pegawai">
+                            <notebook colspan="2">
+                                <page string="Kuartal 1">
+                                    <notebook colspan="2">
+                                        <page string="Finansial">
+                                            <field name="work_perspective_financial_q1_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter1" readonly="1"/>
+                                                    <field name="realisasi_q1"/>
+                                                    <!--<field name="proof_q1"/>-->
+                                                    <!--<field name="doc_proof_q1" widget="binary"-->
+                                                    <!--filename="filename_q1"/>-->
+                                                    <field name="percent_realisasi_q1"
+                                                           widget="Percent"/>
+                                                    <field name="nilai_q1" string="Nilai"/>
+                                                    <field name="nilai_target_q1" string="Target Nilai"/>
+                                                    <field name="filename_q1" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Customer">
+                                            <field name="work_perspective_customer_q1_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter1" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q1"/>
+                                                    <!--<field name="proof_q1" />-->
+                                                    <!--<field name="doc_proof_q1" widget="binary"-->
+                                                    <!--filename="filename_q1"/>-->
+                                                    <field name="percent_realisasi_q1" widget="Percent"/>
+                                                    <field name="nilai_q1" string="Nilai"/>
+                                                    <field name="nilai_target_q1" string="Target Nilai"/>
+                                                    <field name="filename_q1" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Internal Business Process">
+                                            <field name="work_perspective_bp_q1_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter1" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q1"/>
+                                                    <!--<field name="proof_q1" />-->
+                                                    <!--<field name="doc_proof_q1"  widget="binary"-->
+                                                    <!--filename="filename_q1"/>-->
+                                                    <field name="percent_realisasi_q1" widget="Percent"/>
+                                                    <field name="nilai_q1" string="Nilai"/>
+                                                    <field name="nilai_target_q1" string="Target Nilai"/>
+                                                    <field name="filename_q1" invisible="1"/>
+                                                </tree>
+                                            </field>
+
+                                        </page>
+                                        <page string="People Development">
+                                            <field name="work_perspective_people_q1_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="realisasi_q1" readonly="1" string="Total Target"/>
+                                                    <!--<field name="realisasi_q1" />-->
+                                                    <!--<field name="proof_q1" />-->
+                                                    <!--<field name="doc_proof_q1"  widget="binary"-->
+                                                    <!--filename="filename_q1"/>-->
+                                                    <field name="percent_realisasi_q1" widget="Percent"/>
+                                                    <field name="nilai_q1" string="Nilai"/>
+                                                    <field name="nilai_target_q1" string="Target Nilai"/>
+                                                    <field name="filename_q1" invisible="1"/>
+                                                </tree>
+                                            </field>
+
+                                        </page>
+                                    </notebook>
+                                    <group string="Nilai Pegawai">
+                                        <group>
+                                            <label for="total_value">Total Nilai Kuartal 1</label>
+                                            <h1>
+                                                <field name="total_value_q1" readonly="1"/>
+                                            </h1>
+                                        </group>
+                                        <group>
+                                            <table class="o_list_view table table-condensed table-striped o_list_view_ungrouped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="o_column_sortable">Pencapaian Target</th>
+                                                        <th class="o_column_sortable">Kinerja</th>
+                                                        <th class="o_column_sortable">Rating</th>
+                                                        <th class="o_column_sortable">Bobot</th>
+                                                        <th style="text-align: right;">Nilai Konduite</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ui-sortable">
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 4,5 &lt;= 5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 125%</td>
+                                                        <td class="o_data_cell o_readonly_modifier">5</td>
+                                                        <td class="o_data_cell o_readonly_modifier" rowspan="5"
+                                                            style="text-align:center;">55%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">2,75</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 3,5 &lt;= 4,5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 110% &lt;=
+                                                            125%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">4</td>
+                                                        <td class="o_data_cell o_readonly_modifier">2,2</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 2 &lt;= 3,5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 90% &lt;=
+                                                            115%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">3</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1,65</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 1 &lt;= 2</td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 75% &lt;= 90%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">2</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1,1</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt;= 1</td>
+                                                        <td class="o_data_cell o_readonly_modifier">&lt;= 75%</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1</td>
+                                                        <td class="o_data_cell o_readonly_modifier">0,55</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </group>
+                                    </group>
+                                </page>
+                                <page string="Kuartal 2">
+                                    <notebook colspan="2">
+                                        <page string="Finansial">
+                                            <field name="work_perspective_financial_q2_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter2" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q2"/>
+                                                    <!--<field name="proof_q2" />-->
+                                                    <!--<field name="doc_proof_q2"  widget="binary"-->
+                                                    <!--filename="filename_q2"/>-->
+                                                    <field name="percent_realisasi_q2" widget="Percent"/>
+                                                    <field name="nilai_q2" string="Nilai"/>
+                                                    <field name="nilai_target_q2"
+                                                           string="Target Nilai"/>
+                                                    <field name="filename_q2" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Customer">
+                                            <field name="work_perspective_customer_q2_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter2" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q2"/>
+                                                    <!--<field name="proof_q2" />-->
+                                                    <!--<field name="doc_proof_q2"  widget="binary"-->
+                                                    <!--filename="filename_q2"/>-->
+                                                    <field name="percent_realisasi_q2" widget="Percent"/>
+                                                    <field name="nilai_q2" string="Nilai"/>
+                                                    <field name="nilai_target_q2" string="Target Nilai"/>
+                                                    <field name="filename_q2" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Internal Business Process">
+                                            <field name="work_perspective_bp_q2_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter2" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q2"/>
+                                                    <!--<field name="proof_q2" />-->
+                                                    <!--<field name="doc_proof_q2"  widget="binary"-->
+                                                    <!--filename="filename_q2"/>-->
+                                                    <field name="percent_realisasi_q2" widget="Percent"/>
+                                                    <field name="nilai_q2" string="Nilai"/>
+                                                    <field name="nilai_target_q2" string="Target Nilai"/>
+                                                    <field name="filename_q2" invisible="1"/>
+                                                </tree>
+                                            </field>
+
+                                        </page>
+                                        <page string="People Development">
+                                            <field name="work_perspective_people_q2_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="realisasi_q2" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q2"/>
+                                                    <!--<field name="proof_q2" />-->
+                                                    <!--<field name="doc_proof_q2"  widget="binary"-->
+                                                    <!--filename="filename_q2"/>-->
+                                                    <field name="percent_realisasi_q2" widget="Percent"/>
+                                                    <field name="nilai_q2" string="Nilai"/>
+                                                    <field name="nilai_target_q2" string="Target Nilai"/>
+                                                    <field name="filename_q2" invisible="1"/>
+                                                </tree>
+                                            </field>
+
+                                        </page>
+                                    </notebook>
+                                    <group string="Nilai Pegawai">
+                                        <group>
+                                            <label for="total_value">Total Nilai Kuartal 2</label>
+                                            <h1>
+                                                <field name="total_value_q2" readonly="1"/>
+                                            </h1>
+                                        </group>
+                                        <group>
+                                            <table class="o_list_view table table-condensed table-striped o_list_view_ungrouped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="o_column_sortable">Pencapaian Target</th>
+                                                        <th class="o_column_sortable">Kinerja</th>
+                                                        <th class="o_column_sortable">Rating</th>
+                                                        <th class="o_column_sortable">Bobot</th>
+                                                        <th style="text-align: right;">Nilai Konduite</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ui-sortable">
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 4,5 &lt;= 5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 125%</td>
+                                                        <td class="o_data_cell o_readonly_modifier">5</td>
+                                                        <td class="o_data_cell o_readonly_modifier" rowspan="5"
+                                                            style="text-align:center;">55%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">2,75</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 3,5 &lt;= 4,5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 110% &lt;=
+                                                            125%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">4</td>
+                                                        <td class="o_data_cell o_readonly_modifier">2,2</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 2 &lt;= 3,5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 90% &lt;=
+                                                            115%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">3</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1,65</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 1 &lt;= 2</td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 75% &lt;= 90%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">2</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1,1</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt;= 1</td>
+                                                        <td class="o_data_cell o_readonly_modifier">&lt;= 75%</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1</td>
+                                                        <td class="o_data_cell o_readonly_modifier">0,55</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </group>
+                                    </group>
+                                </page>
+                                <page string="Kuartal 3">
+                                    <notebook colspan="2">
+                                        <page string="Finansial">
+                                            <field name="work_perspective_financial_q3_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter3" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q3"/>
+                                                    <!--<field name="proof_q3" />-->
+                                                    <!--<field name="doc_proof_q3"  widget="binary"-->
+                                                    <!--filename="filename_q3"/>-->
+                                                    <field name="percent_realisasi_q3" widget="Percent"/>
+                                                    <field name="nilai_q3" string="Nilai"/>
+                                                    <field name="nilai_target_q3" string="Target Nilai"/>
+                                                    <field name="filename_q3" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Customer">
+                                            <field name="work_perspective_customer_q3_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter3" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q3"/>
+                                                    <!--<field name="proof_q3" />-->
+                                                    <!--<field name="doc_proof_q3"  widget="binary"-->
+                                                    <!--filename="filename_q3"/>-->
+                                                    <field name="percent_realisasi_q3" widget="Percent"/>
+                                                    <field name="nilai_q3" string="Nilai"/>
+                                                    <field name="nilai_target_q3" string="Target Nilai"/>
+                                                    <field name="filename_q3" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Internal Business Process">
+                                            <field name="work_perspective_bp_q3_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter3" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q3"/>
+                                                    <!--<field name="proof_q3" />-->
+                                                    <!--<field name="doc_proof_q3"  widget="binary"-->
+                                                    <!--filename="filename_q3"/>-->
+                                                    <field name="percent_realisasi_q3" widget="Percent"/>
+                                                    <field name="nilai_q3" string="Nilai"/>
+                                                    <field name="nilai_target_q3" string="Target Nilai"/>
+                                                    <field name="filename_q3" invisible="1"/>
+                                                </tree>
+                                            </field>
+
+                                        </page>
+                                        <page string="People Development">
+                                            <field name="work_perspective_people_q3_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="realisasi_q3" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q3"/>
+                                                    <!--<field name="proof_q3" />-->
+                                                    <!--<field name="doc_proof_q3"  widget="binary"-->
+                                                    <!--filename="filename_q3"/>-->
+                                                    <field name="percent_realisasi_q3" widget="Percent"/>
+                                                    <field name="nilai_q3" string="Nilai"/>
+                                                    <field name="nilai_target_q3" string="Target Nilai"/>
+                                                    <field name="filename_q3" invisible="1"/>
+                                                </tree>
+                                            </field>
+
+                                        </page>
+                                    </notebook>
+                                    <group string="Nilai Pegawai">
+                                        <group>
+                                            <label for="total_value">Total Nilai Kuartal 3</label>
+                                            <h1>
+                                                <field name="total_value_q3" readonly="1"/>
+                                            </h1>
+                                        </group>
+                                        <group>
+                                            <table class="o_list_view table table-condensed table-striped o_list_view_ungrouped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="o_column_sortable">Pencapaian Target</th>
+                                                        <th class="o_column_sortable">Kinerja</th>
+                                                        <th class="o_column_sortable">Rating</th>
+                                                        <th class="o_column_sortable">Bobot</th>
+                                                        <th style="text-align: right;">Nilai Konduite</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ui-sortable">
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 4,5 &lt;= 5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 125%</td>
+                                                        <td class="o_data_cell o_readonly_modifier">5</td>
+                                                        <td class="o_data_cell o_readonly_modifier" rowspan="5"
+                                                            style="text-align:center;">55%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">2,75</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 3,5 &lt;= 4,5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 110% &lt;=
+                                                            125%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">4</td>
+                                                        <td class="o_data_cell o_readonly_modifier">2,2</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 2 &lt;= 3,5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 90% &lt;=
+                                                            115%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">3</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1,65</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 1 &lt;= 2</td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 75% &lt;= 90%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">2</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1,1</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt;= 1</td>
+                                                        <td class="o_data_cell o_readonly_modifier">&lt;= 75%</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1</td>
+                                                        <td class="o_data_cell o_readonly_modifier">0,55</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </group>
+                                    </group>
+                                </page>
+                                <page string="Kuartal 4">
+                                    <notebook colspan="2">
+                                        <page string="Finansial">
+                                            <field name="work_perspective_financial_q4_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter4" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q4"/>
+                                                    <!--<field name="proof_q4" />-->
+                                                    <!--<field name="doc_proof_q4"  widget="binary"-->
+                                                    <!--filename="filename_q4"/>-->
+                                                    <field name="percent_realisasi_q4" widget="Percent"/>
+                                                    <field name="nilai_q4" string="Nilai"/>
+                                                    <field name="nilai_target_q4" string="Target Nilai"/>
+                                                    <field name="filename_q4" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Customer">
+                                            <field name="work_perspective_customer_q4_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter4" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q4"/>
+                                                    <!--<field name="proof_q4" />-->
+                                                    <!--<field name="doc_proof_q4"  widget="binary"-->
+                                                    <!--filename="filename_q4"/>-->
+                                                    <field name="percent_realisasi_q4" widget="Percent"/>
+                                                    <field name="nilai_q4" string="Nilai"/>
+                                                    <field name="nilai_target_q4" string="Target Nilai"/>
+                                                    <field name="filename_q4" invisible="1"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Internal Business Process">
+                                            <field name="work_perspective_bp_q4_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="target_quarter4" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q4"/>
+                                                    <!--<field name="proof_q4" />-->
+                                                    <!--<field name="doc_proof_q4"  widget="binary"-->
+                                                    <!--filename="filename_q4"/>-->
+                                                    <field name="percent_realisasi_q4" widget="Percent"/>
+                                                    <field name="nilai_q4" string="Nilai"/>
+                                                    <field name="nilai_target_q4" string="Target Nilai"/>
+                                                    <field name="filename_q4" invisible="1"/>
+                                                </tree>
+                                            </field>
+
+                                        </page>
+                                        <page string="People Development">
+                                            <field name="work_perspective_people_q4_ids" nolabel="1">
+                                                <tree editable="bottom" create="false">
+                                                    <field name="sasaran_id" readonly="1"/>
+                                                    <field name="name" readonly="1"/>
+                                                    <field name="bobot" readonly="1" sum="Total" string="Bobot"/>
+                                                    <field name="jenis" readonly="1"/>
+                                                    <field name="polarity" readonly="1"/>
+                                                    <field name="realisasi_q4" readonly="1" string="Total Target"/>
+                                                    <field name="realisasi_q4"/>
+                                                    <!--<field name="proof_q4" />-->
+                                                    <!--<field name="doc_proof_q4"  widget="binary"-->
+                                                    <!--filename="filename_q4"/>-->
+                                                    <field name="percent_realisasi_q4" widget="Percent"/>
+                                                    <field name="nilai_q4" string="Nilai"/>
+                                                    <field name="nilai_target_q4" string="Target Nilai"/>
+                                                    <field name="filename_q4" invisible="1"/>
+                                                </tree>
+                                            </field>
+
+                                        </page>
+                                    </notebook>
+                                    <group string="Nilai Pegawai">
+                                        <group>
+                                            <label for="total_value">Total Nilai Kuartal 4</label>
+                                            <h1>
+                                                <field name="total_value_q4" readonly="1"/>
+                                            </h1>
+                                        </group>
+                                        <group>
+                                            <table class="o_list_view table table-condensed table-striped o_list_view_ungrouped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="o_column_sortable">Pencapaian Target</th>
+                                                        <th class="o_column_sortable">Kinerja</th>
+                                                        <th class="o_column_sortable">Rating</th>
+                                                        <th class="o_column_sortable">Bobot</th>
+                                                        <th style="text-align: right;">Nilai Konduite</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ui-sortable">
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 4,5 &lt;= 5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 125%</td>
+                                                        <td class="o_data_cell o_readonly_modifier">5</td>
+                                                        <td class="o_data_cell o_readonly_modifier" rowspan="5"
+                                                            style="text-align:center;">55%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">2,75</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 3,5 &lt;= 4,5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 110% &lt;=
+                                                            125%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">4</td>
+                                                        <td class="o_data_cell o_readonly_modifier">2,2</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 2 &lt;= 3,5
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 90% &lt;=
+                                                            115%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">3</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1,65</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt; 1 &lt;= 2</td>
+                                                        <td class="o_data_cell o_readonly_modifier">&gt; 75% &lt;= 90%
+                                                        </td>
+                                                        <td class="o_data_cell o_readonly_modifier">2</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1,1</td>
+                                                    </tr>
+                                                    <tr class="o_data_row">
+                                                        <td class="o_data_cell o_readonly_modifier">&lt;= 1</td>
+                                                        <td class="o_data_cell o_readonly_modifier">&lt;= 75%</td>
+                                                        <td class="o_data_cell o_readonly_modifier">1</td>
+                                                        <td class="o_data_cell o_readonly_modifier">0,55</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </group>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                        <group string="Catatan"/>
+                        <field name="note" nolabel="1"/>
+                        <group string="Saya dan Atasan telah mengevaluasi dan menyepakati hasil penilaian Kinerja, Kompetensi dan Values sebagaimana diatas :"
+                               col="3">
+                            <group>
+                                <!--<field name="self_signature_assesment" widget="signature"-->
+                                <!--attrs="{'readonly': [('current_user_is_employee', '!=', True)]}"/>-->
+                                <field name="name" readonly="1"/>
+                                <field name="approval_date"
+                                       attrs="{'readonly': [('current_user_is_employee', '!=', True)]}"/>
+                            </group>
+                            <group>
+                                <!--<field name="reviewer_signature_assesment" widget="signature"-->
+                                <!--attrs="{'readonly': [('current_user_is_reviewer', '!=', True)]}"/>-->
+                                <field name="reviewer_id" readonly="1"/>
+                                <field name="reviewer_job_id" readonly="1"/>
+                                <field name="reviewer_assesment_date"
+                                       attrs="{'readonly': [('current_user_is_reviewer', '!=', True)]}"/>
+                            </group>
+                            <group>
+                                <!--<field name="reviewer2_signature_assesment" widget="signature"-->
+                                <!--attrs="{'readonly': [('current_user_is_reviewer2', '!=', True)]}"/>-->
+                                <field name="reviewer2_id" readonly="1"/>
+                                <field name="reviewer2_job_id" readonly="1"/>
+                                <field name="reviewer2_assesment_date"
+                                       attrs="{'readonly': [('current_user_is_reviewer2', '!=', True)]}"/>
+                            </group>
+                        </group>
+                        <field name="current_user_is_reviewer" invisible="1"/>
+                        <field name="current_user_is_reviewer2" invisible="1"/>
+                        <field name="current_user_is_employee" invisible="1"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_penetapan_view_action" model="ir.actions.act_window">
+            <field name="name">Penetapan Sasaran Kerja</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.goal</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['&amp;', ('state', 'in', ['draft', 'sent', 'approve', 'approve_pemutus']), '|',
+                ('user_id',
+                '=', uid), '|', ('reviewer_user_id', '=', uid), ('reviewer2_user_id','=', uid)]
+            </field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_goal_penetapan_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="work_goal_tree"/>
+            <field name="act_window_id" ref="work_goal_penetapan_view_action"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_goal_penetapan_form">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_goal_form_penetapan"/>
+            <field name="act_window_id" ref="work_goal_penetapan_view_action"/>
+        </record>
+        <record id="hr_ykp_appraisal.work_goal_penilaian_view_action" model="ir.actions.act_window">
+            <field name="name">Pengisian Sasaran Kerja</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.goal</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['&amp;', ('state', 'in', ['sent_penilaian','approve_pemutus', 'assessment',
+                'assessment_pemutus']),
+                '|',
+                ('user_id',
+                '=', uid), '|', ('reviewer_user_id', '=', uid), ('reviewer2_user_id','=', uid)]
+            </field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_goal_penilaian_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="work_goal_tree_penilaian"/>
+            <field name="act_window_id" ref="work_goal_penilaian_view_action"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_goal_penilaian_form">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_goal_form_penilaian"/>
+            <field name="act_window_id" ref="work_goal_penilaian_view_action"/>
+        </record>
+
+        <!-- KPI -->
+        <record id="hr_ykp_appraisal.work_kpi_tree" model="ir.ui.view">
+            <field name="name">work.kpi.tree</field>
+            <field name="model">hr.work.kpi</field>
+            <field name="arch" type="xml">
+                <tree string="" decoration-warning="current_user_is_reviewer == True"
+                      decoration-danger="current_user_is_reviewer2 == True">
+                    <field name="name"/>
+                    <field name="quarter"/>
+                    <field name="goal_year"/>
+                    <field name="reviewer_id"/>
+                    <field name="reviewer2_id"/>
+                    <field name="self_value"/>
+                    <field name="penilai1_value"/>
+                    <field name="penilai2_value"/>
+                    <field name="current_user_is_reviewer" invisible="1"/>
+                    <field name="current_user_is_reviewer2" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_form" model="ir.ui.view">
+            <field name="name">work.kpi.form</field>
+            <field name="model">hr.work.kpi</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,sent,assesment,assesment_pemutus"/>
+                        <button name="action_sent" type="object" string="Dikirim"
+                                attrs="{'invisible': ['|',('current_user_is_employee', '!=', True), ('state', '!=', 'draft')]}"/>
+                        <button name="action_assesment" type="object" string="Setujui"
+                                attrs="{'invisible': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent')]}"/>
+                        <button name="action_assesment_pemutus" type="object" string="Setujui"
+                                attrs="{'invisible': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'assesment')]}"/>
+                        <button name="action_assesment_pengurus" type="object" string="Setujui"
+                                attrs="{'invisible': ['|',('current_user_is_pengurus', '!=', True), ('state', '!=', 'assesment_pengurus')]}"/>
+                    </header>
+                    <sheet>
+                        <group string="Informasi Karyawan">
+                            <group>
+                                <field name="name" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <!--<field name="nik" readonly="1"/>-->
+                                <field name="job_id" readonly="1"/>
+                                <field name="department_id" readonly="1"/>
+                                <field name="quarter" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="goal_year" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="reviewer_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="reviewer_job_id" readonly="1"/>
+                                <separator/>
+                                <field name="reviewer2_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                                <field name="reviewer2_job_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="KPI"/>
+                        <field name="kpi_detail_ids" nolabel="1">
+                            <tree editable="bottom" create="false" delete="false">
+                                <field name="type" readonly="1"/>
+                                <!--<field name="bobot" readonly="1"/>-->
+                                <field name="indikator_penilaian_id" domain="[('type', '=', type)]" readonly="1"/>
+                                <field name="kriteria_penilaian" readonly="1"/>
+                                <field name="kpi_weight_employee"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="kpi_weight_reviewer"
+                                       attrs="{'readonly': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent')]}"/>
+                                <field name="kpi_weight_reviewer2"
+                                       attrs="{'readonly': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'assesment')]}"/>
+                                <!--<field name="kpi_weight_employee_id"-->
+                                <!--domain="[('indicator_id', '=', indikator_penilaian_id)]"-->
+                                <!--attrs="{'readonly': [('state', '!=', 'draft')]}"/>-->
+                                <!--<field name="kpi_weight_reviewer_id"-->
+                                <!--domain="[('indicator_id', '=', indikator_penilaian_id)]"-->
+                                <!--attrs="{'readonly': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent')]}"/>-->
+                                <!--<field name="kpi_weight_reviewer2_id"-->
+                                <!--domain="[('indicator_id', '=', indikator_penilaian_id)]"-->
+                                <!--attrs="{'readonly': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'assesment')]}"/>-->
+                                <field name="current_user_is_reviewer" invisible="1"/>
+                                <field name="current_user_is_reviewer2" invisible="1"/>
+                                <field name="current_user_is_employee" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                            </tree>
+                        </field>
+                        <group string="Hasil Penilaian" col="3">
+                            <group>
+                                <field name="self_value" readonly="1" string="Penilaian Sendiri"/>
+                                <field name="self_kpi_kategori" readonly="1"/>
+                                <!--<field name="self_signature" widget="signature"-->
+                                <!--attrs="{'readonly': [('current_user_is_employee', '!=', True)]}"/>-->
+                            </group>
+                            <group>
+                                <field name="penilai1_value" readonly="1"/>
+                                <field name="penilai1_kpi_kategori" readonly="1"/>
+                                <field name="penilai1_notes"
+                                       attrs="{'readonly': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent')]}"/>
+                                <field name="corporate_culture1_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent')]}"/>
+                                <field name="corporate_carrer1_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent')]}"/>
+
+                                <!--<field name="penilai1_signature" widget="signature"-->
+                                <!--attrs="{'readonly': ['|',('current_user_is_reviewer', '!=', True), ('state', '!=', 'sent')]}"/>-->
+                            </group>
+                            <group>
+                                <field name="penilai2_value" readonly="1"/>
+                                <field name="penilai2_kpi_kategori" readonly="1"/>
+                                <field name="penilai2_notes"
+                                       attrs="{'readonly': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'assesment')]}"/>
+                                <field name="corporate_culture2_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'assesment')]}"/>
+                                <field name="corporate_carrer2_id" options="{'no_create': True, 'no_create_edit':True}"
+                                       attrs="{'readonly': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'assesment')]}"/>
+                                <!--<field name="penilai2_signature" widget="signature"-->
+                                <!--attrs="{'readonly': ['|',('current_user_is_reviewer2', '!=', True), ('state', '!=', 'assesment')]}"/>-->
+                            </group>
+                        </group>
+                        <group string="Catatan"/>
+                        <label for="notes"/>
+                        <field name="notes"
+                               attrs="{'readonly': [('current_user_is_employee', '=', True)]}"/>
+                        <separator/>
+                        <label for="notes2"/>
+                        <field name="notes2"
+                               attrs="{'readonly': ['|',('current_user_is_pengurus', '!=', True), ('state', '!=', 'assesment')]}"/>
+                        <!--<group string="Corporate Culture">-->
+                        <!--<field name="corporate_culture_id" options="{'no_create': True, 'no_create_edit':True}"-->
+                        <!--attrs="{'readonly': ['|',('current_user_is_pengurus', '!=', True), ('state', '!=', 'assesment')]}"/>-->
+                        <!--<field name="desc_corporate_culture" readonly="1"/>-->
+                        <!--</group>-->
+                        <!--<group string="Pengembangan Karir">-->
+                        <!--<field name="corporate_carrer_id" options="{'no_create': True, 'no_create_edit':True}"-->
+                        <!--attrs="{'readonly': ['|',('current_user_is_pengurus', '!=', True), ('state', '!=', 'assesment')]}"/>-->
+                        <!--</group>-->
+                        <field name="current_user_is_reviewer" invisible="1"/>
+                        <field name="current_user_is_reviewer2" invisible="1"/>
+                        <field name="current_user_is_employee" invisible="1"/>
+                        <field name="current_user_is_pengurus" invisible="1"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_pivot" model="ir.ui.view">
+            <field name="name">work.kpi.pivot</field>
+            <field name="model">hr.work.kpi</field>
+            <field name="arch" type="xml">
+                <pivot string="">
+                    <field name="name" type="row"/>
+                    <field name="goal_year" type="col"/>
+                    <field name="quarter" type="col"/>
+                    <field name="self_value" type="measure"/>
+                    <field name="penilai1_value" type="measure"/>
+                    <field name="penilai2_value" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="hr_ykp_appraisal.work_kpi_quarter_view_action" model="ir.actions.act_window">
+            <field name="name">KPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.kpi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|', ('user_id','=', uid), '|', ('reviewer_user_id', '=', uid),
+                ('reviewer2_user_id','=', uid)]
+            </field>
+            <field name="context">{'default_semester': 'semester_1'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_kpi_semester1_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="work_kpi_tree"/>
+            <field name="act_window_id" ref="work_kpi_quarter_view_action"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_kpi_semester1_form">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_kpi_form"/>
+            <field name="act_window_id" ref="work_kpi_quarter_view_action"/>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_semester1_view_action" model="ir.actions.act_window">
+            <field name="name">KPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.kpi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['&amp;', ('semester', '=', 'semester_1'), '|', ('user_id','=', uid), '|',
+                ('reviewer_user_id', '=', uid),
+                ('reviewer2_user_id','=', uid)]
+            </field>
+            <field name="context">{'default_semester': 'semester_1'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_kpi_semester1_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="work_kpi_tree"/>
+            <field name="act_window_id" ref="work_kpi_semester1_view_action"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_kpi_semester1_form">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_kpi_form"/>
+            <field name="act_window_id" ref="work_kpi_semester1_view_action"/>
+        </record>
+        <record id="hr_ykp_appraisal.work_kpi_semester2_view_action" model="ir.actions.act_window">
+            <field name="name">KPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.kpi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['&amp;', ('semester', '=', 'semester_2'), '|', ('user_id','=', uid), '|',
+                ('reviewer_user_id', '=', uid),
+                ('reviewer2_user_id','=', uid)]
+            </field>
+            <field name="context">{'default_semester': 'semester_2'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_kpi_semester2_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="work_kpi_tree"/>
+            <field name="act_window_id" ref="work_kpi_semester2_view_action"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_work_kpi_semester2_form">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_kpi_form"/>
+            <field name="act_window_id" ref="work_kpi_semester2_view_action"/>
+        </record>
+
+        <record id="hr_ykp_appraisal.work_kpi_report_pivot_view_action" model="ir.actions.act_window">
+            <field name="name">KPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.work.kpi</field>
+            <field name="view_mode">pivot</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.department_appriasal_tree" model="ir.ui.view">
+            <field name="name">department_appriasal_tree</field>
+            <field name="model">hr.department.appraisal</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="quarter"/>
+                    <field name="year"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.department_appriasal_form" model="ir.ui.view">
+            <field name="name">department_appriasal_form</field>
+            <field name="model">hr.department.appraisal</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_start_stage_survey"
+                                    class="oe_stat_button"
+                                    icon="fa-user"
+                                    type="object"
+                                    help="Answer related job question">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Mulai</span>
+                                    <span class="o_stat_text">Penilaian</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="quarter"/>
+                            <field name="year"/>
+                            <field name="employee_id" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.department_appraisal_action" model="ir.actions.act_window">
+            <field name="name">Feedback Survey</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.department.appraisal</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('user_id', '=', uid)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.survey_department_appraisal_action" model="ir.actions.act_window">
+            <field name="name">Formulir Feedback Survey</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">survey.survey</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('survey_department', '=', True)]</field>
+            <field name="context">{'default_survey_department': True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.survey_department_appraisal_pengurus_action" model="ir.actions.act_window">
+            <field name="name">Formulir Feedback Survey Pengurus</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">survey.survey</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('survey_department_pengurus', '=', True)]</field>
+            <field name="context">{'default_survey_department_pengurus': True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.survey_result_pivot" model="ir.ui.view">
+            <field name="name">survey_result_pivot</field>
+            <field name="model">survey.user_input_line</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="page_id" type="row"/>
+                    <field name="question_id" type="row"/>
+                    <field name="employee_id" type="col"/>
+                    <field name="quizz_mark" type="measure" string="Skor"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.department_appraisal_action_view" model="ir.actions.act_window">
+            <field name="name">Laporan Penilaian Departemen</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">survey.user_input_line</field>
+            <field name="view_mode">pivot</field>
+            <field name="domain">[('survey_id', 'in', [6, 7]), ('survey_department_pengurus', '=', False)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="hr_ykp_appraisal.department_appraisal_pengurus_action_view" model="ir.actions.act_window">
+            <field name="name">Laporan Penilaian Departemen Pengurus</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">survey.user_input_line</field>
+            <field name="view_mode">pivot</field>
+            <field name="domain">[('survey_id', 'in', [6, 7]), ('survey_department_pengurus', '=', True)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+                id="reporrt_sasaran_kinerja_result"
+                model="hr.work.goal"
+                report_type="qweb-pdf"
+                string="Sasaran Kerja"
+                name="hr_ykp_appraisal.report_sasaran_kerja"
+                file="hr_ykp_appraisal.report_sasaran_kerja"
+                attachment_use="True"
+                attachment="('SSKRJ-' + (str(object.id) or '') + '.pdf')"
+        />
+
+        <record id="action_print_work_goal_button" model="ir.actions.server">
+            <field name="name">Export Penilaian Sasaran Kerja</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_hr_work_goal"/>
+            <field name="binding_model_id" ref="model_hr_work_goal"/>
+            <field name="multi">True</field>
+            <field name="state">code</field>
+            <field name="key">action</field>
+            <field name="key2">client_action_multi</field>
+            <field name="code">
+                action = records.export_excel()
+            </field>
+        </record>
+
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="hr_ykp_appraisal_root" name="Penilaian" sequence="6"
+                  web_icon="hr_ykp_appraisal,static/description/icon.png"/>
+        <menuitem id="hr_ykp_appraisal_sasara_kerja" name="Sasaran Kerja"
+                  parent="hr_ykp_appraisal_root"
+                  sequence="1"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hr_ykp_appraisal_work_goal_penetapan_menuitem" name="Penetapan"
+                  parent="hr_ykp_appraisal_sasara_kerja"
+                  action="work_goal_penetapan_view_action" sequence="1"/>
+        <menuitem id="hr_ykp_appraisal_work_goal_pengisian_menuitem" name="Pengisian"
+                  parent="hr_ykp_appraisal_sasara_kerja"
+                  action="work_goal_penilaian_view_action" sequence="2"/>
+        <menuitem id="hr_ykp_appraisal_work_kpi_menuitem" name="Prestasi Kerja Individu"
+                  parent="hr_ykp_appraisal_root"
+                  action="hr_ykp_appraisal.work_kpi_quarter_view_action"
+                  sequence="2"/>
+        <!--<menuitem id="hr_ykp_appraisal_work_kpi_semester1_menuitem" name="Penilaian Semester 1"-->
+        <!--parent="hr_ykp_appraisal_work_kpi_menuitem"-->
+        <!--action="work_kpi_semester1_view_action" sequence="1"/>-->
+        <!--<menuitem id="hr_ykp_appraisal_work_kpi_semester2_menuitem" name="Penilaian Semester 2"-->
+        <!--parent="hr_ykp_appraisal_work_kpi_menuitem"-->
+        <!--action="work_kpi_semester2_view_action" sequence="2"/>-->
+        <menuitem id="hr_ykp_appraisal_department_menuitem" name="Department"
+                  parent="hr_ykp_appraisal_root"
+                  action="department_appraisal_action" sequence="3"/>
+        <menuitem id="hr_ykp_appraisal_report_menuitem" name="Laporan" parent="hr_ykp_appraisal_root"
+                  sequence="4" groups="hr.group_hr_manager"/>
+        <menuitem id="hr_ykp_appraisal_work_kpi_report_menuitem" name="KPI"
+                  parent="hr_ykp_appraisal_report_menuitem"
+                  action="work_kpi_report_pivot_view_action" sequence="1"/>
+        <menuitem id="hr_ykp_appraisal_survey_department_report_menuitem" name="Feedback Survey"
+                  parent="hr_ykp_appraisal_report_menuitem"
+                  action="department_appraisal_action_view" sequence="2"/>
+        <menuitem id="hr_ykp_appraisal_survey_department_pengurus_report_menuitem" name="Feedback Survey Pengurus"
+                  parent="hr_ykp_appraisal_report_menuitem"
+                  action="department_appraisal_pengurus_action_view" sequence="3"/>
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="hr_ykp_appraisal__config_menuitem" name="Konfigurasi" parent="hr_ykp_appraisal_root"
+                  sequence="5" groups="hr.group_hr_manager"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hr_ykp_appraisal_work_goal_scale_menuitem" name="Skala Penilaian"
+                  parent="hr_ykp_appraisal__config_menuitem"
+                  action="work_goal_scale_action_window" sequence=""/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hr_ykp_appraisal_work_kpi_indicator_menuitem" name="KPI Indikator"
+                  parent="hr_ykp_appraisal__config_menuitem"
+                  action="work_kpi_indicator_action_window" sequence=""/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hr_ykp_appraisal_work_kpi_weight_menuitem" name="Skala KPI"
+                  parent="hr_ykp_appraisal__config_menuitem"
+                  action="work_kpi_weight_action_window" sequence=""/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hr_ykp_appraisal_work_kpi_weight_category_menuitem" name="Skala Kategori KPI"
+                  parent="hr_ykp_appraisal__config_menuitem"
+                  action="work_kpi_weight_category_action_window" sequence=""/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hr_ykp_appraisal_work_corporate_culture_menuitem" name="Skala Corporate Culture"
+                  parent="hr_ykp_appraisal__config_menuitem"
+                  action="work_corporate_culture_scale_action_window" sequence=""/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="hr_ykp_appraisal_work_corporate_career_menuitem" name="Skala Pengembangan Karir"
+                  parent="hr_ykp_appraisal__config_menuitem"
+                  action="work_corporate_career_scale_action_window" sequence=""/>
+
+        <menuitem id="hr_ykp_appraisal_department_survey_menuitem" name="Pertanyaan Feedback Survey"
+                  parent="hr_ykp_appraisal__config_menuitem"
+                  action="survey_department_appraisal_action" sequence=""/>
+
+        <menuitem id="hr_ykp_appraisal_department_survey_pengurus_menuitem" name="Pertanyaan Feedback Survey Pengurus"
+                  parent="hr_ykp_appraisal__config_menuitem"
+                  action="survey_department_appraisal_pengurus_action" sequence=""/>
+    </data>
+</flectra>

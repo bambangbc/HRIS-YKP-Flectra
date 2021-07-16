@@ -1,0 +1,129 @@
+<flectra>
+	<data noupdate="0">
+
+		<record id="group_hr_pengurus" model="res.groups">
+	        <field name="name">Office Pengurus</field>
+	        <field name="category_id" ref="base.module_category_human_resources"/>
+	        <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
+	        <field name="comment">Pengurus</field>
+    	</record>
+
+	    <!-- <record id="employee_standard_rule" model="ir.rule">
+	        <field name="name">View Employee</field>
+	        <field name="model_id" ref="model_hr_employee"/>
+	        <field name="domain_force">[('user_id.id','=',user.id)]</field>
+	        <field name="groups" eval="[(4,ref('base.group_user'))]"/>        
+	    </record> -->
+
+	    <!-- <record id="officer_standard_rule" model="ir.rule">
+	        <field name="name">View officer</field>
+	        <field name="model_id" ref="model_hr_employee"/>
+	        <field name="domain_force">[('department_id.id','child_of',[user.employee_id.department_id.id])]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>        
+	    </record>
+
+	    <record id="pengurus_standard_rule" model="ir.rule">
+	        <field name="name">View Pengurus</field>
+	        <field name="model_id" ref="model_hr_employee"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('group_hr_pengurus'))]"/>        
+	    </record>
+
+	    <record id="manager_standard_rule" model="ir.rule">
+	        <field name="name">View Manager</field>
+	        <field name="model_id" ref="model_hr_employee"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record> -->
+
+	    <record id="contract_employee_standard_rule" model="ir.rule">
+	        <field name="name">View Contract</field>
+	        <field name="model_id" ref="model_hr_contract"/>
+	        <field name="domain_force">[('employee_id.user_id.id','=',user.id)]</field>
+	        <field name="groups" eval="[(4,ref('base.group_user'))]"/>        
+	    </record>
+
+	   	<record id="contract_oficer_standard_rule" model="ir.rule">
+	        <field name="name">View Contract</field>
+	        <field name="model_id" ref="model_hr_contract"/>
+	        <field name="domain_force">[('department_id.id','child_of',[user.employee_id.department_id.id])]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>        
+	    </record>
+
+	    <record id="contract_manager_standard_rule" model="ir.rule">
+	        <field name="name">View Contract</field>
+	        <field name="model_id" ref="model_hr_contract"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record>
+
+	    <record id="grade_manager_standard_rule" model="ir.rule">
+	        <field name="name">View grade</field>
+	        <field name="model_id" ref="model_hr_grade"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record>
+
+	    <record id="religion_manager_standard_rule" model="ir.rule">
+	        <field name="name">View religion</field>
+	        <field name="model_id" ref="model_hr_religion"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record>
+
+	    <record id="state_manager_standard_rule" model="ir.rule">
+	        <field name="name">View State</field>
+	        <field name="model_id" ref="model_hr_state"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record>
+
+	    <record id="city_manager_standard_rule" model="ir.rule">
+	        <field name="name">View City</field>
+	        <field name="model_id" ref="model_hr_city"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record>
+
+	    <record id="kecamatan_manager_standard_rule" model="ir.rule">
+	        <field name="name">View Kecamatan</field>
+	        <field name="model_id" ref="model_hr_kecamatan"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record>
+
+	    <record id="kelurahan_manager_standard_rule" model="ir.rule">
+	        <field name="name">View kelurahan</field>
+	        <field name="model_id" ref="model_hr_kelurahan"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record>
+
+	    <record id="degree_manager_standard_rule" model="ir.rule">
+	        <field name="name">View Degree</field>
+	        <field name="model_id" ref="model_hr_degree"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>        
+	    </record>
+
+	    <record id="hr_ykp_training.group_pengurus" model="res.groups">
+	        <field name="name">Pengurus</field>
+	        <field name="category_id" ref="base.module_category_human_resources"/>
+	        <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
+	    </record>
+
+		<record id="group_hr_kasi" model="res.groups">
+	        <field name="name">Kasi</field>
+	        <field name="category_id" ref="base.module_category_human_resources"/>
+	        <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
+	    </record>
+
+	    <record id="pengurus_standard_rule" model="ir.rule">
+	        <field name="name">View Pengurus</field>
+	        <field name="model_id" ref="model_hr_employee"/>
+	        <field name="domain_force">[(1 ,'=', 1)]</field>
+	        <field name="groups" eval="[(4,ref('hr_ykp_training.group_pengurus'))]"/>        
+	    </record>
+
+	</data>
+</flectra>

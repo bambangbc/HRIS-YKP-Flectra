@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+
+	<record id="paperformat_cv" model="report.paperformat">
+        <field name="name">Format CV</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <report
+        id="hr_employee_cv"
+        string="Print CV"
+        model="hr.employee"
+        report_type="qweb-pdf"
+        name="hr_ykp_employees.print_employee_cv"
+        file="hr_attendance.print_employee_badge"
+        print_report_name="'Print CV - %s' % (object.name).replace('/', '')"
+        paperformat="hr_ykp_employees.paperformat_cv"
+        
+    />
+
+    <template id="print_employee_cv">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+		                <h3><b>DAFTAR RIWAYAT HIDUP</b></h3>
+		                <table width="100%" style="font-size:10px">
+		                	<tr>
+                                <td width="40%"/>
+                                <td width="30%" style="text-align: right;"><img src="/hr_ykp_employees/static/src/img/logo.png" width="150" height="56" /></td>
+                            </tr>
+						</table>
+						<h4><b>I.  DATA PRIBADI</b></h4>
+						<table  border="0" width="100%" style="font-size:15px">
+						    <tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">1.</td>
+						    	<td width="30%" align="left">NIP</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.nik"/></td>
+						        <th width="20" rowspan="11"><span t-field="o.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/></th>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">2.</td>
+						    	<td width="30%" align="left">Nama Lengkap</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.name"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">3.</td>
+						    	<td width="30%" align="left">Tempat / Tanggal Lahir / Usia</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.place_of_birth"/> / <span t-field="o.birthday"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">4.</td>
+						    	<td width="30%" align="left">Jenis Pegawai</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.jenis_pegawai"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">5.</td>
+						    	<td width="30%" align="left">Status Pegawai</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.status_pegawai"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">6.</td>
+						    	<td width="30%" align="left">Jabatan</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.job_id"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">7.</td>
+						    	<td width="30%" align="left">Grade</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.grade"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">8.</td>
+						    	<td width="30%" align="left">Unit Kerja</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.department_id"/></td>
+						   	</tr>
+						</table>
+						<table border="0" width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">9.</td>
+						    	<td width="30%" align="left">Penempatan</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.penempatan"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Alamat</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.alamat_ktp"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Nomor Telpon / Fax</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="41%" align="left"><span t-field="o.telepon"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">10.</td>
+						    	<td width="30%" align="left">Alamat</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.alamat_ktp"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Kecamatan / Kelurahan</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.kecamatan_id"/>/<span t-field="o.kelurahan_id"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">RT / RW</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.rt_rw"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Kota/Kab / Kode Pos</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.city_id"/>/<span t-field="o.zip_code"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Nomor Telepon / Fax</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.telepon"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">11.</td>
+						    	<td width="30%" align="left">Alamat Tempat Tinggal</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.alamat2"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Kecamatan / Kelurahan</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.kecamatan_id2"/>/<span t-field="o.kelurahan_id2"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">RT / RW</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.rt_rw2"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Kota/Kab / Kode Pos</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.city_id2"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Nomor Telepon / Fax</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.telepon"/><span t-field="o.jenis_pegawai"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+						    	<td width="30%" align="left">Nomor Handphone</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.handphone1"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">12.</td>
+						    	<td width="30%" align="left">Nomor KTP</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.identification_id"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">13.</td>
+						    	<td width="30%" align="left">Nomor NPWP</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.no_npwp"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">14.</td>
+						    	<td width="30%" align="left">Agama</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.relgion"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">15.</td>
+						    	<td width="30%" align="left">Status / Jumlah Anak</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.marital"/>/<span t-field="o.children"/></td>
+						   	</tr>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<h4><b>II.  RIWAYAT PEKERJAAN</b></h4>
+						<table  border="0" width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>A.</b></td>
+						    	<td width="30%" align="left"><b>Di Lingkungan YKP bank bjb</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">1.</td>
+						    	<td width="30%" align="left">Tanggal Mulai Bekerja</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.tanggal_masuk"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">2.</td>
+						    	<td width="30%" align="left">Tanggal Pengangkatan</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.tanggal_pengangkatan"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">3.</td>
+						    	<td width="30%" align="left">Masa Kerja</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.masa_kerja"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">4.</td>
+						    	<td width="30%" align="left">Tanggal MPP</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">5.</td>
+						    	<td width="30%" align="left">Tanggal Pensiun / Usia</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.tanggal_pensiun"/></td>
+						   	</tr>
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">6.</td>
+						    	<td width="30%" align="left">Tanggal Keluar</td>
+						        <td width="2%" align="left">:</td>
+						        <td width="61%" align="left"><span t-field="o.tanggal_keluar"/></td>
+						   	</tr>
+						</table>
+						<table border="0" width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">7.</td>
+						    	<td width="30%" align="left">Mutasi Kepangkatan / Grade</td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="20" align="center" bgcolor="red" style="border:1px solid black;">Jabatan</td>
+							    <td width="20" align="center" style="border:1px solid black;">Grade</td>
+							    <td width="53" align="center" style="border:1px solid black;">Terhitung Tanggal</td>
+							</tr>
+							<t t-foreach="o.mutasi_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.sesudah_jabatan"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.sesudah_grade"/></td>
+								    <td width="53" align="left" style="border:1px solid black;"><span t-esc="line.tgl_efektif"/></td>
+								</tr>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">..</span></br>
+						<table border="0" width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left">8.</td>
+						    	<td width="30%" align="left">Mutasi Jabatan (Structural/Fungsional)</td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="20" align="center" bgcolor="red" style="border:1px solid black;">Jabatan</td>
+							    <td width="20" align="center" style="border:1px solid black;">Grade</td>
+							    <td width="15" align="center" style="border:1px solid black;">Unit Kerja</td>
+							    <td width="18" align="center" style="border:1px solid black;">Penempatan</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tanggal Mutasi</td>
+							</tr>
+							<t t-foreach="o.mutasijbtn_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.jabatan_sesudah"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.grade_sesudah"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.uk_sesudah"/></td>
+								    <td width="18" align="left" style="border:1px solid black;"><span t-esc="line.penempatan"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.tgl_efektif"/></td>
+								</tr>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">..</span></br>
+						<table border="0" width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>B.</b></td>
+						    	<td width="30%" align="left"><b>Di Luar YKP bank bjb</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="20" align="center" style="border:1px solid black;">Nama Perusahaan</td>
+							    <td width="18" align="center" style="border:1px solid black;">Bidang</td>
+							    <td width="15" align="center" style="border:1px solid black;">Tahun Masuk</td>
+							    <td width="15" align="center" style="border:1px solid black;">Gaji Terakhir</td>
+							    <td width="20" align="center" style="border:1px solid black;">Jabatan Terakhir</td>
+							</tr>
+							<t t-set="l" t-value="1" />
+							<t t-foreach="o.luarykp_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="5" align="center" style="border:1px solid black;"><span t-esc="l"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.name"/></td>
+								    <td width="18" align="left" style="border:1px solid black;"><span t-esc="line.bidang"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.tahun_masuk"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.gaji"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.job_id"/></td>
+								</tr>
+								<t t-set="l" t-value="l+1"/>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<h4><b>III.  RIWAYAT PENDIDIKAN</b></h4>
+						<table  border="0" width="100%" style="font-size:15px">
+							<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>A.</b></td>
+						    	<td width="30%" align="left"><b>Pendidikan Formal</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="15" align="center" style="border:1px solid black;">Jenjang</td>
+							    <td width="18" align="center" style="border:1px solid black;">Nama Istitusi</td>
+							    <td width="15" align="center" style="border:1px solid black;">Jurusan Pendidikan</td>
+							    <td width="15" align="center" style="border:1px solid black;">Tahun</td>
+							    <td width="10" align="center" style="border:1px solid black;">Nilai</td>
+							    <td width="15" align="center" style="border:1px solid black;">Predikat</td>
+							</tr>
+							<t t-set="l" t-value="1" />
+							<t t-foreach="o.education_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="5" align="center" style="border:1px solid black;"><span t-esc="l"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.name"/></td>
+								    <td width="18" align="left" style="border:1px solid black;"><span t-esc="line.kampus"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.jurusan"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.end_year"/></td>
+								    <td width="10" align="left" style="border:1px solid black;"><span t-esc="line.ipk"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.predikat"/></td>
+								</tr>
+								<t t-set="l" t-value="l+1"/>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<table border="0" width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>B.</b></td>
+						    	<td width="30%" align="left"><b>Pendidikan dan Pelatihan di YKP bank bjb</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="15" align="center" style="border:1px solid black;">Nama Diklat</td>
+							    <td width="18" align="center" style="border:1px solid black;">Tempat</td>
+							    <td width="15" align="center" style="border:1px solid black;">Kota</td>
+							    <td width="15" align="center" style="border:1px solid black;">Penyelenggara</td>
+							    <td width="10" align="center" style="border:1px solid black;">Tanggal Mulai</td>
+							    <td width="15" align="center" style="border:1px solid black;">Tanggal Akhir</td>
+							</tr>
+							<t t-set="l" t-value="1" />
+							<t t-foreach="o.kursus_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="5" align="center" style="border:1px solid black;"><span t-esc="l"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.name"/></td>
+								    <td width="18" align="left" style="border:1px solid black;"><span t-esc="line.tempat"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.kota"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.penyelenggara"/></td>
+								    <td width="10" align="left" style="border:1px solid black;"><span t-esc="line.tanggal_mulai"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.tanggal_berakhir"/></td>
+								</tr>
+								<t t-set="l" t-value="l+1"/>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<table width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>C.</b></td>
+						    	<td width="30%" align="left"><b>Pendidikan Lainya</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="25" align="center" style="border:1px solid black;">Nama Kursus</td>
+							    <td width="23" align="center" style="border:1px solid black;">Nama Penyeenggara</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tanggal Mulai</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tanggal Berakhir</td>
+							</tr>
+							<t t-set="l" t-value="1" />
+							<t t-foreach="o.educationlain_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="5" align="center" style="border:1px solid black;"><span t-esc="l"/></td>
+								    <td width="25" align="left" style="border:1px solid black;"><span t-esc="line.name"/></td>
+								    <td width="23" align="left" style="border:1px solid black;"><span t-esc="line.penyelenggara"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.date_start"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.date_end"/></td>
+								</tr>
+								<t t-set="l" t-value="l+1"/>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<h4><b>VI.  RIWAYAT ORGANISASI</b></h4>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="15" align="center" style="border:1px solid black;">Nama Organisasi</td>
+							    <td width="15" align="center" style="border:1px solid black;">Alamat Organisasi</td>
+							    <td width="9" align="center" style="border:1px solid black;">Dari Tahun</td>
+							    <td width="9" align="center" style="border:1px solid black;">Sampai Tahun</td>
+							    <td width="15" align="center" style="border:1px solid black;">Jabatan Terakhir</td>
+							    <td width="10" align="center" style="border:1px solid black;">Honor Terakhir</td>
+							    <td width="15" align="center" style="border:1px solid black;">Keterangan</td>
+							</tr>
+							<t t-set="l" t-value="1" />
+							<t t-foreach="o.organization_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="5" align="center" style="border:1px solid black;"><span t-esc="l"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.name"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.alamat"/></td>
+								    <td width="9" align="left" style="border:1px solid black;"><span t-esc="line.start_date"/></td>
+								    <td width="9" align="left" style="border:1px solid black;"><span t-esc="line.end_date"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.position"/></td>
+								    <td width="10" align="left" style="border:1px solid black;"><span t-esc="line.honor"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.keterangan"/></td>
+								</tr>
+								<t t-set="l" t-value="l+1"/>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<h4><b>V.  PENGHARGAAN DAN SERTIFIKASI</b></h4>
+						<table  border="0" width="100%" style="font-size:15px">
+							<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>A.</b></td>
+						    	<td width="30%" align="left"><b>Penghargaan</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="20" align="center" style="border:1px solid black;">No Sertifikat</td>
+							    <td width="23" align="center" style="border:1px solid black;">Nama Sertifikat</td>
+							    <td width="25" align="center" style="border:1px solid black;">Penyelenggara</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tanggal</td>
+							</tr>
+							<t t-set="l" t-value="1" />
+							<t t-foreach="o.penghargaan_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="5" align="center" style="border:1px solid black;"><span t-esc="l"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.name"/></td>
+								    <td width="23" align="left" style="border:1px solid black;"><span t-esc="line.nosertifikat"/></td>
+								    <td width="25" align="left" style="border:1px solid black;"><span t-esc="line.penyelenggara"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.tanggal"/></td>
+								</tr>
+								<t t-set="l" t-value="l+1"/>
+							</t>
+						</table>
+						<table width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>B.</b></td>
+						    	<td width="30%" align="left"><b>Sertifikasi</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="20" align="center" style="border:1px solid black;">No Sertifikat</td>
+							    <td width="23" align="center" style="border:1px solid black;">Nama Sertifikat</td>
+							    <td width="25" align="center" style="border:1px solid black;">Penyelenggara</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tanggal</td>
+							</tr>
+							<t t-set="l" t-value="1" />
+							<t t-foreach="o.certification_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="5" align="center" style="border:1px solid black;"><span t-esc="l"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.name"/></td>
+								    <td width="23" align="left" style="border:1px solid black;"><span t-esc="line.nosertifikat"/></td>
+								    <td width="25" align="left" style="border:1px solid black;"><span t-esc="line.penyelenggara"/></td>
+								    <td width="20" align="left" style="border:1px solid black;"><span t-esc="line.tanggal"/></td>
+								</tr>
+								<t t-set="l" t-value="l+1"/>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<h4><b>VI.  SANKSI</b></h4>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="15" align="center" style="border:1px solid black;">No SKt</td>
+							    <td width="15" align="center" style="border:1px solid black;">Keterangan</td>
+							    <td width="15" align="center" style="border:1px solid black;">Uraian</td>
+							    <td width="15" align="center" style="border:1px solid black;">Tanggal SK</td>
+							    <td width="15" align="center" style="border:1px solid black;">Tanggal Mulai</td>
+							    <td width="13" align="center" style="border:1px solid black;">Tanggal Berakhir</td>
+							</tr>
+							<t t-set="l" t-value="1" />
+							<t t-foreach="o.certification_ids" t-as="line">
+							   	<tr>
+							   		<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+							        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+								    <td width="5" align="center" style="border:1px solid black;"><span t-esc="l"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.no_sk"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.Keterangan"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.uraian_sanksi"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.tanggal"/></td>
+								    <td width="15" align="left" style="border:1px solid black;"><span t-esc="line.tanggal_mulai"/></td>
+								    <td width="13" align="left" style="border:1px solid black;"><span t-esc="line.tanggal_berakhir"/></td>
+								</tr>
+								<t t-set="l" t-value="l+1"/>
+							</t>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<h4><b>VII.  DATA KELUARGA</b></h4>
+						<table  border="0" width="100%" style="font-size:15px">
+							<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>A.</b></td>
+						    	<td width="30%" align="left"><b>Keluarga</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="23" align="center" style="border:1px solid black;">Nama Keluarga</td>
+							    <td width="20" align="center" style="border:1px solid black;">Jenis Hubungan</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tanggal Lahir</td>
+							    <td width="25" align="center" style="border:1px solid black;">Pekerjaan</td>
+							</tr>
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">1</td>
+							    <td width="23" align="center" style="border:1px solid black;"><span t-field="o.nama_ayah"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.hubungan_ayah"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.lahir_ayah"/></td>
+							    <td width="25" align="center" style="border:1px solid black;"><span t-field="o.pekerjaan_ayah"/></td>
+						   	</tr>
+						   	<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">2</td>
+							    <td width="23" align="center" style="border:1px solid black;"><span t-field="o.nama_ibu"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.hubungan_ibu"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.lahir_ibu"/></td>
+							    <td width="25" align="center" style="border:1px solid black;"><span t-field="o.pekerjaan_ibu"/></td>
+						   	</tr>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<table width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>B.</b></td>
+						    	<td width="30%" align="left"><b>Pasangan</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="23" align="center" style="border:1px solid black;">Nama Pasangan</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tempat Lahir</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tanggal Lahir</td>
+							    <td width="25" align="center" style="border:1px solid black;">Pekerjaan</td>
+							</tr>
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">1</td>
+							    <td width="23" align="center" style="border:1px solid black;"><span t-field="o.nama_pasangan"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.tempatlahir_pasangan"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.tanggallahir_pasangan"/></td>
+							    <td width="25" align="center" style="border:1px solid black;"><span t-field="o.pekerjaan_pasangan"/></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+						   	<tr>
+						    	<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><b>C.</b></td>
+						    	<td width="30%" align="left"><b>Anak</b></td>
+						        <td width="2%" align="left"></td>
+						        <td width="61%" align="left"></td>
+						   	</tr>
+						</table>
+						<table width="100%" style="font-size:15px">
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">No</td>
+							    <td width="23" align="center" style="border:1px solid black;">Nama Anak</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tempat Lahir</td>
+							    <td width="20" align="center" style="border:1px solid black;">Tanggal Lahir</td>
+							    <td width="25" align="center" style="border:1px solid black;">Status Anak</td>
+							</tr>
+							<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">1</td>
+							    <td width="23" align="center" style="border:1px solid black;"><span t-field="o.nama_anak1"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.tempatlahir_anak1"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.tanggallahir_anak1"/></td>
+							    <td width="25" align="center" style="border:1px solid black;"><span t-field="o.status_anak1"/></td>
+						   	</tr>
+						   	<tr>
+								<td width="5%" align="right"><span style="color: #ffffff;">.</span></td>
+						        <td width="2%" align="left"><span style="color: #ffffff;">.</span></td>
+							    <td width="5" align="center" bgcolor="red" style="border:1px solid black;">2</td>
+							    <td width="23" align="center" style="border:1px solid black;"><span t-field="o.nama_anak2"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.tempatlahir_anak2"/></td>
+							    <td width="20" align="center" style="border:1px solid black;"><span t-field="o.tanggallahir_anak2"/></td>
+							    <td width="25" align="center" style="border:1px solid black;"><span t-field="o.status_anak2"/></td>
+						   	</tr>
+						</table>
+					</div>
+				</t>
+            </div>
+        </t>
+    </template>
+
+</flectra>

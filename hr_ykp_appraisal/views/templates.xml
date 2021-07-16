@@ -1,0 +1,435 @@
+<flectra>
+    <data>
+        <template id="report_sasaran_kerja">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="text-center">Penetapan Sasaran Kerja</h2>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12" style="background-color: #f1a616;">
+                                    <h4 class="text-center">Pegawai</h4>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="row" style="margin-right: 10px;margin-left: 10px;">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Nama Pegawai</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>NIK</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Jabatan</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Unit Kerja</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Goal Setting</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <span t-field="o.name"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label></label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <span t-field="o.job_id.name"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <span t-field="o.department_id.name"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <span t-field="o.goal_year"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="row" style="margin-right: 10px;margin-left: 10px;">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Nama Penilai 1</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Jabatan</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Nama Penilai Pemutus</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Jabatan</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <span t-field="o.reviewer_name"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <span t-field="o.reviewer_job_id.name"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <span t-field="o.reviewer2_name"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <span t-field="o.reviewer2_job_id.name"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>KPI Pegawai</h3>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table" style="font-size:60%">
+                                    <col/>
+                                    <colgroup span="2" />
+                                    <colgroup span="2" />
+                                    <thead>
+                                        <tr>
+                                            <th colspan="6" scope="colgroup" />
+                                            <th colspan="2" scope="colgroup">Indikator Pencapaian Target Kinerja</th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Perspektif</th>
+                                            <th scope="col">Sasaran Target</th>
+                                            <th scope="col">Bobot</th>
+                                            <th scope="col">Uraian Target</th>
+                                            <th scope="col">Bobot</th>
+                                            <th scope="col">Jenis</th>
+                                            <th scope="col">Semester 1</th>
+                                            <th scope="col">Semester 2</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="o.work_perspective_financial_ids" t-as="fin">
+                                            <td>
+                                                <span>Finansial</span>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.sasaran_id.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.bobot_sasaran"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.bobot"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.jenis"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.target_semester1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.target_semester2"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="o.work_perspective_customer_ids" t-as="fin">
+                                            <td>
+                                                <span>Customer</span>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.sasaran_id.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.bobot_sasaran"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.bobot"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.jenis"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.target_semester1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.target_semester2"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="o.work_perspective_bp_ids" t-as="fin">
+                                            <td>
+                                                <span>Internal Bisnis Proses</span>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.sasaran_id.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.bobot_sasaran"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.bobot"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.jenis"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.target_semester1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.target_semester2"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="o.work_perspective_people_ids" t-as="fin">
+                                            <td>
+                                                <span>People Development</span>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.sasaran_id.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.bobot_sasaran"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.bobot"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.jenis"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.target_semester1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="fin.target_semester2"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="text-center">Saya dan atasan telah menyepakati penetapan kinerja di
+                                        atas:
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row text-left">
+                                <div class="col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="text-center">Pegawai</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img t-attf-src="/web/image?model=hr.work.goal&amp;id={{o.id}}&amp;field=self_signature"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Nama</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Jabatan</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Tanggal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.name"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.job_id"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.approval_date"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="text-center">Penilai 1</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img t-attf-src="/web/image?model=hr.work.goal&amp;id={{o.id}}&amp;field=reviewer_signature"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Nama</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Jabatan</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Tanggal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.reviewer_name"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.reviewer_job_id"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.reviewer_penetapan_date"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="text-center">Pemutus</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img t-attf-src="/web/image?model=hr.work.goal&amp;id={{o.id}}&amp;field=reviewer2_signature"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Nama</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Jabatan</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;">Tanggal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.reviewer2_name"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.reviewer2_job_id"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span style="font-size=12px;" t-field="o.reviewer2_penetapan_date"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</flectra>

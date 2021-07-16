@@ -1,0 +1,434 @@
+<flectra>
+    <data>
+
+        <record id="perdin_form" model="ir.ui.view">
+            <field name="name">Permohonan Perdin</field>
+            <field name="model">hr.perdin</field>
+            <field name="arch" type="xml">
+                <form string="Permohonan Perdin">
+                    <header>
+                        <button string="Reset To Draft"
+                                name="action_draft"
+                                states="refuse,cancel,validate"
+                                type="object"/>
+
+                        <button string="Approve"
+                                name="action_validate"
+                                states="draft"
+                                type="object"/>
+
+                        <button string="Refuse"
+                                name="action_refuse"
+                                states="draft"
+                                type="object"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,validate"
+                               statusbar_colors='{"confirm":"blue","validate":"black","refuse":"red"}'/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="expense_button_box">
+                            <button name="print_pengajuan_perdin"
+                                    type="object"
+                                    class="oe_stat_button" string="Print Pengajuan"
+                                    icon="fa-print"/>
+                            <button name="action_calculate_uang_saku"
+                                    type="object"
+                                    states="validate"
+                                    class="oe_stat_button" string="Hitung Uang saku"
+                                    icon="fa-calculator"/>
+                            <button name="print_report_perdin"
+                                    states="validate"
+                                    type="object"
+                                        class="oe_stat_button" string="Print Report"
+                                    icon="fa-print"/>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="jenis_perdin"/>
+                            <field name="date_from" required="1"/>
+                            <field name="date_to" required="1"/>
+                            <field name="number_of_days_temp"/>
+                            <field name="tempat_berangkat"/>
+                            <field name="negara_tujuan"/>
+                            <Field name="propinsi_tujuan"/>
+                            <field name="tempat_tujuan"/>
+                            <field name="tujuan_perdin"/>
+                            <label for="perdin_undangan" string="Perdin Undangan"/>
+                            <div>
+                                <field name="perdin_undangan"/>
+                                <label string="Ya" class="oe_inline"/>
+                            </div>
+                            <field name="unti_kerja_penyelenggara"/>
+                            <field name="cost_centre"/>
+                            <field name="alat_angkut"/>
+                            <field name="driver"/>
+                        </group>
+                        <group>
+                            <notebook>
+                                <page string="Daftar Peserta">
+                                    <field name="employee_ids" widget="one2many_list" nolabel="1">
+                                        <tree editable="top">
+                                            <field name="image" widget="image" class="oe_avatar"
+                                                   options='{"preview_image":"image_medium"}'/>
+                                            <field name="nip"/>
+                                            <field name="employee_id"/>
+                                            <field name="uang_saku" readonly="1"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                        <group string="User Approval">
+                            <field name="approve"
+                                   attrs="{'readonly':['|',('state','=','validate'),('state','=','refuse')]}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="perdin_tree" model="ir.ui.view">
+            <field name="name">hr.perdin.tree</field>
+            <field name="model">hr.perdin</field>
+            <field name="arch" type="xml">
+                <tree string="Perjalanan Dinas">
+                    <field name="name"/>
+                    <field name="jenis_perdin"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="tempat_berangkat"/>
+                    <field name="tempat_tujuan"/>
+                    <field name="tujuan_perdin"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="permohonan_perdin">
+            <field name="name">Pengajuan Perdin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.perdin</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add an Overtime
+                </p>
+                <p>klik tombol create untuk menambah data lembur baru</p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="perdin_approve">
+            <field name="name">Approval</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.perdin</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','draft'),('approve','=',uid)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add an Overtime
+                </p>
+                <p>klik tombol create untuk menambah data lembur baru</p>
+            </field>
+        </record>
+
+        <record id="detail_perdin_tree" model="ir.ui.view">
+            <field name="name">hr.perdin.employee.tree</field>
+            <field name="model">hr.perdin.employee</field>
+            <field name="arch" type="xml">
+                <tree string="Perjalanan Dinas" create="false">
+                    <field name="perdin_id"/>
+                    <field name="nip"/>
+                    <field name="employee_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="state" string="Status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="detail_perdin_form" model="ir.ui.view">
+            <field name="name">hr.perdin.employee.form</field>
+            <field name="model">hr.perdin.employee</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="perdin_id" readonly="1"/>
+                            <field name="nip" readonly="1"/>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="date_from" readonly="1"/>
+                            <field name="date_to" readonly="1"/>
+                            <field name="state" string="Status" readonly="1"/>
+                            <field name="uang_saku" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Bukti Perdin">
+                                <field name="perdin_cost_ids">
+                                    <tree editable="top">
+                                        <!--<field name="nominal" sum="Total"/>-->
+                                        <field name="doc_proof" filename="filename" widget="binary"/>
+                                        <field name="state"/>
+                                        <field name="filename" invisible="1"/>
+                                        <button name="action_approve" type="object" string="Approve"
+                                                attrs="{'invisible': [('state', '=', 'validate')]}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="detail_perdin">
+            <field name="name">Detail Perdin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.perdin.employee</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','validate')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add an Overtime
+                </p>
+                <p>klik tombol create untuk menambah data lembur baru</p>
+            </field>
+        </record>
+
+        <record id="bukti_perdin_tree" model="ir.ui.view">
+            <field name="name">bukti_perdin_tree</field>
+            <field name="model">hr.perdin.employee.cost</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="perdin_id"/>
+                    <!--<field name="nominal"/>-->
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="bukti_perdin_approval_tree" model="ir.ui.view">
+            <field name="name">bukti_perdin_tree</field>
+            <field name="model">hr.perdin.employee.cost</field>
+            <field name="arch" type="xml">
+                <tree string="" create="false">
+                    <field name="perdin_id"/>
+                    <!--<field name="nominal"/>-->
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="bukti_perdin_form" model="ir.ui.view">
+            <field name="name">bukti_perdin_form</field>
+            <field name="model">hr.perdin.employee.cost</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,validate"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="perdin_id" domain="[('user_id', '=', user_login)]"
+                                   options="{'no_create_edit': True, 'no_create':True, 'no_open':True}"/>
+                            <field name="tempat_tujuan" readonly="1"
+                                   attrs="{'invisible': [('perdin_id', '=', False)]}"/>
+                            <field name="tujuan_perdin" readonly="1"
+                                   attrs="{'invisible': [('perdin_id', '=', False)]}"/>
+                            <!--<field name="nominal" required="1"/>-->
+                            <field name="doc_proof" filename="filename" widget="binary" required="1"/>
+                            <field name="filename" invisible="1"/>
+                            <field name="user_login" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="bukti_perdin_approval_form" model="ir.ui.view">
+            <field name="name">bukti_perdin_form</field>
+            <field name="model">hr.perdin.employee.cost</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="action_approve" string="Approve" states="draft" type="object"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,validate"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="perdin_id" domain="[('user_id', '=', user_login)]"
+                                   options="{'no_create_edit': True, 'no_create':True, 'no_open':True}"/>
+                            <field name="tempat_tujuan" readonly="1"
+                                   attrs="{'invisible': [('perdin_id', '=', False)]}"/>
+                            <field name="tujuan_perdin" readonly="1"
+                                   attrs="{'invisible': [('perdin_id', '=', False)]}"/>
+                            <!--<field name="nominal" required="1"/>-->
+                            <field name="doc_proof" filename="filename" widget="binary" required="1"/>
+                            <field name="filename" invisible="1"/>
+                            <field name="user_login" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="bukti_perdin_view_action" model="ir.actions.act_window">
+            <field name="name">Pengembalian Bukti Perdin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.perdin.employee.cost</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('user_id', '=', uid)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <record id="perdin_approve_bukti" model="ir.actions.act_window">
+            <field name="name">Approval Bukti Perdin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.perdin.employee.cost</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <record id="action_perdin_approve_bukti_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="bukti_perdin_approval_form"/>
+            <field name="act_window_id" ref="perdin_approve_bukti"/>
+        </record>
+
+        <record id="action_perdin_approve_bukti_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="bukti_perdin_approval_tree"/>
+            <field name="act_window_id" ref="perdin_approve_bukti"/>
+        </record>
+
+        <record id="perdin_allowance_tree" model="ir.ui.view">
+            <field name="name">perdin_allowance_tree</field>
+            <field name="model">hr.perdin.allowance</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="jenis_pegawai"/>
+                    <field name="nominal"/>
+                    <field name="nominal_luar"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="perdin_allowance_form" model="ir.ui.view">
+            <field name="name">perdin_allowance_form</field>
+            <field name="model">hr.perdin.allowance</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="jenis_pegawai" required="1"/>
+                            <field name="nominal" required="1"/>
+                            <field name="nominal_luar" required="1"/>
+                            <field name="extra" string="(%)tambahan di luar pulau jawa" required="1"/>
+                            <field name="extra_jawa" string="(%)tambahan di pulau jawa" required="1"/>
+                            <field name="location_exclude_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="perdin_allowance_view_action" model="ir.actions.act_window">
+            <field name="name">Daftar Tunjangan Perdin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.perdin.allowance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                id="menu_hr_perdin"
+                parent="hr.menu_hr_root"
+                name="Perdin"
+                sequence="6"
+                groups="base.group_user"
+                web_icon="hr_holidays,static/description/icon.png"/>
+
+        <menuitem
+                id="menu_hr_pengajuan_perdin"
+                name="Pengajuan Perdin"
+                parent="menu_hr_perdin"
+                action="permohonan_perdin"
+                groups="base.group_user"
+                sequence="1"
+        />
+
+        <menuitem
+                id="menu_hr_pengembalian_perdin"
+                name="Pengembalian Bukti Perdin"
+                parent="menu_hr_perdin"
+                action="bukti_perdin_view_action"
+                groups="base.group_user"
+                sequence="2"
+        />
+
+        <menuitem
+                id="menu_hr_approve_perdin"
+                name="Approval Perdin"
+                parent="menu_hr_perdin"
+                action="perdin_approve"
+                groups="base.group_user"
+                sequence="3"
+        />
+
+        <menuitem
+                id="menu_hr_approve_perdin_bukti"
+                name="Approval Bukti Perdin"
+                parent="menu_hr_perdin"
+                action="perdin_approve_bukti"
+                groups="hr.group_hr_manager"
+                sequence="4"
+        />
+
+        <menuitem
+                id="menu_hr_detail_pesera_perdin"
+                name="Detail Perdin"
+                parent="menu_hr_perdin"
+                action="detail_perdin"
+                groups="base.group_user"
+                sequence="5"
+        />
+
+        <menuitem
+                id="menu_hr_perdin_allowance"
+                name="Tunjangan Perdin"
+                parent="menu_hr_perdin"
+                action="perdin_allowance_view_action"
+                groups="hr.group_hr_manager"
+                sequence="6"
+        />
+
+    </data>
+</flectra>

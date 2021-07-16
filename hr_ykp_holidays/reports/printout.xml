@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+
+    <record id="paperformat_perdin" model="report.paperformat">
+        <field name="name">Format Perdin</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">30</field>
+        <field name="margin_right">30</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <report
+            id="hr_permohonan_cuti_printout"
+            string="Print Permohonan Cuti"
+            model="hr.holidays"
+            report_type="qweb-pdf"
+            attachment="(object.state in ('draft')) and ('permohonan_cuti_'+(object.employee_id.name or '').replace('/','')+'.pdf')"
+            name="hr_ykp_holidays.print_form_pengajuan_cuti"
+            paperformat="hr_ykp_holidays.paperformat_perdin"
+    />
+
+    <template id="print_form_pengajuan_cuti">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="o">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <h3 class="text-capitalize text-center" style="text-decoration: underline">PERMOHONAN
+                                    CUTI
+                                </h3>
+                                <h3 class="text-capitalize text-center;color:white;">.</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <table class="print_table" border="1" style="width: 100%">
+                                    <tr>
+                                        <td style="font-size:12px;width:20%;border:1px solid #000;padding:0.5em;">Nama /
+                                            Jabatan
+                                        </td>
+                                        <td style="font-size:12px;width:20%;border:1px solid #000;padding:0.5em;">Alasan
+                                            Cuti
+                                        </td>
+                                        <td style="font-size:12px;width:30%;border:1px solid #000;padding:0.5em;">
+                                            Tanggal Mulai &amp; Akhir Cuti (Banyaknya Hari
+                                            Cuti)
+                                        </td>
+                                        <td style="font-size:12px;width:20%;border:1px solid #000;padding:0.5em;">Status
+                                            Permohonan Cuti
+                                        </td>
+                                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                            Keterangan
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table width="100%" height="100%">
+                                                <tr>
+                                                    <td style="text-align: left;width:50%;border:1px solid #000;padding:0.5em;">
+                                                        <span style="font-size:12px;" t-field="o.employee_id"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: left;width:50%;border:1px solid #000;padding:0.5em;">
+                                                        <span style="font-size:12px;" t-field="o.employee_id.job_id"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td style="text-align: left;width:20%;border:1px solid #000;padding:0.5em;">
+                                            <span style="font-size:12px;" t-field="o.name"/>
+                                        </td>
+                                        <td>
+                                            <table width="100%" height="100%">
+                                                <tr>
+                                                    <td style="text-align: left;width:50%;border:1px solid #000;padding:0.5em;">
+                                                        <span style="font-size:12px;text-align: center;"
+                                                              t-field="o.date_from"
+                                                              t-field-options="{&quot;format&quot;: &quot;EEEE&quot;}"/>
+                                                    </td>
+                                                    <td style="text-align: left;width:50%;border:1px solid #000;padding:0.5em;">
+                                                        <span style="font-size:12px;text-align: center;"
+                                                              t-field="o.date_to"
+                                                              t-field-options="{&quot;format&quot;: &quot;EEEE&quot;}"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: left;width:50%;border:1px solid #000;padding:0.5em;">
+                                                        <span style="font-size:12px;" t-field="o.date_from"
+                                                              t-field-options="{&quot;format&quot;: &quot;dd MMMM Y&quot;}"/>
+                                                    </td>
+                                                    <td style="text-align: left;width:50%;border:1px solid #000;padding:0.5em;">
+                                                        <span style="font-size:12px;" t-field="o.date_to"
+                                                              t-field-options="{&quot;format&quot;: &quot;dd MMMM Y&quot;}"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"
+                                                        style="text-align: center;border:1px solid #000;padding:0.5em;">
+                                                        <span style="font-size:12px;" t-field="o.number_of_days"/>
+                                                        <span style="font-size:12px;">Hari</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td style="text-align: center;width:20%;border:1px solid #000;padding:0.5em;">
+                                            <span style="font-size:12px;">Setuju / Tidak Setuju</span>
+                                        </td>
+                                        <td style="text-align: center;width:10%;border:1px solid #000;padding:0.5em;"/>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <table>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%" style="font-size:12px;text-align: left">Bekal Cuti</td>
+                                        <td width="3%" style="text-align: center">:</td>
+                                        <td width="10%" style="text-align: left"/>
+                                        <td width="10%" style="text-align: left"/>
+                                        <td width="67%" style="text-align: left"/>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Jatah Cuti Tahun Berjalan</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;">=</span>
+                                        </td>
+                                        <td width="10%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;" t-field="o.max_leaves"/>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Hari</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span style="font-size:12px;">.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Sisa Cuti Tahun Lalu</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;">=</span>
+                                        </td>
+                                        <td width="10%" style="text-align: center;color:black;">
+                                            <!--<span style="font-size:12px;" t-field="o.remaining_leaves" />-->
+                                            <span style="font-size:12px;"/>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Hari</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span style="font-size:12px;">.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Cuti Yang Telah Digunakan</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;">=</span>
+                                        </td>
+                                        <td width="10%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;" t-field="o.leaves_taken"/>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Hari</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span style="font-size:12px;">.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Cuti Yand Diajukan</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;">=</span>
+                                        </td>
+                                        <td width="10%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;" t-field="o.number_of_days"/>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Hari</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span style="font-size:12px;">.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Sisa Cuti Tahun Berjalan</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;">=</span>
+                                        </td>
+                                        <td width="10%" style="text-align: center;color:black;">
+                                            <span style="font-size:12px;" t-field="o.remaining_leaves"/>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:black;">
+                                            <span style="font-size:12px;">Hari</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span style="font-size:12px;">.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="3%" style="text-align: center;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="10%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                        <td width="67%" style="text-align: left;color:white;">
+                                            <span>.</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <table>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align: center">
+                                            <span style="font-size:12px">Mengetahui,</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center">
+                                            <span style="font-size:12px" t-field="o.approve1"/>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <table>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align: center">
+                                            <span style="font-size:12px">Menyetujui,</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center">
+                                            <span style="font-size:12px" t-field="o.approve2"/>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <table>
+                                    <tr>
+                                        <td style="text-align: center;">
+                                            <span style="font-size:12px">
+                                                Bandung,
+                                            </span>
+                                            <span style="font-size:12px" t-field="o.create_date"
+                                                  t-field-options="{&quot;format&quot;: &quot;  dd MMMM Y&quot;}"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align: center">
+                                            <span style="font-size:12px">Pemohon,</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;color: white;">,</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center">
+                                            <span style="font-size:12px" t-field="o.employee_id"/>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!--<report-->
+    <!--id="hr_perdin_printout"-->
+    <!--string="Print Perjalanan Dinas"-->
+    <!--model="hr.perdin.employee"-->
+    <!--report_type="qweb-pdf"-->
+    <!--name="hr_ykp_holidays.print_form_perdin"-->
+    <!--paperformat="hr_ykp_holidays.paperformat_perdin"-->
+    <!--/>-->
+
+    <report
+            id="hr_perdin_printout_pengajuan"
+            string="Print Perjalanan Dinas"
+            model="hr.perdin"
+            report_type="qweb-pdf"
+            name="hr_ykp_holidays.print_form_perdin_pengajuan"
+            paperformat="hr_ykp_holidays.paperformat_perdin"
+    />
+
+    <template id="print_form_perdin_pengajuan">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <table width="100%" style="font-size:17px">
+                            <tr>
+                                <td width="100%" style="text-align: center;">
+                                    <br>Nomor :
+                                        <span t-field="o.name"/>
+                                    </br>
+                                    <b>
+                                        <u>
+                                            <br>
+                                                <span style="font-size: 23px">SURAT PERINTAH PERJALANAN DINAS</span>
+                                            </br>
+                                        </u>
+                                    </b>
+                                </td>
+                            </tr>
+                        </table>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <table width="100%" style="font-size:17px">
+                            <tr>
+                                <td width="4%" style="text-align: left">1.</td>
+                                <td width="40%" style="text-align: left">Pejabat Berwenang</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="493%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.approve_employee_id"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="text-align: center">
+                                    <span style="font-size:12px;" t-field="o.approve_employee_id.job_id"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <t t-foreach="o.employee_ids" t-as="emp">
+                                <tr>
+                                    <t t-if="emp_index == 0">
+                                        <td width="4%" style="text-align: left">2.</td>
+                                        <td width="40%" style="text-align: left">Nama Dan Jabatan Pegawai</td>
+                                        <td width="3%" style="text-align: center">:</td>
+                                    </t>
+                                    <t t-else="">
+                                        <td width="4%" style="text-align: left;color:#fff;">.</td>
+                                        <td width="40%" style="text-align: left;color:#fff;">.</td>
+                                        <td width="3%" style="text-align: center;color:#fff;">.</td>
+                                    </t>
+                                    <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                        <span t-field="emp.employee_id"/>
+                                    </td>
+                                    <td width="4%" style="color: #ffffff">1.</td>
+                                </tr>
+                                <tr>
+                                    <td width="4%" style="color: #ffffff;">.</td>
+                                    <td width="40%" style="color: #ffffff;">.</td>
+                                    <td width="3" style="color: #ffffff;">.</td>
+                                    <td width="49%" style="text-align: center">
+                                        <span style="font-size:12px;" t-field="emp.employee_id.job_id"/>
+                                    </td>
+                                    <td width="4%" style="color: #ffffff">1.</td>
+                                </tr>
+                                <tr>
+                                    <td width="4%" style="color: #ffffff;">.</td>
+                                    <td width="40%" style="color: #ffffff;">.</td>
+                                    <td width="3" style="color: #ffffff;">.</td>
+                                    <td width="49%" style="color: #ffffff;">.</td>
+                                    <td width="4%" style="color: #ffffff">1.</td>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td width="4%" style="text-align: left">3.</td>
+                                <td width="40%" style="text-align: left">Tempat Berangkat</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.tempat_berangkat"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">Tempat Tujuan</td>
+                                <td width="3" style="color: #ffffff;">:</td>
+                                <td width="49%" style="text-align: center">
+                                    <span t-field="o.tempat_tujuan"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">4.</td>
+                                <td width="40%" style="text-align: left">Maksud perjalanan dinas</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.tujuan_perdin"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">5.</td>
+                                <td width="40%" style="text-align: left">Lamanya perjalanan dinas</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.number_of_days_temp"/>
+                                </td>
+                                <td width="4%" style="text-align: center;">Hari</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="text-align: left">Tanggal berangkat</td>
+                                <td width="3" style="color: #ffffff;">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.date_from"
+                                          t-field-options="{&quot;format&quot;: &quot;dd MMMM yy&quot;}"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="text-align: left">Tanggal berangkat</td>
+                                <td width="3" style="color: #ffffff;">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.date_to"
+                                          t-field-options="{&quot;format&quot;: &quot;dd MMMM yy&quot;}"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">6.</td>
+                                <td width="40%" style="text-align: left">Alat angkut yang digunakan</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black;">
+                                    <span t-field="o.alat_angkut"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">7.</td>
+                                <td width="40%" style="text-align: left">Penanggung fasilitas perjalanan dinas</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black;">
+                                    <span t-field="o.driver"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">8.</td>
+                                <td width="40%" style="text-align: left">Keterangan Lain-lain</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%"
+                                    style="text-align: center; border-bottom: 1px solid black;color:#ffffff">/>.
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="font-size:17px">
+                            <tr>
+                                <td width="18%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="5%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="24%" style="text-align: center;color:#ffffff">.</td>
+                                <td width="53%" style="text-align: center;color:#ffffff">.................</td>
+                            </tr>
+                            <tr>
+                                <td width="18%" style="text-align: left">Datang di</td>
+                                <td width="5%" style="text-align: center">:</td>
+                                <td width="24%"
+                                    style="text-align: center; border-bottom: 1px solid black;color:#ffffff">.
+                                </td>
+                                <td width="53%" style="text-align: center;color:#ffffff">.................</td>
+                            </tr>
+                            <tr>
+                                <td width="18%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="5%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="24%" style="text-align: center;color:#ffffff">.</td>
+                                <td width="53%" style="text-align: center;color:#ffffff">.................</td>
+                            </tr>
+                            <tr>
+                                <td width="18%" style="text-align: left">Tanggal</td>
+                                <td width="5%" style="text-align: center">:</td>
+                                <td width="24%"
+                                    style="text-align: center; border-bottom: 1px solid black;color:#ffffff">.
+                                </td>
+                                <td width="53%" style="text-align: center;color:#ffffff">..............</td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="font-size:15px">
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">.</td>
+                                <td width="30%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="3%" style="text-align: center;color:#ffffff">.</td>
+                                <td width="27%" style="text-align: center;color:#ffffff">.................</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">.</td>
+                                <td width="30%" style="text-align: left">Dikeluarkan</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="27%" style="text-align: left">di Bandung</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">.</td>
+                                <td width="30%" style="text-align: left">Pada Tanggal</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="27%" style="text-align: left">
+                                    <span t-field="o.create_date"
+                                          t-field-options="{&quot;format&quot;: &quot;dd MMMM y&quot;}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Tanggal</td>
+                                <td width="30%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="3%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="27%" style="text-align: center;color:#ffffff"></td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="font-size:15px">
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center">
+                                    <b>YAYASAN KESEJAHTERAAN PEGAWAI</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center">
+                                    <b>PT. BANK PEMBANGUNAN JAWA BARAT DAN BANTEN</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center; border-bottom: 1px solid black">
+                                    <b>
+                                        <span t-field="o.approve_employee_id"/>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center">
+                                    <span style="font-size:12px;" t-field="o.approve_employee_id.job_id"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="print_form_perdin">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <p>
+                            <span style="color: #ffffff;">.</span>
+                        </p>
+                        <table width="100%" style="font-size:17px">
+                            <tr>
+                                <td width="4%" style="text-align: left">1.</td>
+                                <td width="40%" style="text-align: left">Pejabat Berwenang</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="493%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.perdin_id.approve_employee_id"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="text-align: center">
+                                    <span t-field="o.perdin_id.approve_employee_id.job_id"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">2.</td>
+                                <td width="40%" style="text-align: left">Nama Dan Jabatan Pegawai</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.employee_id"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="text-align: center">
+                                    <span t-field="o.employee_id.job_id"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">3.</td>
+                                <td width="40%" style="text-align: left">Tempat Berangkat</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.perdin_id.tempat_berangkat"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">Tempat Tujuan</td>
+                                <td width="3" style="color: #ffffff;">:</td>
+                                <td width="49%" style="text-align: center">
+                                    <span t-field="o.perdin_id.tempat_tujuan"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">4.</td>
+                                <td width="40%" style="text-align: left">Maksud perjalanan dinas</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.perdin_id.tujuan_perdin"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">5.</td>
+                                <td width="40%" style="text-align: left">Lamanya perjalanan dinas</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.perdin_id.number_of_days_temp"/>
+                                </td>
+                                <td width="4%" style="text-align: center;">Hari</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="text-align: left">Tanggal berangkat</td>
+                                <td width="3" style="color: #ffffff;">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.perdin_id.date_from"
+                                          t-field-options="{&quot;format&quot;: &quot;dd MMMM yy&quot;}"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="text-align: left">Tanggal berangkat</td>
+                                <td width="3" style="color: #ffffff;">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black">
+                                    <span t-field="o.perdin_id.date_to"
+                                          t-field-options="{&quot;format&quot;: &quot;dd MMMM yy&quot;}"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">6.</td>
+                                <td width="40%" style="text-align: left">Alat angkut yang digunakan</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black;">
+                                    <span t-field="o.perdin_id.alat_angkut"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">7.</td>
+                                <td width="40%" style="text-align: left">Penanggung fasilitas perjalanan dinas</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%" style="text-align: center; border-bottom: 1px solid black;">
+                                    <span t-field="o.perdin_id.driver"/>
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="color: #ffffff;">.</td>
+                                <td width="40%" style="color: #ffffff;">.</td>
+                                <td width="3" style="color: #ffffff;">.</td>
+                                <td width="49%" style="color: #ffffff;">.</td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                            <tr>
+                                <td width="4%" style="text-align: left">8.</td>
+                                <td width="40%" style="text-align: left">Keterangan Lain-lain</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="49%"
+                                    style="text-align: center; border-bottom: 1px solid black;color:#ffffff">/>.
+                                </td>
+                                <td width="4%" style="color: #ffffff">1.</td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="font-size:17px">
+                            <tr>
+                                <td width="18%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="5%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="24%" style="text-align: center;color:#ffffff">.</td>
+                                <td width="53%" style="text-align: center;color:#ffffff">.................</td>
+                            </tr>
+                            <tr>
+                                <td width="18%" style="text-align: left">Datang di</td>
+                                <td width="5%" style="text-align: center">:</td>
+                                <td width="24%"
+                                    style="text-align: center; border-bottom: 1px solid black;color:#ffffff">.
+                                </td>
+                                <td width="53%" style="text-align: center;color:#ffffff">.................</td>
+                            </tr>
+                            <tr>
+                                <td width="18%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="5%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="24%" style="text-align: center;color:#ffffff">.</td>
+                                <td width="53%" style="text-align: center;color:#ffffff">.................</td>
+                            </tr>
+                            <tr>
+                                <td width="18%" style="text-align: left">Tanggal</td>
+                                <td width="5%" style="text-align: center">:</td>
+                                <td width="24%"
+                                    style="text-align: center; border-bottom: 1px solid black;color:#ffffff">.
+                                </td>
+                                <td width="53%" style="text-align: center;color:#ffffff">..............</td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="font-size:17px">
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">.</td>
+                                <td width="40%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="3%" style="text-align: center;color:#ffffff">.</td>
+                                <td width="17%" style="text-align: center;color:#ffffff">.................</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">.</td>
+                                <td width="40%" style="text-align: left">Dikeluarkan</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="17%" style="text-align: left">di Bandung</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">.</td>
+                                <td width="40%" style="text-align: left">Pada Tanggal</td>
+                                <td width="3%" style="text-align: center">:</td>
+                                <td width="17%" style="text-align: left">
+                                    <span t-field="o.perdin_id.create_date"
+                                          t-field-options="{&quot;format&quot;: &quot;dd MMMM y&quot;}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Tanggal</td>
+                                <td width="40%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="3%" style="text-align: center;color:#ffffff">:</td>
+                                <td width="17%" style="text-align: center;color:#ffffff"></td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="font-size:15px">
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center">
+                                    <b>YAYASAN KESEJAHTERAAN PEGAWAI</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center">
+                                    <b>PT. BANK PEMBANGUNAN JAWA BARAT DAN BANTEN</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center;color:#ffffff">:</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center; border-bottom: 1px solid black">
+                                    <b>
+                                        <span t-field="o.perdin_id.approve_employee_id"/>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="40%" style="text-align: left;color:#ffffff">Datang di</td>
+                                <td width="60%" style="text-align: center">
+                                    <span t-field="o.perdin_id.approve_employee_id.job_id"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <report
+            id="hr_perdin_printout_report"
+            string="Print Report Perdin"
+            model="hr.perdin.employee"
+            report_type="qweb-pdf"
+            name="hr_ykp_holidays.print_form_perdin_report"
+            paperformat="hr_ykp_holidays.paperformat_perdin"
+    />
+
+    <template id="print_form_perdin_report">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <table class="print_table" border="1" style="width: 100%">
+                    <tr>
+                        <td style="font-size:12px;width:5%;border:1px solid #000;padding:0.5em;">No</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Nama</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Jabatan
+                        </td>
+                        <td style="font-size:12px;width:15%;border:1px solid #000;padding:0.5em;">Tujuan</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Waktu</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Nominal/Hari
+                        </td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">+20%/hari</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">+50%/hari</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Jumlah</td>
+                        <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">Jumlah
+                            dibayarkan
+                        </td>
+                    </tr>
+                    <t t-foreach="docs" t-as="o">
+                        <tr>
+                            <td style="font-size:12px;width:5%;border:1px solid #000;padding:0.5em;">
+                                <span t-esc="o_index + 1"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.employee_id"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.employee_id.job_id"/>
+                            </td>
+                            <td style="font-size:12px;width:15%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.tempat_tujuan"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.perdin_id.number_of_days_temp"/>
+                                <span>Hari</span>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.uang_saku_perhari"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.extra_jawa"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.extra"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.uang_saku"/>
+                            </td>
+                            <td style="font-size:12px;width:10%;border:1px solid #000;padding:0.5em;">
+                                <span t-field="o.uang_saku"/>
+                            </td>
+                        </tr>
+                    </t>
+                </table>
+            </div>
+        </t>
+    </template>
+
+</flectra>

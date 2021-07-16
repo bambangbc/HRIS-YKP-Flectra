@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+
+	<record id="paperformat_lembur" model="report.paperformat">
+        <field name="name">Format Lembur</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <report
+        id="hr_lembur_printout"
+        string="Print Perintah Lembur"
+        model="hr.overtime"
+        report_type="qweb-pdf"
+        name="hr_ykp_lembur.print_form_lembur"
+        paperformat="hr_ykp_lembur.paperformat_lembur"
+    	/>
+
+    <template id="print_form_lembur">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+		                <table width="100%" style="font-size:10px">
+		                	<tr>
+                                <td width="100%" style="text-align: right;"><img src="/hr_ykp_lembur/static/src/img/image.png"/></td>
+                            </tr>
+						</table>
+						<h4><br>Diperintahkan Kepada</br></h4>
+						<table width="100%" style="font-size:17px">
+							<tr>
+								<td width="8%" style="solid black;text-align: left;">Name</td>
+								<td width="2%" style="text-align: left;">:</td>
+								<td width="20%" style="solid black;text-align: leftt;"><span t-field="o.employee_id"/></td>
+								<td width="2%" style="solid black;text-align: leftt;"></td>
+								<td width="13%" style="solid black;text-align: left;">Unit Kerja</td>
+								<td width="2%" style="solid black;text-align: left;">:</td>
+								<td width="63%" style="solid black;text-align: left;"><span t-field="o.unit_kerja"/></td>
+							</tr>
+						</table>
+						<h4><br>Untuk melaksanakan kerja lembur pada :</br></h4>
+						<table border="0" width="100%" style="font-size:17px">
+							<tr>
+								<td width="8%" style="text-align: left;">Hari</td>
+								<td width="2%" style="text-align: left;">:</td>
+								<td width="10%" style="solid black;text-align: leftt;"><span t-field="o.hari"/></td>
+								<td width="8%" style="text-align: left;">Tanggal</td>
+								<td width="2%" style="text-align: left;">:</td>
+								<td width="20%" style="solid black;text-align: left;"><span t-field="o.date_from" t-field-options="{&quot;format&quot;: &quot;dd MMMM y&quot;}"/></td>
+								<td width="8%" style="text-align: left;">jam</td>
+								<td width="2%" style="text-align: left;">:</td>
+								<td width="10%" style="text-align: left;"><span t-field="o.date_from" t-field-options="{&quot;format&quot;: &quot;hh:mm:ss&quot;}"/></td>
+								<td width="8%" style="text-align: left;">s/d jam</td>
+								<td width="2%" style="text-align: left;">:</td>
+								<td width="15%" style="text-align: left;"><span t-field="o.date_to" t-field-options="{&quot;format&quot;: &quot;hh:mm:ss&quot;}"/></td>
+							</tr>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<table border="0" width="100%" style="font-size:17px">
+							<tr>
+								<td width="8%" style="text-align: left;">Keperluan</td>
+								<td width="2%" style="text-align: left;">:</td>
+								<td width="60%" style="text-align: leftt;"><span t-field="o.name"/></td>
+								<td width="8%" style="text-align: left;">Durasi</td>
+								<td width="2%" style="text-align: left;">:</td>
+								<td width="7%" style="text-align: left;"><span t-field="o.number_of_hours_temp" t-field-options='{"widget": "float_time"}'/></td>
+								<td width="13%" style="text-align: left;">jam</td>
+							</tr>
+						</table>
+						<br><span style="color: #ffffff;">.</span></br>
+						<table border="1" width="100%" style="font-size:17px">
+							<tr border="1">
+								<td width="15%" style="text-align: left;">
+									<br><span style="color: #ffffff;">.</span></br>
+								</td>
+								<td width="2.5%" style="text-align: left;"></td>
+								<td width="15%" style="text-align: leftt;">
+									<br><span style="color: #ffffff;">.</span></br>
+								</td>
+								<td width="2.5%%" style="text-align: left;"></td>
+								<td width="20%" style="text-align: center;">
+									<br>Mengetahui</br>
+									<br><span style="color: #ffffff;">.</span></br>
+									<br><span style="color: #ffffff;">.</span></br>
+									<br><span style="color: #ffffff;">.</span></br>
+								</td>
+								<td width="2.5%%" style="text-align: left;"></td>
+								<td width="20%" style="text-align: center;">
+									<br>Dilaksanakan oleh</br>
+									<br><span style="color: #ffffff;">.</span></br>
+									<br><span style="color: #ffffff;">.</span></br>
+									<br><span style="color: #ffffff;">.</span></br>
+								</td>
+								<td width="2.5%%" style="text-align: leftt;"></td>
+								<td width="20%" style="text-align: center;">
+									<br>Diperintahkan oleh</br>
+									<br><span style="color: #ffffff;">.</span></br>
+									<br><span style="color: #ffffff;">.</span></br>
+									<br><span style="color: #ffffff;">.</span></br>
+								</td>
+							</tr>
+							<tr>
+								<td width="15%" style="text-align: left;">
+									<br><span style="color: #ffffff;">.</span></br>
+								</td>
+								<td width="2.5%" style="text-align: left;"></td>
+								<td width="15%" style="text-align: leftt;">
+									<br><span style="color: #ffffff;">.</span></br>
+								</td>
+								<td width="2.5%%" style="text-align: left;"></td>
+								<td width="20%" style="text-align: center;">
+									<br>Pinbag/Pindiv</br>
+								</td>
+								<td width="2.5%%" style="text-align: left;"></td>
+								<td width="20%" style="text-align: center;">
+									<br><span t-field="o.employee_id"/></br>
+								</td>
+								<td width="2.5%%" style="text-align: leftt;"></td>
+								<td width="20%" style="text-align: center;">
+									<br><span t-field="o.unit_kerja.manager_id"/></br>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</t>
+            </div>
+        </t>
+    </template>
+
+</flectra>
